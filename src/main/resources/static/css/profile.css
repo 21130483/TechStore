@@ -1,0 +1,27 @@
+
+
+.profile-menu li{
+    font-size: 24px;
+    color: #2B2D42;
+    font-weight: 700;
+}
+
+.profile-menu li{
+    font-size: 24px;
+    font-weight: 700;
+}
+
+.profile-menu li:hover{
+    color: #D10024;
+    text-decoration: underline;
+    text-decoration-color: red;
+}
+
+.profile-menu .active{
+    color: #D10024;
+    text-decoration: underline;
+    text-decoration-color: red;
+}
+
+
+
