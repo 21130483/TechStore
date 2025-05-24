@@ -69,7 +69,7 @@
                 <!-- LOGO -->
                 <div class="col-md-3">
                     <div class="header-logo">
-                        <a href="product.html" class="logo">
+                        <a href="/" class="logo">
                             <img src="${pageContext.request.contextPath}/img/logo.png" alt="">
                         </a>
                     </div>
@@ -98,7 +98,7 @@
 
                         <!-- Cart -->
                         <div class="dropdown">
-                            <a href="checkout.html" aria-expanded="true">
+                            <a href="cart" aria-expanded="true">
                                 <!-- <a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true"> -->
                                 <i class="fa fa-shopping-cart"></i>
                                 <span>Giỏ Hàng</span>
@@ -181,12 +181,12 @@
             <!-- NAV -->
             <ul class="main-nav nav navbar-nav">
                 <li class="active"><a href="#">Home</a></li>
-                <li><a href="store.html">Hot Deals</a></li>
-                <li><a href="#">Categories</a></li>
-                <li><a href="#">Laptops</a></li>
-                <li><a href="#">Smartphones</a></li>
-                <li><a href="#">Cameras</a></li>
-                <li><a href="#">Accessories</a></li>
+                <li><a href="/store">Hot Deals</a></li>
+                <li><a href="/store">Categories</a></li>
+                <li><a href="/store">Laptops</a></li>
+                <li><a href="/store">Smartphones</a></li>
+                <li><a href="/store">Cameras</a></li>
+                <li><a href="/store">Accessories</a></li>
             </ul>
             <!-- /NAV -->
         </div>

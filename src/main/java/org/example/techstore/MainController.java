@@ -12,4 +12,23 @@ public class MainController {
     public String home() {
         return "index"; // Không cần ghi đường dẫn đầy đủ
     }
+    @RequestMapping("/cart")
+    public String cart() {
+        return "cart"; // Không cần ghi đường dẫn đầy đủ
+    }
+
+    @RequestMapping("/checkout")
+    public String checkout() {
+        return "checkout"; // Không cần ghi đường dẫn đầy đủ
+    }
+
+    @RequestMapping("/store")
+    public String store() {
+        return "store"; // Không cần ghi đường dẫn đầy đủ
+    }
+
+    @RequestMapping("/product")
+    public String product() {
+        return "product"; // Không cần ghi đường dẫn đầy đủ
+    }
 }
