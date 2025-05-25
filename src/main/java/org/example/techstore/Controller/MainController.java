@@ -1,17 +1,21 @@
-package org.example.techstore;
+package org.example.techstore.Controller;
 
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-
-import java.util.Collection;
 
 @Controller
 public class MainController {
+
     @RequestMapping("/")
+    public String root() {
+        return "redirect:/index";
+    }
+    @RequestMapping("/index")
     public String home() {
         return "index"; // Không cần ghi đường dẫn đầy đủ
     }
+
     @RequestMapping("/cart")
     public String cart() {
         return "cart"; // Không cần ghi đường dẫn đầy đủ
@@ -30,5 +34,14 @@ public class MainController {
     @RequestMapping("/product")
     public String product() {
         return "product"; // Không cần ghi đường dẫn đầy đủ
+    }
+
+    @GetMapping("/req/login")
+    public String login(){
+        return "login";
+    }
+    @GetMapping("/req/signup")
+    public String signup(){
+        return "signup";
     }
 }

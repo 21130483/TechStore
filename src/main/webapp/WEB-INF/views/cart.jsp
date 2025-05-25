@@ -94,7 +94,7 @@
                                     <h4 class="product-price">Giá<br>980.000 Đồng</h4>
 
                                     <div>
-                                        <button class="delete"><img src="img/cart/delete.png"></button>
+                                        <button class="delete"><img src="${pageContext.request.contextPath}/img/cart/delete.png"></button>
                                     </div>
                                 </div>
 
@@ -115,7 +115,7 @@
                                     <h4 class="product-price">Giá<br>980.000 Đồng</h4>
 
                                     <div>
-                                        <button class="delete"><img src="img/cart/delete.png"></button>
+                                        <button class="delete"><img src="${pageContext.request.contextPath}/img/cart/delete.png"></button>
                                     </div>
                                 </div>
 
