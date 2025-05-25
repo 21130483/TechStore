@@ -15,6 +15,18 @@
             margin-bottom: 15px;
             font-size: 14px;
         }
+        .forgot-password {
+            text-align: right;
+            margin-bottom: 15px;
+        }
+        .forgot-password a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 14px;
+        }
+        .forgot-password a:hover {
+            text-decoration: underline;
+        }
     </style>
 </head>
 <body>
@@ -26,8 +38,13 @@
                 Invalid username or password.
             </div>
         </c:if>
+        <c:if test="${param.expired != null}">
+            <div class="error-message">
+                Your session has expired. Please log in again.
+            </div>
+        </c:if>
         <div class="inputbox">
-            <ion-icon name="email-outline"></ion-icon>
+            <ion-icon name="person-outline"></ion-icon>
             <input name="username" id="username" type="text" required>
             <label for="username">Username</label>
         </div>
@@ -36,8 +53,8 @@
             <input name="password" type="password" id="password" required>
             <label for="password">Password</label>
         </div>
-        <div class="register">
-            <p><a href="#">Forget Password?</a></p>
+        <div class="forgot-password">
+            <a href="${pageContext.request.contextPath}/req/forgot-password">Forgot Password?</a>
         </div>
         <button type="submit">Log in</button>
         <div class="register">
