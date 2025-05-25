@@ -22,6 +22,11 @@ public class AppUserService implements UserDetailsService {
         Optional<AppUser> user = repository.findByUsername(username);
         if (user.isPresent()) {
             AppUser userObj = user.get();
+            
+            if (!userObj.isVerified()) {
+                throw new UsernameNotFoundException("Please verify your email before logging in");
+            }
+            
             return new User(
                 userObj.getUsername(),
                 userObj.getPassword(),
@@ -31,8 +36,7 @@ public class AppUserService implements UserDetailsService {
                 true, // accountNonLocked
                 Collections.singletonList(new SimpleGrantedAuthority("ROLE_USER"))
             );
-        } else {
-            throw new UsernameNotFoundException("User not found with username: " + username);
         }
+        throw new UsernameNotFoundException("User not found with username: " + username);
     }
 }

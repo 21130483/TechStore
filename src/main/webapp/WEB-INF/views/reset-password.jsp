@@ -3,11 +3,10 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Signup Form</title>
+    <title>Reset Password</title>
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/styleUser.css">
-    <script src="${pageContext.request.contextPath}/js/signup.js" defer></script>
     <style>
         .notification {
             position: fixed;
@@ -66,41 +65,28 @@
 <body>
 <div id="notification" class="notification"></div>
 <section>
-    <form id="signupForm">
-        <h1>Sign Up</h1>
+    <form id="resetPasswordForm">
+        <h1>Reset Password</h1>
+        <p style="color: #fff; text-align: center; margin-bottom: 20px;">
+            Enter your new password below.
+        </p>
 
-        <div class="inputbox">
-            <ion-icon name="person-outline"></ion-icon>
-            <input type="text" id="username" name="username" required>
-            <label for="username">Name</label>
-        </div>
-
-        <div class="inputbox">
-            <ion-icon name="mail-outline"></ion-icon>
-            <input type="email" id="email" name="email" required>
-            <label for="email">Email</label>
-        </div>
+        <input type="hidden" id="token" value="${token}">
 
         <div class="inputbox">
             <ion-icon name="lock-closed-outline"></ion-icon>
             <input type="password" id="password" name="password" required>
-            <label for="password">Password</label>
+            <label for="password">New Password</label>
         </div>
 
         <div class="inputbox">
             <ion-icon name="lock-closed-outline"></ion-icon>
-            <input type="password" id="passwordcon" name="passwordcon" required>
-            <label for="passwordcon">Confirm Password</label>
+            <input type="password" id="confirmPassword" name="confirmPassword" required>
+            <label for="confirmPassword">Confirm Password</label>
         </div>
 
-        <button id="submit" type="submit">Sign Up</button>
+        <button id="submit" type="submit">Reset Password</button>
         <div id="loading" class="loading"></div>
-
-        <div class="register">
-            <p>Already have an account?
-                <a href="${pageContext.request.contextPath}/req/login">Log In</a>
-            </p>
-        </div>
     </form>
 </section>
 
@@ -116,20 +102,24 @@
         }, 5000);
     }
 
-    const signupForm = document.getElementById("signupForm");
+    const resetPasswordForm = document.getElementById("resetPasswordForm");
     const loadingDiv = document.getElementById("loading");
     const submitButton = document.getElementById("submit");
 
-    signupForm.addEventListener("submit", async (e) => {
+    resetPasswordForm.addEventListener("submit", async (e) => {
         e.preventDefault();
 
-        const username = document.getElementById("username").value;
-        const email = document.getElementById("email").value;
         const password = document.getElementById("password").value;
-        const confirmPassword = document.getElementById("passwordcon").value;
+        const confirmPassword = document.getElementById("confirmPassword").value;
+        const token = document.getElementById("token").value;
 
         if (password !== confirmPassword) {
             showNotification("Passwords do not match!", false);
+            return;
+        }
+
+        if (password.length < 6) {
+            showNotification("Password must be at least 6 characters long!", false);
             return;
         }
 
@@ -137,39 +127,34 @@
         loadingDiv.style.display = 'block';
         submitButton.disabled = true;
 
-        const data = { username, email, password };
-        
         try {
-            const response = await fetch("${pageContext.request.contextPath}/req/signup", {
+            const response = await fetch("${pageContext.request.contextPath}/req/reset-password", {
                 method: "POST",
                 headers: {
-                    "Content-Type": "application/json"
+                    "Content-Type": "application/x-www-form-urlencoded",
                 },
-                body: JSON.stringify(data)
+                body: `token=\${encodeURIComponent(token)}&password=\${encodeURIComponent(password)}`
             });
 
             const responseText = await response.text();
 
             if (response.ok) {
-                showNotification("Registration successful! Please check your email to verify your account.", true);
-                // Clear the form
-                signupForm.reset();
-                // Wait 3 seconds before redirecting to login
+                showNotification(responseText, true);
+                resetPasswordForm.reset();
                 setTimeout(() => {
                     window.location.href = "${pageContext.request.contextPath}/req/login";
                 }, 3000);
             } else {
-                showNotification(responseText || "Registration failed.", false);
+                showNotification(responseText || "Failed to reset password.", false);
             }
         } catch (error) {
             console.error("Error:", error);
-            showNotification("An error occurred during registration.", false);
+            showNotification("An error occurred. Please try again.", false);
         } finally {
-            // Hide loading and enable submit button
             loadingDiv.style.display = 'none';
             submitButton.disabled = false;
         }
     });
 </script>
 </body>
-</html>
+</html> 
