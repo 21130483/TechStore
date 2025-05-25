@@ -218,7 +218,7 @@
                             <h3 class="aside-title">Top selling</h3>
                             <div class="product-widget">
                                 <div class="product-img">
-                                    <img src="./img/product01.png" alt="">
+                                    <img src="${pageContext.request.contextPath}/img/product01.png" alt="">
                                 </div>
                                 <div class="product-body">
                                     <p class="product-category">Category</p>
@@ -229,7 +229,7 @@
 
                             <div class="product-widget">
                                 <div class="product-img">
-                                    <img src="./img/product02.png" alt="">
+                                    <img src="${pageContext.request.contextPath}/img/product02.png" alt="">
                                 </div>
                                 <div class="product-body">
                                     <p class="product-category">Category</p>
@@ -240,7 +240,7 @@
 
                             <div class="product-widget">
                                 <div class="product-img">
-                                    <img src="./img/product03.png" alt="">
+                                    <img src="${pageContext.request.contextPath}/img/product03.png" alt="">
                                 </div>
                                 <div class="product-body">
                                     <p class="product-category">Category</p>
@@ -287,7 +287,7 @@
                             <div class="col-md-4 col-xs-6">
                                 <div class="product">
                                     <div class="product-img">
-                                        <img src="./img/product01.png" alt="">
+                                        <img src="${pageContext.request.contextPath}/img/product01.png" alt="">
                                         <div class="product-label">
                                             <span class="sale">-30%</span>
                                             <span class="new">NEW</span>
@@ -321,7 +321,7 @@
                             <div class="col-md-4 col-xs-6">
                                 <div class="product">
                                     <div class="product-img">
-                                        <img src="./img/product02.png" alt="">
+                                        <img src="${pageContext.request.contextPath}/img/product02.png" alt="">
                                         <div class="product-label">
                                             <span class="new">NEW</span>
                                         </div>
@@ -356,7 +356,7 @@
                             <div class="col-md-4 col-xs-6">
                                 <div class="product">
                                     <div class="product-img">
-                                        <img src="./img/product03.png" alt="">
+                                        <img src="${pageContext.request.contextPath}/img/product03.png" alt="">
                                     </div>
                                     <div class="product-body">
                                         <p class="product-category">Category</p>
@@ -383,7 +383,7 @@
                             <div class="col-md-4 col-xs-6">
                                 <div class="product">
                                     <div class="product-img">
-                                        <img src="./img/product04.png" alt="">
+                                        <img src="${pageContext.request.contextPath}/img/product04.png" alt="">
                                     </div>
                                     <div class="product-body">
                                         <p class="product-category">Category</p>
@@ -410,7 +410,7 @@
                             <div class="col-md-4 col-xs-6">
                                 <div class="product">
                                     <div class="product-img">
-                                        <img src="./img/product05.png" alt="">
+                                        <img src="${pageContext.request.contextPath}/img/product05.png" alt="">
                                     </div>
                                     <div class="product-body">
                                         <p class="product-category">Category</p>
@@ -435,7 +435,7 @@
                             <div class="col-md-4 col-xs-6">
                                 <div class="product">
                                     <div class="product-img">
-                                        <img src="./img/product06.png" alt="">
+                                        <img src="${pageContext.request.contextPath}/img/product06.png" alt="">
                                     </div>
                                     <div class="product-body">
                                         <p class="product-category">Category</p>
@@ -467,7 +467,7 @@
                             <div class="col-md-4 col-xs-6">
                                 <div class="product">
                                     <div class="product-img">
-                                        <img src="./img/product07.png" alt="">
+                                        <img src="${pageContext.request.contextPath}/img/product07.png" alt="">
                                     </div>
                                     <div class="product-body">
                                         <p class="product-category">Category</p>
@@ -497,7 +497,7 @@
                             <div class="col-md-4 col-xs-6">
                                 <div class="product">
                                     <div class="product-img">
-                                        <img src="./img/product08.png" alt="">
+                                        <img src="${pageContext.request.contextPath}/img/product08.png" alt="">
                                     </div>
                                     <div class="product-body">
                                         <p class="product-category">Category</p>
@@ -524,7 +524,7 @@
                             <div class="col-md-4 col-xs-6">
                                 <div class="product">
                                     <div class="product-img">
-                                        <img src="./img/product09.png" alt="">
+                                        <img src="${pageContext.request.contextPath}/img/product09.png" alt="">
                                     </div>
                                     <div class="product-body">
                                         <p class="product-category">Category</p>

@@ -45,7 +45,7 @@
 <!-- HEADER -->
 <header>
     <!-- TOP HEADER -->
-    <!-- <div id="top-header">
+    <div id="top-header">
         <div class="container">
             <ul class="header-links pull-left">
                 <li><a href="#"><i class="fa fa-phone"></i> +021-95-51-84</a></li>
@@ -54,10 +54,10 @@
             </ul>
             <ul class="header-links pull-right">
                 <li><a href="#"><i class="fa fa-dollar"></i> USD</a></li>
-                <li><a href="#"><i class="fa fa-user-o"></i> My Account</a></li>
+                <li><a href="${pageContext.request.contextPath}/req/login"><i class="fa fa-user-o"></i> My Account</a></li>
             </ul>
         </div>
-    </div> -->
+    </div>
     <!-- /TOP HEADER -->
 
     <!-- MAIN HEADER -->
