@@ -1,4 +1,4 @@
-package org.example.techstore.Model;
+package org.example.techstore.model;
 
 import javax.persistence.*;
 

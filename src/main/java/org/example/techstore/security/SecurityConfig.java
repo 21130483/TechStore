@@ -1,7 +1,7 @@
-package org.example.techstore.Security;
+package org.example.techstore.security;
 
 import lombok.AllArgsConstructor;
-import org.example.techstore.Model.AppUserService;
+import org.example.techstore.model.AppUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

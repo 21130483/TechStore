@@ -1,4 +1,4 @@
-package org.example.techstore.Controller;
+package org.example.techstore.controller;
 
 import org.springframework.boot.web.servlet.error.ErrorController;
 import org.springframework.stereotype.Controller;

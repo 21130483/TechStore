@@ -1,4 +1,4 @@
-package org.example.techstore.Controller;
+package org.example.techstore.controller;
 
 import org.example.techstore.service.EmailService;
 import org.example.techstore.utils.JwtTokenUtil;
@@ -7,8 +7,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
-import org.example.techstore.Model.AppUser;
-import org.example.techstore.Model.AppUserRepository;
+import org.example.techstore.model.AppUser;
+import org.example.techstore.model.AppUserRepository;
 
 import javax.mail.MessagingException;
 

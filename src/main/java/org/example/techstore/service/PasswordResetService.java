@@ -1,7 +1,7 @@
 package org.example.techstore.service;
 
-import org.example.techstore.Model.AppUser;
-import org.example.techstore.Model.AppUserRepository;
+import org.example.techstore.model.AppUser;
+import org.example.techstore.model.AppUserRepository;
 import org.example.techstore.utils.JwtTokenUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;

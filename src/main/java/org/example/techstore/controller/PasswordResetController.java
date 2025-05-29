@@ -1,4 +1,4 @@
-package org.example.techstore.Controller;
+package org.example.techstore.controller;
 
 import org.example.techstore.service.PasswordResetService;
 import org.springframework.beans.factory.annotation.Autowired;
