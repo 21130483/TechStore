@@ -13,14 +13,14 @@
 
 .profile-menu li:hover{
     color: #D10024;
-    text-decoration: underline;
-    text-decoration-color: red;
+    /*text-decoration: underline;*/
+    /*text-decoration-color: red;*/
 }
 
 .profile-menu .active{
     color: #D10024;
-    text-decoration: underline;
-    text-decoration-color: red;
+    /*text-decoration: underline;*/
+    /*text-decoration-color: red;*/
 }
 
 .profile-container {

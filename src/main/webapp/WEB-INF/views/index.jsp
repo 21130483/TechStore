@@ -141,8 +141,8 @@
                                             </div>
                                         </div>
                                         <div class="product-body">
-                                            <p class="product-category">Category</p>
-                                            <h3 class="product-name"><a href="/product">${product.name}</a></h3>
+                                            <p class="product-category">${product.category.name}</p>
+                                            <h3 class="product-name"><a href="/product?id=${product.productID}">${product.name}</a></h3>
                                             <h4 class="product-price">${product.price}
                                                 <del class="product-old-price">${product.price}</del>
                                             </h4>

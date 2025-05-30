@@ -34,7 +34,7 @@ CREATE TABLE IF NOT EXISTS `products` (
     `ordered_numbers` int(11) NOT NULL,
     `name` VARCHAR(100) NOT NULL,
     `trademark` varchar(50) NOT NULL,
-    `content` VARCHAR(500) NOT NULL,
+    `content` VARCHAR(1000) NOT NULL,
 
     PRIMARY KEY (`productID`),
     KEY `userID` (`categoryID`),

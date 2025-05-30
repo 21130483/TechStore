@@ -13,7 +13,7 @@ public class ProductService {
     @Autowired
     private ProductRepository productRepository;
 
-    public Optional<Product> getProductById(Integer productID) {
+    public Optional<Product> getProductByproductID(Integer productID) {
         return productRepository.findByproductID(productID);
     }
 

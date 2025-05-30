@@ -38,7 +38,7 @@ public class Product {
     @Column(name = "trademark", length = 50, nullable = false)
     private String trademark;
 
-    @Column(name = "content", length = 500, nullable = false)
+    @Column(name = "content", length = 1000, nullable = false)
     private String content;
 
     // Getters and Setters
