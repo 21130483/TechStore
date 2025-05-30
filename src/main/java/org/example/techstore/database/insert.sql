@@ -1,9 +1,10 @@
 USE `techstore`;
 
-INSERT INTO `users` (`email`, `phone_numbers`, `full_name`, `password`, `dob`, `gender`, `role`, `access`)VALUES
-                                                                                                              ('phuoc@gmail.com', '0986216717', 'Nguyễn Hữu Phước', '123', '2003-02-17', 'nam', 'true', 'true'),
-                                                                                                              ('admin@gmail.com', '0986216717', 'admin', 'admin', '2003-02-17', 'nam', 'true', 'true'),
-                                                                                                              ('luu@gmail.com', '0866456543', 'Lưu', '111', '2003-01-19', 'nam', 'false', 'true');
+INSERT INTO `users` (`email`, `username`, `phone_numbers`, `full_name`, `password`, `dob`, `gender`, `role`, `access`, `verified`) 
+VALUES
+('phuoc@gmail.com', 'phuoc', '0986216717', 'Nguyễn Hữu Phước', '$2a$10$eTGx/4wZN/msl9YhNfx0ne2rY3I5UI3TI4KlmxBiPRsyNTcvI4WVW', '2003-02-17', 'nam', 'USER', 'ACTIVE', 1),
+('admin@gmail.com', 'admin', '0986216717', 'admin', '$2a$10$eTGx/4wZN/msl9YhNfx0ne2rY3I5UI3TI4KlmxBiPRsyNTcvI4WVW', '2003-02-17', 'nam', 'ADMIN', 'ACTIVE', 1),
+('luu@gmail.com', 'luu', '0866456543', 'Lưu', '$2a$10$eTGx/4wZN/msl9YhNfx0ne2rY3I5UI3TI4KlmxBiPRsyNTcvI4WVW', '2003-01-19', 'nam', 'USER', 'ACTIVE', 1);
 
 INSERT INTO `category` (`categoryID`, `name`) VALUES
                                                   (1, 'Laptop'),

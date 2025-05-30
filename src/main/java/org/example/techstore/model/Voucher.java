@@ -12,18 +12,31 @@ public class Voucher {
     @Column(name = "voucherID")
     private Integer voucherID;
 
+    @Column(name = "code", length = 50, nullable = false)
+    private String code;
+
     @Column(name = "name", length = 50, nullable = false)
     private String name;
 
-    @Column(name = "sale", nullable = false)
-    private Integer sale;
+    @Column(name = "type", length = 20, nullable = false)
+    private String type;  // PERCENTAGE or FIXED_AMOUNT
 
-    @Temporal(TemporalType.DATE)
-    @Column(name = "expiredDate", nullable = false)
-    private Date expiredDate;
+    @Column(name = "value", nullable = false)
+    private Double value;
 
-    @Column(name = "cond", nullable = false)
-    private Integer cond;
+    @Column(name = "quantity", nullable = false)
+    private Integer quantity;
+
+    @Column(name = "start_date", nullable = false)
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date startDate;
+
+    @Column(name = "end_date", nullable = false)
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date endDate;
+
+    @Column(name = "active", nullable = false)
+    private Boolean active = true;
 
     // Getters and Setters
 
@@ -31,8 +44,16 @@ public class Voucher {
         return voucherID;
     }
 
-    public void setVoucherID(Integer voucherID) {
+    public void setVoucherID(Integer id) {
         this.voucherID = voucherID;
+    }
+
+    public String getCode() {
+        return code;
+    }
+
+    public void setCode(String code) {
+        this.code = code;
     }
 
     public String getName() {
@@ -43,28 +64,52 @@ public class Voucher {
         this.name = name;
     }
 
-    public Integer getSale() {
-        return sale;
+    public String getType() {
+        return type;
     }
 
-    public void setSale(Integer sale) {
-        this.sale = sale;
+    public void setType(String type) {
+        this.type = type;
     }
 
-    public Date getExpiredDate() {
-        return expiredDate;
+    public Double getValue() {
+        return value;
     }
 
-    public void setExpiredDate(Date expiredDate) {
-        this.expiredDate = expiredDate;
+    public void setValue(Double value) {
+        this.value = value;
     }
 
-    public Integer getCond() {
-        return cond;
+    public Integer getQuantity() {
+        return quantity;
     }
 
-    public void setCond(Integer cond) {
-        this.cond = cond;
+    public void setQuantity(Integer quantity) {
+        this.quantity = quantity;
+    }
+
+    public Date getStartDate() {
+        return startDate;
+    }
+
+    public void setStartDate(Date startDate) {
+        this.startDate = startDate;
+    }
+
+    public Date getEndDate() {
+        return endDate;
+    }
+
+    public void setEndDate(Date endDate) {
+        this.endDate = endDate;
+    }
+
+    public Boolean getActive() {
+        return active;
+    }
+
+    public void setActive(Boolean active) {
+        this.active = active;
     }
 
     @Override
@@ -72,9 +117,12 @@ public class Voucher {
         return "Voucher{" +
                 "voucherID=" + voucherID +
                 ", name='" + name + '\'' +
-                ", sale=" + sale +
-                ", expiredDat=" + expiredDate +
-                ", condition=" + cond +
+                ", type='" + type + '\'' +
+                ", value=" + value +
+                ", quantity=" + quantity +
+                ", startDate=" + startDate +
+                ", endDate=" + endDate +
+                ", active=" + active +
                 '}';
     }
 }

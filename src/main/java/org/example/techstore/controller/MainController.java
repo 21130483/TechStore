@@ -41,10 +41,6 @@ public class MainController {
         return "profile"; // Không cần ghi đường dẫn đầy đủ
     }
 
-    @GetMapping("/req/login")
-    public String login(){
-        return "login";
-    }
     @GetMapping("/req/signup")
     public String signup(){
         return "signup";

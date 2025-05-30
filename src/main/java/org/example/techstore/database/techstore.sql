@@ -1,4 +1,3 @@
-
 CREATE DATABASE IF NOT EXISTS `techstore` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci */;
 USE `techstore`;
 
@@ -7,11 +6,15 @@ CREATE TABLE IF NOT EXISTS `users` (
                                        `email` varchar(50) NOT NULL,
     `phone_numbers` varchar(20) NOT NULL,
     `full_name` varchar(50) NOT NULL,
-    `password` varchar(50) NOT NULL,
+    `password` varchar(255) NOT NULL,
     `dob` date NOT NULL,
     `gender` varchar(20) NOT NULL,
     `role` varchar(20) NOT NULL,
     `access` varchar(20) NOT NULL,
+    `verified` TINYINT(1) NOT NULL DEFAULT 0,
+    `username` varchar(50) UNIQUE,
+    `verification_token` varchar(255),
+    `reset_token` varchar(255),
     PRIMARY KEY (`email`)
     ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
