@@ -42,12 +42,12 @@ CREATE TABLE IF NOT EXISTS `products` (
     ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 
-CREATE TABLE IF NOT EXISTS `voucher` (
-                                         `voucherID` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE IF NOT EXISTS `vouchers` (
+                                          `voucherID` int(11) NOT NULL AUTO_INCREMENT,
     `name` varchar(50) NOT NULL,
     `sale` int(11) NOT NULL,
     `expiredDat` date NOT NULL,
-    `condition` int(11) NOT NULL,
+    `cond` int(11) NOT NULL,
 
     PRIMARY KEY (`voucherID`)
     ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -120,15 +120,15 @@ CREATE TABLE IF NOT EXISTS `address` (
 
 
 
-CREATE TABLE IF NOT EXISTS `vouchers` (
-                                          `email` varchar(50) NOT NULL,
+CREATE TABLE IF NOT EXISTS `uservouchers` (
+                                              `email` varchar(50) NOT NULL,
     `voucherID` int(11) NOT NULL,
     `quantity` int(11) NOT NULL,
     PRIMARY KEY (`email`,`voucherID`),
     KEY `email` (`email`),
     KEY `voucherID` (`voucherID`),
-    CONSTRAINT `vouchers_fk_userID` FOREIGN KEY (`email`) REFERENCES `users` (`email`),
-    CONSTRAINT `vouchers_fk_voucherID` FOREIGN KEY (`voucherID`) REFERENCES `voucher` (`voucherID`)
+    CONSTRAINT `uservouchers_fk_userID` FOREIGN KEY (`email`) REFERENCES `users` (`email`),
+    CONSTRAINT `uservouchers_fk_voucherID` FOREIGN KEY (`voucherID`) REFERENCES `vouchers` (`voucherID`)
     ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 

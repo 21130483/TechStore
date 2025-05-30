@@ -36,12 +36,17 @@ public class MainController {
         return "product"; // Không cần ghi đường dẫn đầy đủ
     }
 
-    @GetMapping("/req/login")
-    public String login(){
-        return "login";
+    @RequestMapping("/profile")
+    public String profile() {
+        return "profile"; // Không cần ghi đường dẫn đầy đủ
     }
-    @GetMapping("/req/signup")
-    public String signup(){
-        return "signup";
-    }
+
+//    @GetMapping("/req/login")
+//    public String login(){
+//        return "login";
+//    }
+//    @GetMapping("/req/signup")
+//    public String signup(){
+//        return "signup";
+//    }
 }

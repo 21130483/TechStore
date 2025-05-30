@@ -7,11 +7,6 @@ import org.springframework.boot.web.servlet.support.SpringBootServletInitializer
 
 @SpringBootApplication
 public class TechStoreApplication extends SpringBootServletInitializer {
-    @Override
-    protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
-        return application.sources(TechStoreApplication.class);
-    }
-
     public static void main(String[] args) {
         SpringApplication.run(TechStoreApplication.class, args);
     }

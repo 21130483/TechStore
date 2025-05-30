@@ -23,5 +23,28 @@
     text-decoration-color: red;
 }
 
+.profile-container {
+    margin-top: 40px;
+}
+
+.profile-sidebar {
+    border-right: 1px solid #ddd;
+    padding-right: 20px;
+}
+
+.profile-menu li {
+    margin-bottom: 15px;
+    cursor: pointer;
+}
+
+
+.profile-content>div {
+    display: none;
+}
+
+.profile-content>div.active {
+    display: block;
+}
+
 
 
