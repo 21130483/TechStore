@@ -19,8 +19,8 @@ public class Voucher {
     private Integer sale;
 
     @Temporal(TemporalType.DATE)
-    @Column(name = "expiredDat", nullable = false)
-    private Date expiredDat;
+    @Column(name = "expiredDate", nullable = false)
+    private Date expiredDate;
 
     @Column(name = "cond", nullable = false)
     private Integer cond;
@@ -51,12 +51,12 @@ public class Voucher {
         this.sale = sale;
     }
 
-    public Date getExpiredDat() {
-        return expiredDat;
+    public Date getExpiredDate() {
+        return expiredDate;
     }
 
-    public void setExpiredDat(Date expiredDat) {
-        this.expiredDat = expiredDat;
+    public void setExpiredDate(Date expiredDate) {
+        this.expiredDate = expiredDate;
     }
 
     public Integer getCond() {
@@ -73,7 +73,7 @@ public class Voucher {
                 "voucherID=" + voucherID +
                 ", name='" + name + '\'' +
                 ", sale=" + sale +
-                ", expiredDat=" + expiredDat +
+                ", expiredDat=" + expiredDate +
                 ", condition=" + cond +
                 '}';
     }

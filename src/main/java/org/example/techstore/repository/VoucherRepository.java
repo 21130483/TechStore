@@ -10,8 +10,7 @@ public interface VoucherRepository extends CrudRepository<Voucher, Integer> {
     // Tìm Voucher theo tên chứa chuỗi (LIKE)
     List<Voucher> findByNameContaining(String name);
 
-    // Tìm Voucher theo ngày hết hạn lớn hơn ngày cho trước (chưa hết hạn)
-    List<Voucher> findByExpiredDatAfter(Date date);
+    List<Voucher> findByExpiredDateAfter(Date expiredDateAfter);
 
     // Tìm Voucher theo điều kiện
     List<Voucher> findByCond(Integer cond);

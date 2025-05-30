@@ -31,7 +31,7 @@
 </head>
 <body>
 <section>
-    <form action="${pageContext.request.contextPath}/req/login" method="post">
+    <form action="${pageContext.request.contextPath}/login" method="post">
         <h1>Login</h1>
         <c:if test="${param.error != null}">
             <div class="error-message">
@@ -45,7 +45,7 @@
         </c:if>
         <div class="inputbox">
             <ion-icon name="person-outline"></ion-icon>
-            <input name="username" id="username" type="text" required>
+            <input name="username" id="username" type="email" required>
             <label for="username">Username</label>
         </div>
         <div class="inputbox">

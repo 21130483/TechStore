@@ -7,14 +7,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class MainController {
 
-    @RequestMapping("/")
-    public String root() {
-        return "redirect:/index";
-    }
-    @RequestMapping("/index")
-    public String home() {
-        return "index"; // Không cần ghi đường dẫn đầy đủ
-    }
+//    @RequestMapping("/")
+//    public String root() {
+//        return "redirect:/index";
+//    }
+//    @RequestMapping("/index")
+//    public String home() {
+//        return "index"; // Không cần ghi đường dẫn đầy đủ
+//    }
 
     @RequestMapping("/cart")
     public String cart() {
@@ -31,22 +31,22 @@ public class MainController {
         return "store"; // Không cần ghi đường dẫn đầy đủ
     }
 
-    @RequestMapping("/product")
-    public String product() {
-        return "product"; // Không cần ghi đường dẫn đầy đủ
-    }
+//    @RequestMapping("/product")
+//    public String product() {
+//        return "product"; // Không cần ghi đường dẫn đầy đủ
+//    }
 
     @RequestMapping("/profile")
     public String profile() {
         return "profile"; // Không cần ghi đường dẫn đầy đủ
     }
 
-//    @GetMapping("/req/login")
-//    public String login(){
-//        return "login";
-//    }
-//    @GetMapping("/req/signup")
-//    public String signup(){
-//        return "signup";
-//    }
+    @GetMapping("/req/login")
+    public String login(){
+        return "login";
+    }
+    @GetMapping("/req/signup")
+    public String signup(){
+        return "signup";
+    }
 }
