@@ -16,11 +16,6 @@ public class MainController {
 //        return "index"; // Không cần ghi đường dẫn đầy đủ
 //    }
 
-    @RequestMapping("/cart")
-    public String cart() {
-        return "cart"; // Không cần ghi đường dẫn đầy đủ
-    }
-
     @RequestMapping("/checkout")
     public String checkout() {
         return "checkout"; // Không cần ghi đường dẫn đầy đủ

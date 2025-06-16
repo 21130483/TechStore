@@ -6,8 +6,8 @@
     <title>Signup Form</title>
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/styleUser.css">
-    <script src="${pageContext.request.contextPath}/js/signup.js" defer></script>
+    <link rel="stylesheet" href="/assets/techstore/css/styleUser.css">
+    <script src="/assets/techstore/js/signup.js" defer></script>
     <style>
         .notification {
             position: fixed;

@@ -37,7 +37,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 // Static resources
                 .antMatchers(
                     "/assets/**",
-                    "/static/**", 
+//                    "/static/**",
                     "/css/**", 
                     "/js/**", 
                     "/img/**",

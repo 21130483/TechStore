@@ -44,6 +44,7 @@
 <body>
 <!-- HEADER -->
 <header>
+
     <!-- TOP HEADER -->
     <div id="top-header">
         <div class="container">
@@ -98,11 +99,14 @@
 
                         <!-- Cart -->
                         <div class="dropdown">
-                            <a href="cart" aria-expanded="true">
+                            <a href="/cart" aria-expanded="true">
                                 <!-- <a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true"> -->
                                 <i class="fa fa-shopping-cart"></i>
                                 <span>Giỏ Hàng</span>
-                                <div class="qty">3</div>
+                                <c:if test="${not empty sessionScope.cartsize}">
+                                    <div class="qty">sessionScope.cartsize</div>
+                                </c:if>
+
                             </a>
                             <!-- <div class="cart-dropdown">
                                 <div class="cart-list">
@@ -144,7 +148,17 @@
                         <div>
                             <a href="profile">
                                 <i class="fa fa-user-o"></i>
-                                <span>Nguyễn Hữu Phước</span>
+                                <span>
+                                    <c:choose>
+                                        <c:when test="${not empty sessionScope.user}">
+                                            sessionScope.user.name
+                                        </c:when>
+                                        <c:otherwise>
+                                            Đăng nhập
+                                        </c:otherwise>
+                                    </c:choose>
+
+                                </span>
                                 <!-- <div class="qty">2</div> -->
                             </a>
                         </div>
