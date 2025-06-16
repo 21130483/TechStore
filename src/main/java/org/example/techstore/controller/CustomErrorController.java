@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 
 @Controller
 public class CustomErrorController implements ErrorController {
-    
+
     private static final Logger logger = LoggerFactory.getLogger(CustomErrorController.class);
 
     @RequestMapping("/error")
@@ -19,25 +19,20 @@ public class CustomErrorController implements ErrorController {
         Object status = request.getAttribute(RequestDispatcher.ERROR_STATUS_CODE);
         Object uri = request.getAttribute(RequestDispatcher.ERROR_REQUEST_URI);
         Object msg = request.getAttribute(RequestDispatcher.ERROR_MESSAGE);
-        
+
         logger.error("Error occurred - Status: {}, URI: {}, Message: {}", status, uri, msg);
 
+        // Nếu là lỗi 404 hoặc 500, chuyển về trang chủ
         if (status != null) {
             Integer statusCode = Integer.valueOf(status.toString());
             logger.error("Status code: {}", statusCode);
 
-            // Cho phép truy cập trực tiếp đến trang admin
-            if (uri != null && uri.toString().startsWith("/admin")) {
-                return "admin";
-            }
-
-            if(statusCode == 404) {
-                return "redirect:/index";
-            }
-            if(statusCode == 500) {
-                return "redirect:/index";
+            if (statusCode == 404 || statusCode == 500) {
+                return "redirect:/";
             }
         }
-        return "redirect:/index";
+
+        // Mặc định chuyển về trang chủ
+        return "redirect:/";
     }
 }

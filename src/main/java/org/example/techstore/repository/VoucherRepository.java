@@ -20,4 +20,16 @@ public interface VoucherRepository extends JpaRepository<Voucher, Integer> {
 
     // Tìm Voucher đang active
     List<Voucher> findByActiveTrue();
+
+    // Tìm Voucher theo loại
+    List<Voucher> findByType(String type);
+
+    // Tìm Voucher theo khoảng giá trị
+    List<Voucher> findByValueBetween(Double minValue, Double maxValue);
+
+    // Tìm Voucher theo khoảng thời gian
+    List<Voucher> findByStartDateBeforeAndEndDateAfter(Date date, Date date2);
+
+    // Tìm Voucher theo số lượng
+    List<Voucher> findByQuantityGreaterThan(Integer quantity);
 }

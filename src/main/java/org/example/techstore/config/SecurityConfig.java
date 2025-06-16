@@ -4,16 +4,17 @@ import org.example.techstore.service.CustomUserDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
-import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.SecurityFilterChain;
 
 @Configuration
 @EnableWebSecurity
-public class SecurityConfig extends WebSecurityConfigurerAdapter {
+public class SecurityConfig {
 
     @Autowired
     private CustomUserDetailsService userDetailsService;
@@ -23,35 +24,40 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         return new BCryptPasswordEncoder();
     }
 
-    @Override
-    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.userDetailsService(userDetailsService)
-            .passwordEncoder(passwordEncoder());
+    @Bean
+    public AuthenticationManager authManager(HttpSecurity http) throws Exception {
+        AuthenticationManagerBuilder authenticationManagerBuilder = 
+            http.getSharedObject(AuthenticationManagerBuilder.class);
+        authenticationManagerBuilder
+            .userDetailsService(userDetailsService)
+                .passwordEncoder(passwordEncoder());
+        return authenticationManagerBuilder.build();
     }
 
-    @Override
-    protected void configure(HttpSecurity http) throws Exception {
+    @Bean
+    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
-            .csrf().disable()
-            .authorizeRequests()
+                .csrf().disable()
+                .authorizeRequests()
                 // Static resources
                 .antMatchers(
-                    "/assets/**",
-                    "/static/**", 
-                    "/css/**", 
-                    "/js/**", 
-                    "/img/**",
-                    "/images/**", 
-                    "/fonts/**", 
-                    "/webfonts/**"
+                        "/assets/**",
+                        "/static/**",
+                        "/css/**",
+                        "/js/**",
+                        "/img/**",
+                        "/images/**",
+                        "/fonts/**",
+                        "/webfonts/**"
                 ).permitAll()
                 // Public pages
                 .antMatchers("/", "/index", "/store", "/product/**", "/cart", "/checkout").permitAll()
                 .antMatchers("/req/login", "/req/signup", "/req/verify", "/verify").permitAll()
+            // Admin pages - allow public access
                 .antMatchers("/admin/**").permitAll()
                 .anyRequest().permitAll()
-            .and()
-            .formLogin()
+                .and()
+                .formLogin()
                 .loginPage("/req/login")
                 .loginProcessingUrl("/req/login")
                 .usernameParameter("username")
@@ -59,13 +65,18 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .defaultSuccessUrl("/")
                 .failureUrl("/req/login?error")
                 .permitAll()
-            .and()
-            .logout()
+                .and()
+                .logout()
                 .logoutSuccessUrl("/")
                 .permitAll()
             .and()
-            .anonymous()
+            .exceptionHandling()
+            .accessDeniedPage("/403")
+                .and()
+                .anonymous()
                 .principal("guest")
                 .authorities("ROLE_ANONYMOUS");
+
+        return http.build();
     }
 } 

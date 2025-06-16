@@ -96,7 +96,7 @@
         notification.textContent = message;
         notification.className = 'notification ' + (isSuccess ? 'success' : 'error');
         notification.style.display = 'block';
-        
+
         setTimeout(() => {
             notification.style.display = 'none';
         }, 5000);

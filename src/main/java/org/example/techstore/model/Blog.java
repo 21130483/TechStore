@@ -30,6 +30,9 @@ public class Blog {
     @Column(nullable = false)
     private Integer views = 0;
 
+    @Column(name = "image_url")
+    private String imageUrl;
+
     public Integer getId() {
         return id;
     }
@@ -84,5 +87,13 @@ public class Blog {
 
     public void setViews(Integer views) {
         this.views = views;
+    }
+
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
     }
 } 

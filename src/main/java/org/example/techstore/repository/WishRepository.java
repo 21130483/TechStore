@@ -13,4 +13,3 @@ public interface WishRepository extends CrudRepository<Wish, WishId> {
     // Tìm tất cả Wish của product theo productID
     List<Wish> findByProductProductID(Integer productID);
 }
-

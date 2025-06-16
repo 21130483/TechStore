@@ -1,17 +1,13 @@
 package org.example.techstore.repository;
 
 import org.example.techstore.model.Purchase;
-import org.example.techstore.model.PurchaseId;
-import org.example.techstore.model.User;
-import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 import java.util.List;
 
-public interface PurchaseRepository extends CrudRepository<Purchase, PurchaseId> {
-
-    List<Purchase> findByUser(User user);
-
-
-    List<Purchase> findByProductProductID(Integer productID);
-
-    // Có thể thêm các query phức tạp hơn nếu cần
+@Repository
+public interface PurchaseRepository extends JpaRepository<Purchase, Integer> {
+    List<Purchase> findByUserEmail(String email);
+    List<Purchase> findByStatus(String status);
+    List<Purchase> findByStatusAndUserEmail(String status, String email);
 }

@@ -24,19 +24,22 @@
     <div class="sidebar-wrapper scrollbar scrollbar-inner">
         <div class="sidebar-content">
             <ul class="nav nav-secondary">
+                <!-- Dashboard -->
                 <li class="nav-item ${pageContext.request.servletPath == '/WEB-INF/views/admin.jsp' ? 'active' : ''}">
                     <a href="<c:url value='/admin'/>">
                         <i class="fas fa-home"></i>
                         <p>Trang chủ</p>
                     </a>
                 </li>
+
+                <!-- Product Management -->
                 <li class="nav-item ${pageContext.request.servletPath == '/WEB-INF/views/managerproduct.jsp' ? 'active' : ''}">
-                    <a data-bs-toggle="collapse" href="#base">
-                        <i class="fas fa-layer-group"></i>
+                    <a data-bs-toggle="collapse" href="#products">
+                        <i class="fas fa-box"></i>
                         <p>Sản phẩm</p>
                         <span class="caret"></span>
                     </a>
-                    <div class="collapse ${pageContext.request.servletPath == '/WEB-INF/views/managerproduct.jsp' ? 'show' : ''}" id="base">
+                    <div class="collapse ${pageContext.request.servletPath == '/WEB-INF/views/managerproduct.jsp' ? 'show' : ''}" id="products">
                         <ul class="nav nav-collapse">
                             <li class="${pageContext.request.servletPath == '/WEB-INF/views/managerproduct.jsp' ? 'active' : ''}">
                                 <a href="<c:url value='/admin/products'/>">
@@ -51,34 +54,79 @@
                         </ul>
                     </div>
                 </li>
-                <li class="nav-item ${pageContext.request.servletPath == '/WEB-INF/views/manageruser.jsp' || pageContext.request.servletPath == '/WEB-INF/views/bloguser.jsp' ? 'active' : ''}">
-                    <a data-bs-toggle="collapse" href="#sidebarLayouts">
-                        <i class="fa-solid fa-user"></i>
+
+                <!-- Order Management -->
+                <li class="nav-item ${pageContext.request.servletPath == '/WEB-INF/views/managerorder.jsp' ? 'active' : ''}">
+                    <a data-bs-toggle="collapse" href="#orders">
+                        <i class="fas fa-shopping-cart"></i>
+                        <p>Đơn hàng</p>
+                        <span class="caret"></span>
+                    </a>
+                    <div class="collapse ${pageContext.request.servletPath == '/WEB-INF/views/managerorder.jsp' ? 'show' : ''}" id="orders">
+                        <ul class="nav nav-collapse">
+                            <li class="${pageContext.request.servletPath == '/WEB-INF/views/managerorder.jsp' ? 'active' : ''}">
+                                <a href="<c:url value='/admin/orders'/>">
+                                    <span class="sub-item">Danh sách đơn hàng</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+
+                <!-- User Management -->
+                <li class="nav-item ${pageContext.request.servletPath == '/WEB-INF/views/manageruser.jsp' ? 'active' : ''}">
+                    <a data-bs-toggle="collapse" href="#users">
+                        <i class="fas fa-users"></i>
                         <p>Thành viên</p>
                         <span class="caret"></span>
                     </a>
-                    <div class="collapse ${pageContext.request.servletPath == '/WEB-INF/views/manageruser.jsp' || pageContext.request.servletPath == '/WEB-INF/views/bloguser.jsp' ? 'show' : ''}" id="sidebarLayouts">
+                    <div class="collapse ${pageContext.request.servletPath == '/WEB-INF/views/manageruser.jsp' ? 'show' : ''}" id="users">
                         <ul class="nav nav-collapse">
                             <li class="${pageContext.request.servletPath == '/WEB-INF/views/manageruser.jsp' ? 'active' : ''}">
                                 <a href="<c:url value='/admin/users'/>">
                                     <span class="sub-item">Danh sách</span>
                                 </a>
                             </li>
-                            <li class="${pageContext.request.servletPath == '/WEB-INF/views/bloguser.jsp' ? 'active' : ''}">
-                                <a href="<c:url value='/admin/users/blogs'/>">
-                                    <span class="sub-item">Blog</span>
+                            <li>
+                                <a href="<c:url value='/admin/users/add'/>">
+                                    <span class="sub-item">Thêm thành viên</span>
                                 </a>
                             </li>
                         </ul>
                     </div>
                 </li>
+
+                <!-- Blog Management -->
+                <li class="nav-item ${pageContext.request.servletPath == '/WEB-INF/views/bloguser.jsp' ? 'active' : ''}">
+                    <a data-bs-toggle="collapse" href="#blogs">
+                        <i class="fas fa-blog"></i>
+                        <p>Blog</p>
+                        <span class="caret"></span>
+                    </a>
+                    <div class="collapse ${pageContext.request.servletPath == '/WEB-INF/views/bloguser.jsp' ? 'show' : ''}" id="blogs">
+                        <ul class="nav nav-collapse">
+                            <li class="${pageContext.request.servletPath == '/WEB-INF/views/bloguser.jsp' ? 'active' : ''}">
+                                <a href="<c:url value='/admin/blogs'/>">
+                                    <span class="sub-item">Danh sách</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="<c:url value='/admin/blogs/add'/>">
+                                    <span class="sub-item">Thêm bài viết</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+
+                <!-- Voucher Management -->
                 <li class="nav-item ${pageContext.request.servletPath == '/WEB-INF/views/managervoucher.jsp' ? 'active' : ''}">
-                    <a data-bs-toggle="collapse" href="#forms">
-                        <i class="fa-solid fa-ticket"></i>
+                    <a data-bs-toggle="collapse" href="#vouchers">
+                        <i class="fas fa-ticket-alt"></i>
                         <p>Voucher</p>
                         <span class="caret"></span>
                     </a>
-                    <div class="collapse ${pageContext.request.servletPath == '/WEB-INF/views/managervoucher.jsp' ? 'show' : ''}" id="forms">
+                    <div class="collapse ${pageContext.request.servletPath == '/WEB-INF/views/managervoucher.jsp' ? 'show' : ''}" id="vouchers">
                         <ul class="nav nav-collapse">
                             <li class="${pageContext.request.servletPath == '/WEB-INF/views/managervoucher.jsp' ? 'active' : ''}">
                                 <a href="<c:url value='/admin/vouchers'/>">
@@ -87,15 +135,17 @@
                             </li>
                             <li>
                                 <a href="<c:url value='/admin/vouchers/add'/>">
-                                    <span class="sub-item">Thêm Voucher</span>
+                                    <span class="sub-item">Thêm voucher</span>
                                 </a>
                             </li>
                         </ul>
                     </div>
                 </li>
+
+                <!-- Back to Website -->
                 <li class="nav-item">
                     <a href="<c:url value='/'/>">
-                        <i class="fa-solid fa-pager"></i>
+                        <i class="fas fa-globe"></i>
                         <p>Trang web</p>
                     </a>
                 </li>

@@ -6,7 +6,7 @@
 
 <head>
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <title>TechStore Admin - Quản lý blog người dùng</title>
+    <title>TechStore Admin - Quản lý bài viết</title>
     <meta content="width=device-width, initial-scale=1.0, shrink-to-fit=no" name="viewport" />
     <link rel="icon" href="<c:url value='/assets/img/favicon.ico'/>" type="image/x-icon" />
 
@@ -52,45 +52,80 @@
                     <div class="card">
                         <div class="card-header">
                             <div class="d-flex align-items-center">
-                                <h4 class="card-title">Quản lý blog người dùng</h4>
+                                <h4 class="card-title">Quản lý bài viết</h4>
+                                <a href="<c:url value='/admin/blogs/add'/>" class="btn btn-primary btn-round ml-auto">
+                                    <i class="fa fa-plus"></i> Thêm bài viết
+                                </a>
                             </div>
                         </div>
                         <div class="card-body">
+                            <c:if test="${not empty success}">
+                                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                                    ${success}
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                            </c:if>
+                            <c:if test="${not empty error}">
+                                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                    ${error}
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                            </c:if>
+
                             <div class="table-responsive">
-                                <table id="basic-datatables" class="display table table-striped table-hover">
+                                <table class="table table-bordered">
                                     <thead>
                                         <tr>
                                             <th>Tiêu đề</th>
-                                            <th>Người đăng</th>
+                                            <th>Tác giả</th>
                                             <th>Ngày đăng</th>
                                             <th>Trạng thái</th>
-                                            <th>Lượt xem</th>
                                             <th>Thao tác</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <c:forEach items="${blogs}" var="blog">
                                             <tr>
-                                                <td>${blog.title}</td>
-                                                <td>${blog.author.fullName}</td>
-                                                <td><fmt:formatDate value="${blog.createdDate}" pattern="dd/MM/yyyy HH:mm"/></td>
+                                                <td>
+                                                    <div class="d-flex align-items-center">
+                                                        <c:if test="${not empty blog.imageUrl}">
+                                                            <img src="${blog.imageUrl}" alt="${blog.title}" style="max-width: 50px; max-height: 50px; margin-right: 10px;">
+                                                        </c:if>
+                                                        <div>
+                                                            <h6 class="mb-0">${blog.title}</h6>
+                                                            <small class="text-muted">${blog.summary}</small>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                                <td>${blog.author}</td>
+                                                <td><fmt:formatDate value="${blog.createdAt}" pattern="dd/MM/yyyy HH:mm"/></td>
                                                 <td>
                                                     <span class="badge badge-${blog.status == 'PUBLISHED' ? 'success' : 'warning'}">
                                                         ${blog.status}
                                                     </span>
                                                 </td>
-                                                <td>${blog.views}</td>
                                                 <td>
-                                                    <div class="form-button-action">
-                                                        <a href="<c:url value='/admin/blogs/view/${blog.id}'/>" class="btn btn-link btn-info btn-lg">
+                                                    <div class="btn-group">
+                                                        <a href="<c:url value='/admin/blogs/view/${blog.id}'/>" class="btn btn-info btn-sm">
                                                             <i class="fa fa-eye"></i>
                                                         </a>
-                                                        <a href="#" onclick="toggleStatus(${blog.id})" class="btn btn-link btn-warning btn-lg">
-                                                            <i class="fa fa-toggle-on"></i>
+                                                        <a href="<c:url value='/admin/blogs/edit/${blog.id}'/>" class="btn btn-warning btn-sm">
+                                                            <i class="fa fa-edit"></i>
                                                         </a>
-                                                        <a href="#" onclick="confirmDelete(${blog.id})" class="btn btn-link btn-danger">
-                                                            <i class="fa fa-times"></i>
-                                                        </a>
+                                                        <form action="<c:url value='/admin/blogs/toggle/${blog.id}'/>" method="POST" class="d-inline">
+                                                            <button type="submit" class="btn btn-${blog.status == 'PUBLISHED' ? 'secondary' : 'success'} btn-sm">
+                                                                <i class="fa fa-${blog.status == 'PUBLISHED' ? 'ban' : 'check'}"></i>
+                                                            </button>
+                                                        </form>
+                                                        <form action="<c:url value='/admin/blogs/delete/${blog.id}'/>" method="POST" class="d-inline" onsubmit="return confirm('Bạn có chắc chắn muốn xóa bài viết này?');">
+                                                            <button type="submit" class="btn btn-danger btn-sm">
+                                                                <i class="fa fa-trash"></i>
+                                                            </button>
+                                                        </form>
                                                     </div>
                                                 </td>
                                             </tr>
@@ -113,59 +148,7 @@
     <script src="<c:url value='/assets/js/core/popper.min.js'/>"></script>
     <script src="<c:url value='/assets/js/core/bootstrap.min.js'/>"></script>
     <script src="<c:url value='/assets/js/plugin/jquery-scrollbar/jquery.scrollbar.min.js'/>"></script>
-    <script src="<c:url value='/assets/js/plugin/datatables/datatables.min.js'/>"></script>
-    <script src="<c:url value='/assets/js/plugin/bootstrap-notify/bootstrap-notify.min.js'/>"></script>
-    <script src="<c:url value='/assets/js/plugin/sweetalert/sweetalert.min.js'/>"></script>
     <script src="<c:url value='/assets/js/kaiadmin.min.js'/>"></script>
-
-    <script>
-        $(document).ready(function() {
-            $('#basic-datatables').DataTable();
-        });
-
-        function toggleStatus(blogId) {
-            swal({
-                title: 'Bạn có chắc chắn muốn thay đổi trạng thái?',
-                type: 'warning',
-                buttons:{
-                    confirm: {
-                        text : 'Đồng ý',
-                        className : 'btn btn-success'
-                    },
-                    cancel: {
-                        visible: true,
-                        className: 'btn btn-danger'
-                    }
-                }
-            }).then((Toggle) => {
-                if (Toggle) {
-                    window.location.href = "<c:url value='/admin/blogs/toggle/'/>" + blogId;
-                }
-            });
-        }
-
-        function confirmDelete(blogId) {
-            swal({
-                title: 'Bạn có chắc chắn muốn xóa?',
-                text: "Bạn sẽ không thể khôi phục lại dữ liệu này!",
-                type: 'warning',
-                buttons:{
-                    confirm: {
-                        text : 'Xóa',
-                        className : 'btn btn-success'
-                    },
-                    cancel: {
-                        visible: true,
-                        className: 'btn btn-danger'
-                    }
-                }
-            }).then((Delete) => {
-                if (Delete) {
-                    window.location.href = "<c:url value='/admin/blogs/delete/'/>" + blogId;
-                }
-            });
-        }
-    </script>
 </body>
 
 </html> 

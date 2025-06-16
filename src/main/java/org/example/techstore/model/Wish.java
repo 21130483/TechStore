@@ -1,32 +1,28 @@
 package org.example.techstore.model;
 
 import javax.persistence.*;
-import java.io.Serializable;
 
 @Entity
 @Table(name = "wishes")
-public class Wish implements Serializable {
+public class Wish {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
 
-    @EmbeddedId
-    private WishId id;
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @MapsId("email")
-    @JoinColumn(name = "email", nullable = false)
+    @ManyToOne
+    @JoinColumn(name = "user_id")
     private User user;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @MapsId("productID")
-    @JoinColumn(name = "productID", nullable = false)
+    @ManyToOne
+    @JoinColumn(name = "product_id")
     private Product product;
 
     // Getters and Setters
-
-    public WishId getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(WishId id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 

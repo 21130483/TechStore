@@ -1,63 +1,51 @@
 package org.example.techstore.model;
 
 import javax.persistence.*;
+import java.math.BigDecimal;
 import java.util.Date;
 
 @Entity
 @Table(name = "purchases")
 public class Purchase {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "purchaseID")
+    private Integer purchaseID;
 
-    @EmbeddedId
-    private PurchaseId id;
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @MapsId("email")
+    @ManyToOne
     @JoinColumn(name = "email", nullable = false)
     private User user;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @MapsId("productID")
+    @ManyToOne
     @JoinColumn(name = "productID", nullable = false)
     private Product product;
 
     @Column(name = "quantity", nullable = false)
     private Integer quantity;
 
-    @Column(name = "price", nullable = false)
-    private Integer price;
+    @Column(name = "total_price", nullable = false)
+    private BigDecimal totalPrice;
 
-    @Temporal(TemporalType.DATE)
-    @Column(name = "orderDate", nullable = false)
-    private Date orderDate;
+    @Column(name = "status", length = 20, nullable = false)
+    private String status = "PENDING"; // PENDING, PROCESSING, SHIPPED, DELIVERED, CANCELLED
 
-    @Column(name = "status", nullable = false)
-    private Integer status;
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(name = "purchase_date", nullable = false)
+    private Date purchaseDate;
 
-    @Temporal(TemporalType.DATE)
-    @Column(name = "receivedDate")
-    private Date receivedDate;
+    @Column(name = "shipping_address", length = 255, nullable = false)
+    private String shippingAddress;
 
-    @Column(name = "starNumber")
-    private Integer starNumber;
-
-    @Column(name = "comment", length = 100)
-    private String comment;
-
-    @Column(name = "address", length = 100)
-    private String address;
-
-    @Temporal(TemporalType.DATE)
-    @Column(name = "dateRated")
-    private Date dateRated;
+    @Column(name = "payment_method", length = 50, nullable = false)
+    private String paymentMethod;
 
     // Getters and Setters
-
-    public PurchaseId getId() {
-        return id;
+    public Integer getPurchaseID() {
+        return purchaseID;
     }
 
-    public void setId(PurchaseId id) {
-        this.id = id;
+    public void setPurchaseID(Integer purchaseID) {
+        this.purchaseID = purchaseID;
     }
 
     public User getUser() {
@@ -84,84 +72,58 @@ public class Purchase {
         this.quantity = quantity;
     }
 
-    public Integer getPrice() {
-        return price;
+    public BigDecimal getTotalPrice() {
+        return totalPrice;
     }
 
-    public void setPrice(Integer price) {
-        this.price = price;
+    public void setTotalPrice(BigDecimal totalPrice) {
+        this.totalPrice = totalPrice;
     }
 
-    public Date getOrderDate() {
-        return orderDate;
-    }
-
-    public void setOrderDate(Date orderDate) {
-        this.orderDate = orderDate;
-    }
-
-    public Integer getStatus() {
+    public String getStatus() {
         return status;
     }
 
-    public void setStatus(Integer status) {
+    public void setStatus(String status) {
         this.status = status;
     }
 
-    public Date getReceivedDate() {
-        return receivedDate;
+    public Date getPurchaseDate() {
+        return purchaseDate;
     }
 
-    public void setReceivedDate(Date receivedDate) {
-        this.receivedDate = receivedDate;
+    public void setPurchaseDate(Date purchaseDate) {
+        this.purchaseDate = purchaseDate;
     }
 
-    public Integer getStarNumber() {
-        return starNumber;
+    public String getShippingAddress() {
+        return shippingAddress;
     }
 
-    public void setStarNumber(Integer starNumber) {
-        this.starNumber = starNumber;
+    public void setShippingAddress(String shippingAddress) {
+        this.shippingAddress = shippingAddress;
     }
 
-    public String getComment() {
-        return comment;
+    public String getPaymentMethod() {
+        return paymentMethod;
     }
 
-    public void setComment(String comment) {
-        this.comment = comment;
-    }
-
-    public String getAddress() {
-        return address;
-    }
-
-    public void setAddress(String address) {
-        this.address = address;
-    }
-
-    public Date getDateRated() {
-        return dateRated;
-    }
-
-    public void setDateRated(Date dateRated) {
-        this.dateRated = dateRated;
+    public void setPaymentMethod(String paymentMethod) {
+        this.paymentMethod = paymentMethod;
     }
 
     @Override
     public String toString() {
         return "Purchase{" +
-                "user=" + user.getEmail() +
+                "purchaseID=" + purchaseID +
+                ", user=" + user.getEmail() +
                 ", product=" + product.getProductID() +
                 ", quantity=" + quantity +
-                ", price=" + price +
-                ", orderDate=" + orderDate +
-                ", status=" + status +
-                ", receivedDate=" + receivedDate +
-                ", starNumber=" + starNumber +
-                ", comment='" + comment + '\'' +
-                ", address='" + address + '\'' +
-                ", dateRated=" + dateRated +
+                ", totalPrice=" + totalPrice +
+                ", status='" + status + '\'' +
+                ", purchaseDate=" + purchaseDate +
+                ", shippingAddress='" + shippingAddress + '\'' +
+                ", paymentMethod='" + paymentMethod + '\'' +
                 '}';
     }
 }

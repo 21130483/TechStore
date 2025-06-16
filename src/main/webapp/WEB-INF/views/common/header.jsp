@@ -18,20 +18,20 @@
     <link href="https://fonts.googleapis.com/css?family=Montserrat:400,500,700" rel="stylesheet">
 
     <!-- Bootstrap -->
-    <link type="text/css" rel="stylesheet" href="${pageContext.request.contextPath}/css/bootstrap.min.css"/>
+    <link type="text/css" rel="stylesheet" href="/static/css/bootstrap.min.css"/>
 
     <!-- Slick -->
-    <link type="text/css" rel="stylesheet" href="${pageContext.request.contextPath}/css/slick.css"/>
-    <link type="text/css" rel="stylesheet" href="${pageContext.request.contextPath}/css/slick-theme.css"/>
+    <link type="text/css" rel="stylesheet" href="/static/css/slick.css"/>
+    <link type="text/css" rel="stylesheet" href="/static/css/slick-theme.css"/>
 
     <!-- nouislider -->
-    <link type="text/css" rel="stylesheet" href="${pageContext.request.contextPath}/css/nouislider.min.css"/>
+    <link type="text/css" rel="stylesheet" href="/static/css/nouislider.min.css"/>
 
     <!-- Font Awesome Icon -->
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/static/css/font-awesome.min.css">
 
     <!-- Custom stlylesheet -->
-    <link type="text/css" rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css"/>
+    <link type="text/css" rel="stylesheet" href="/static/css/style.css"/>
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -44,6 +44,7 @@
 <body>
 <!-- HEADER -->
 <header>
+
     <!-- TOP HEADER -->
     <div id="top-header">
         <div class="container">
@@ -70,7 +71,7 @@
                 <div class="col-md-3">
                     <div class="header-logo">
                         <a href="/" class="logo">
-                            <img src="${pageContext.request.contextPath}/img/logo.png" alt="">
+                            <img src="/assets/techstore/img/logo.png" alt="">
                         </a>
                     </div>
                 </div>
@@ -79,13 +80,13 @@
                 <!-- SEARCH BAR -->
                 <div class="col-md-6">
                     <div class="header-search">
-                        <form>
+                        <form action="/search" method="post">
                             <!-- <select class="input-select">
                                 <option value="0">All Categories</option>
                                 <option value="1">Category 01</option>
                                 <option value="1">Category 02</option>
                             </select> -->
-                            <input class="input" placeholder="Search here">
+                            <input name="search" class="input" placeholder="Search here">
                             <button class="search-btn">Search</button>
                         </form>
                     </div>
@@ -98,11 +99,14 @@
 
                         <!-- Cart -->
                         <div class="dropdown">
-                            <a href="cart" aria-expanded="true">
+                            <a href="/cart" aria-expanded="true">
                                 <!-- <a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true"> -->
                                 <i class="fa fa-shopping-cart"></i>
                                 <span>Giỏ Hàng</span>
-                                <div class="qty">3</div>
+                                <c:if test="${not empty sessionScope.cartsize}">
+                                    <div class="qty">sessionScope.cartsize</div>
+                                </c:if>
+
                             </a>
                             <!-- <div class="cart-dropdown">
                                 <div class="cart-list">
@@ -144,7 +148,17 @@
                         <div>
                             <a href="profile">
                                 <i class="fa fa-user-o"></i>
-                                <span>Nguyễn Hữu Phước</span>
+                                <span>
+                                    <c:choose>
+                                        <c:when test="${not empty sessionScope.user}">
+                                            sessionScope.user.name
+                                        </c:when>
+                                        <c:otherwise>
+                                            Đăng nhập
+                                        </c:otherwise>
+                                    </c:choose>
+
+                                </span>
                                 <!-- <div class="qty">2</div> -->
                             </a>
                         </div>
@@ -197,12 +211,12 @@
 <!-- /NAVIGATION -->
 
 <!-- jQuery Plugins -->
-<script src="${pageContext.request.contextPath}/js/jquery.min.js"></script>
-<script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
-<script src="${pageContext.request.contextPath}/js/slick.min.js"></script>
-<script src="${pageContext.request.contextPath}/js/nouislider.min.js"></script>
-<script src="${pageContext.request.contextPath}/js/jquery.zoom.min.js"></script>
-<script src="${pageContext.request.contextPath}/js/main.js"></script>
+<script src="/assets/techstore/js/jquery.min.js"></script>
+<script src="/assets/techstore/js/bootstrap.min.js"></script>
+<script src="/assets/techstore/js/slick.min.js"></script>
+<script src="/assets/techstore/js/nouislider.min.js"></script>
+<script src="/assets/techstore/js/jquery.zoom.min.js"></script>
+<script src="/assets/techstore/js/main.js"></script>
 
 </body>
 </html>

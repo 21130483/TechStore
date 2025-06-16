@@ -640,6 +640,14 @@ textarea.input {
 	Main nav
 \*----------------------------*/
 
+.main-nav {
+  display: flex;
+  justify-content: space-around;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
 .main-nav>li+li {
   margin-left: 30px
 }
@@ -680,7 +688,10 @@ textarea.input {
     display: inline-block;
   }
   #responsive-nav {
-    display: block;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
     position: fixed;
     left: 0;
     top: 0;
@@ -705,11 +716,10 @@ textarea.input {
   }
   .main-nav {
     margin: 0px;
-    float: none;
+    display: flex;
+    justify-content: space-around;
   }
   .main-nav>li {
-    display: block;
-    float: none;
   }
   .main-nav>li+li {
     margin-left: 0px;

@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 @Service
 public class PasswordResetService {
 
@@ -23,15 +25,17 @@ public class PasswordResetService {
     private PasswordEncoder passwordEncoder;
 
     public boolean requestPasswordReset(String email) {
-        User user = userRepository.findByEmail(email);
-        if (user != null) {
-            String resetToken = jwtTokenUtil.generateToken(email);
-            user.setResetToken(resetToken);
-            userRepository.save(user);
-            emailService.sendForgotPasswordEmail(email, resetToken);
-            return true;
+        Optional<User> userOpt = userRepository.findByEmail(email);
+        if (!userOpt.isPresent()) {
+            return false;
         }
-        return false;
+
+        User user = userOpt.get();
+        String resetToken = jwtTokenUtil.generateToken(email);
+        user.setResetToken(resetToken);
+        userRepository.save(user);
+        emailService.sendForgotPasswordEmail(email, resetToken);
+        return true;
     }
 
     public boolean validateResetToken(String token) {
@@ -39,8 +43,8 @@ public class PasswordResetService {
             return false;
         }
         String email = jwtTokenUtil.getEmailFromToken(token);
-        User user = userRepository.findByEmail(email);
-        return user != null && token.equals(user.getResetToken());
+        Optional<User> userOpt = userRepository.findByEmail(email);
+        return userOpt.isPresent() && token.equals(userOpt.get().getResetToken());
     }
 
     public boolean resetPassword(String token, String newPassword) {
@@ -49,8 +53,13 @@ public class PasswordResetService {
         }
 
         String email = jwtTokenUtil.getEmailFromToken(token);
-        User user = userRepository.findByEmail(email);
+        Optional<User> userOpt = userRepository.findByEmail(email);
 
+        if (!userOpt.isPresent()) {
+            return false;
+        }
+
+        User user = userOpt.get();
         user.setPassword(passwordEncoder.encode(newPassword));
         user.setResetToken(null);
         userRepository.save(user);

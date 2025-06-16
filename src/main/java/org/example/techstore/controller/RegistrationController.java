@@ -1,5 +1,7 @@
 package org.example.techstore.controller;
 
+import org.example.techstore.model.User;
+import org.example.techstore.repository.UserRepository;
 import org.example.techstore.service.EmailService;
 import org.example.techstore.utils.JwtTokenUtil;
 import org.slf4j.Logger;
@@ -8,14 +10,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
-import org.example.techstore.model.User;
-import org.example.techstore.repository.UserRepository;
 
-import javax.mail.MessagingException;
 import java.util.Date;
+import java.util.Optional;
 
-@RestController
+@Controller
 public class RegistrationController {
     private static final Logger logger = LoggerFactory.getLogger(RegistrationController.class);
 
@@ -31,122 +34,54 @@ public class RegistrationController {
     @Autowired
     private JwtTokenUtil jwtTokenUtil;
 
-    @PostMapping(value = "/req/signup", consumes = "application/json")
-    public ResponseEntity<String> createUser(@RequestBody User user) {
-        try {
-            logger.info("Processing registration request for email: {}", user.getEmail());
-
-            // Check if username already exists
-            if (userRepository.findByUsername(user.getUsername()).isPresent()) {
-                logger.warn("Registration failed - Username already exists: {}", user.getUsername());
-                return ResponseEntity.badRequest().body("Username already exists");
-            }
-
-            // Check if email already exists
-            User existingUser = userRepository.findByEmail(user.getEmail());
-            if (existingUser != null) {
-                if (existingUser.isVerified()) {
-                    logger.warn("Registration failed - Email already registered and verified: {}", user.getEmail());
-                    return ResponseEntity.badRequest().body("Email already registered and verified");
-                } else {
-                    // Resend verification email
-                    logger.info("Resending verification email for existing unverified user: {}", user.getEmail());
-                    String verificationToken = jwtTokenUtil.generateToken(existingUser.getEmail());
-                    existingUser.setVerificationToken(verificationToken);
-                    userRepository.save(existingUser);
-                    try {
-                        emailService.sendVerificationEmail(existingUser.getEmail(), verificationToken);
-                        logger.info("Verification email resent successfully to: {}", user.getEmail());
-                        return ResponseEntity.ok("Verification email resent. Please check your inbox.");
-                    } catch (MessagingException e) {
-                        logger.error("Failed to resend verification email to: {}. Error: {}", user.getEmail(), e.getMessage(), e);
-                        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
-                                .body("Error sending verification email");
-                    }
-                }
-            }
-
-            // Create new user
-            logger.info("Creating new user account for email: {}", user.getEmail());
-            user.setPassword(passwordEncoder.encode(user.getPassword()));
-            user.setVerified(false);
-            user.setRole("USER");  // Set default role
-            user.setAccess("ACTIVE");  // Set default access status
-            
-            // Set default values for required fields if they are null
-            if (user.getDob() == null) {
-                user.setDob(new Date()); // Set current date as default DOB
-            }
-            if (user.getGender() == null) {
-                user.setGender("Not specified"); // Set default gender
-            }
-            if (user.getPhoneNumbers() == null) {
-                user.setPhoneNumbers("Not provided"); // Set default phone number
-            }
-            if (user.getFullName() == null) {
-                user.setFullName(user.getUsername()); // Use username as default full name
-            }
-
-            String verificationToken = jwtTokenUtil.generateToken(user.getEmail());
-            user.setVerificationToken(verificationToken);
-            userRepository.save(user);
-
-            try {
-                emailService.sendVerificationEmail(user.getEmail(), verificationToken);
-                logger.info("Registration successful and verification email sent to: {}", user.getEmail());
-                return ResponseEntity.ok("Registration successful! Please check your email to verify your account.");
-            } catch (MessagingException e) {
-                logger.error("Registration successful but failed to send verification email to: {}", 
-                    user.getEmail(), e.getMessage(), e);
-                return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
-                        .body("Registration successful but error sending verification email");
-            }
-        } catch (Exception e) {
-            logger.error("Unexpected error during user registration: {}", e.getMessage(), e);
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
-                    .body("An unexpected error occurred during registration");
+    @PostMapping("/register")
+    public String registerUser(@ModelAttribute("user") User user, BindingResult result, Model model) {
+        if (result.hasErrors()) {
+            return "register";
         }
+
+        // Check if email already exists
+        Optional<User> existingUserByEmail = userRepository.findByEmail(user.getEmail());
+        if (existingUserByEmail.isPresent()) {
+            model.addAttribute("error", "Email đã được sử dụng");
+            return "register";
+        }
+
+        // Check if username already exists
+        Optional<User> existingUserByUsername = userRepository.findByUsername(user.getUsername());
+        if (existingUserByUsername.isPresent()) {
+            model.addAttribute("error", "Tên đăng nhập đã được sử dụng");
+            return "register";
+        }
+
+        // Hash password and save user
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
+        userRepository.save(user);
+
+        return "redirect:/login?registered";
     }
 
-    @GetMapping("/verify")
-    public ResponseEntity<String> verifyEmail(@RequestParam String token) {
-        try {
-            logger.info("Processing email verification request with token");
-
-            if (!jwtTokenUtil.validateToken(token)) {
-                logger.warn("Email verification failed - Invalid or expired token");
-                return ResponseEntity.badRequest().body("Invalid or expired verification token");
-            }
-
-            String email = jwtTokenUtil.getEmailFromToken(token);
-            logger.debug("Token validated for email: {}", email);
-
-            User user = userRepository.findByEmail(email);
-            if (user == null) {
-                logger.warn("Email verification failed - User not found for email: {}", email);
-                return ResponseEntity.badRequest().body("User not found");
-            }
-
-            if (user.isVerified()) {
-                logger.warn("Email verification failed - Email already verified for: {}", email);
-                return ResponseEntity.badRequest().body("Email already verified");
-            }
-
-            if (!token.equals(user.getVerificationToken())) {
-                logger.warn("Email verification failed - Invalid verification token for email: {}", email);
-                return ResponseEntity.badRequest().body("Invalid verification token");
-            }
-
-            user.setVerified(true);
-            user.setVerificationToken(null);
-            userRepository.save(user);
-            logger.info("Email verification successful for: {}", email);
-
-            return ResponseEntity.ok("Email verified successfully! You can now login.");
-        } catch (Exception e) {
-            logger.error("Unexpected error during email verification: {}", e.getMessage(), e);
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
-                    .body("An unexpected error occurred during email verification");
+    @PostMapping("/reset-password")
+    public String resetPassword(@RequestParam String email, Model model) {
+        Optional<User> userOpt = userRepository.findByEmail(email);
+        if (!userOpt.isPresent()) {
+            model.addAttribute("error", "Email không tồn tại trong hệ thống");
+            return "forgot-password";
         }
+
+        User user = userOpt.get();
+        String resetToken = jwtTokenUtil.generateToken(email);
+        user.setResetToken(resetToken);
+        userRepository.save(user);
+
+        try {
+            emailService.sendForgotPasswordEmail(email, resetToken);
+            model.addAttribute("success", "Hướng dẫn đặt lại mật khẩu đã được gửi đến email của bạn");
+        } catch (Exception e) {
+            logger.error("Error sending password reset email", e);
+            model.addAttribute("error", "Không thể gửi email. Vui lòng thử lại sau.");
+        }
+
+        return "forgot-password";
     }
 }

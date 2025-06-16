@@ -40,113 +40,131 @@
 </head>
 
 <body>
-    <div class="wrapper">
-        <!-- Include Sidebar -->
-        <jsp:include page="components/sidebar.jsp" />
+<div class="wrapper">
+    <!-- Include Sidebar -->
+    <jsp:include page="components/sidebar.jsp" />
 
-        <div class="main-panel">
-            <!-- Include Navbar -->
-            <jsp:include page="components/navbar.jsp" />
+    <div class="main-panel">
+        <!-- Include Navbar -->
+        <jsp:include page="components/navbar.jsp" />
 
-            <div class="container">
-                <div class="page-inner">
-                    <div class="card">
-                        <div class="card-header">
-                            <div class="d-flex align-items-center">
-                                <h4 class="card-title">Quản lý sản phẩm</h4>
-                                <a href="<c:url value='/admin/products/add'/>" class="btn btn-primary btn-round ml-auto">
-                                    <i class="fa fa-plus"></i>
-                                    Thêm sản phẩm
-                                </a>
-                            </div>
+        <div class="container">
+            <div class="page-inner">
+                <div class="card">
+                    <div class="card-header">
+                        <div class="d-flex align-items-center">
+                            <h4 class="card-title">Quản lý sản phẩm</h4>
+                            <a href="<c:url value='/admin/products/add'/>" class="btn btn-primary btn-round ml-auto">
+                                <i class="fa fa-plus"></i>
+                                Thêm sản phẩm
+                            </a>
                         </div>
-                        <div class="card-body">
-                            <div class="table-responsive">
-                                <table id="basic-datatables" class="display table table-striped table-hover">
-                                    <thead>
-                                        <tr>
-                                            <th>Ảnh</th>
-                                            <th>Mã</th>
-                                            <th>Tên</th>
-                                            <th>Loại</th>
-                                            <th>Số lượng</th>
-                                            <th>Giá</th>
-                                            <th>Thao tác</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <c:forEach items="${products}" var="product">
-                                            <tr>
-                                                <td>
-                                                    <img src="<c:url value='${product.imageUrl}'/>" alt="${product.name}" style="width: 50px; height: 50px;"/>
-                                                </td>
-                                                <td>${product.code}</td>
-                                                <td>${product.name}</td>
-                                                <td>${product.category}</td>
-                                                <td>${product.quantity}</td>
-                                                <td><fmt:formatNumber value="${product.price}" type="currency" currencySymbol="$"/></td>
-                                                <td>
-                                                    <div class="form-button-action">
-                                                        <a href="<c:url value='/admin/products/edit/${product.id}'/>" class="btn btn-link btn-primary btn-lg">
-                                                            <i class="fa fa-edit"></i>
-                                                        </a>
-                                                        <a href="#" onclick="confirmDelete(${product.id})" class="btn btn-link btn-danger">
-                                                            <i class="fa fa-times"></i>
-                                                        </a>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                        </c:forEach>
-                                    </tbody>
-                                </table>
+                    </div>
+                    <div class="card-body">
+                        <c:if test="${param.success != null}">
+                            <div class="alert alert-success">
+                                <button type="button" class="close" data-dismiss="alert">&times;</button>
+                                <i class="fa fa-check-circle"></i> Thao tác thành công!
                             </div>
+                        </c:if>
+                        <c:if test="${not empty error}">
+                            <div class="alert alert-danger">
+                                <button type="button" class="close" data-dismiss="alert">&times;</button>
+                                <i class="fa fa-exclamation-circle"></i> ${error}
+                            </div>
+                        </c:if>
+                        <div class="table-responsive">
+                            <table class="table table-bordered table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Mã</th>
+                                        <th>Tên</th>
+                                        <th>Danh mục</th>
+                                        <th>Giá</th>
+                                        <th>Số lượng</th>
+                                        <th>Hình ảnh</th>
+                                        <th>Thao tác</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <c:forEach items="${products}" var="product">
+                                        <tr>
+                                            <td>${product.productID}</td>
+                                            <td>${product.code}</td>
+                                            <td>${product.name}</td>
+                                            <td>${product.category.name}</td>
+                                            <td>${product.price}</td>
+                                            <td>${product.quantity}</td>
+                                            <td>
+                                                <c:if test="${not empty product.imageUrl}">
+                                                    <img src="${product.imageUrl}" alt="${product.name}" style="max-width: 50px; max-height: 50px;">
+                                                </c:if>
+                                            </td>
+                                            <td>
+                                                <div class="btn-group">
+                                                    <a href="/admin/products/edit/${product.productID}" class="btn btn-sm btn-info">
+                                                        <i class="fa fa-edit"></i>
+                                                    </a>
+                                                    <form action="/admin/products/delete/${product.productID}" method="post" style="display: inline;">
+                                                        <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Bạn có chắc chắn muốn xóa sản phẩm này?')">
+                                                            <i class="fa fa-trash"></i>
+                                                        </button>
+                                                    </form>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </c:forEach>
+                                </tbody>
+                            </table>
                         </div>
                     </div>
                 </div>
             </div>
-
-            <!-- Include Footer -->
-            <jsp:include page="components/footer.jsp" />
         </div>
+
+        <!-- Include Footer -->
+        <jsp:include page="components/footer.jsp" />
     </div>
+</div>
 
-    <!-- Core JS Files -->
-    <script src="<c:url value='/assets/js/core/jquery-3.7.1.min.js'/>"></script>
-    <script src="<c:url value='/assets/js/core/popper.min.js'/>"></script>
-    <script src="<c:url value='/assets/js/core/bootstrap.min.js'/>"></script>
-    <script src="<c:url value='/assets/js/plugin/jquery-scrollbar/jquery.scrollbar.min.js'/>"></script>
-    <script src="<c:url value='/assets/js/plugin/datatables/datatables.min.js'/>"></script>
-    <script src="<c:url value='/assets/js/plugin/bootstrap-notify/bootstrap-notify.min.js'/>"></script>
-    <script src="<c:url value='/assets/js/plugin/sweetalert/sweetalert.min.js'/>"></script>
-    <script src="<c:url value='/assets/js/kaiadmin.min.js'/>"></script>
+<!-- Core JS Files -->
+<script src="<c:url value='/assets/js/core/jquery-3.7.1.min.js'/>"></script>
+<script src="<c:url value='/assets/js/core/popper.min.js'/>"></script>
+<script src="<c:url value='/assets/js/core/bootstrap.min.js'/>"></script>
+<script src="<c:url value='/assets/js/plugin/jquery-scrollbar/jquery.scrollbar.min.js'/>"></script>
+<script src="<c:url value='/assets/js/plugin/datatables/datatables.min.js'/>"></script>
+<script src="<c:url value='/assets/js/plugin/bootstrap-notify/bootstrap-notify.min.js'/>"></script>
+<script src="<c:url value='/assets/js/plugin/sweetalert/sweetalert.min.js'/>"></script>
+<script src="<c:url value='/assets/js/kaiadmin.min.js'/>"></script>
 
-    <script>
-        $(document).ready(function() {
-            $('#basic-datatables').DataTable();
+<script>
+    $(document).ready(function() {
+        $('#basic-datatables').DataTable();
+    });
+
+    function confirmDelete(productId) {
+        swal({
+            title: 'Bạn có chắc chắn muốn xóa?',
+            text: "Bạn sẽ không thể khôi phục lại dữ liệu này!",
+            type: 'warning',
+            buttons:{
+                confirm: {
+                    text : 'Xóa',
+                    className : 'btn btn-success'
+                },
+                cancel: {
+                    visible: true,
+                    className: 'btn btn-danger'
+                }
+            }
+        }).then((Delete) => {
+            if (Delete) {
+                window.location.href = "<c:url value='/admin/products/delete/'/>" + productId;
+            }
         });
-
-        function confirmDelete(productId) {
-            swal({
-                title: 'Bạn có chắc chắn muốn xóa?',
-                text: "Bạn sẽ không thể khôi phục lại dữ liệu này!",
-                type: 'warning',
-                buttons:{
-                    confirm: {
-                        text : 'Xóa',
-                        className : 'btn btn-success'
-                    },
-                    cancel: {
-                        visible: true,
-                        className: 'btn btn-danger'
-                    }
-                }
-            }).then((Delete) => {
-                if (Delete) {
-                    window.location.href = "<c:url value='/admin/products/delete/'/>" + productId;
-                }
-            });
-        }
-    </script>
+    }
+</script>
 </body>
 
 </html> 

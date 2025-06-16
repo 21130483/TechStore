@@ -1,8 +1,15 @@
 package org.example.techstore.model;
 
 import javax.persistence.*;
-import java.util.Date;
+import lombok.Data;
+import org.springframework.format.annotation.DateTimeFormat;
 
+import javax.persistence.*;
+import java.util.Date;
+import java.text.SimpleDateFormat;
+import java.text.ParseException;
+
+@Data
 @Entity
 @Table(name = "vouchers")
 public class Voucher {
@@ -12,7 +19,7 @@ public class Voucher {
     @Column(name = "voucherID")
     private Integer voucherID;
 
-    @Column(name = "code", length = 50, nullable = false)
+    @Column(name = "code", length = 50, nullable = false, unique = true)
     private String code;
 
     @Column(name = "name", length = 50, nullable = false)
@@ -29,10 +36,12 @@ public class Voucher {
 
     @Column(name = "start_date", nullable = false)
     @Temporal(TemporalType.TIMESTAMP)
+    @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm")
     private Date startDate;
 
     @Column(name = "end_date", nullable = false)
     @Temporal(TemporalType.TIMESTAMP)
+    @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm")
     private Date endDate;
 
     @Column(name = "active", nullable = false)
@@ -44,7 +53,7 @@ public class Voucher {
         return voucherID;
     }
 
-    public void setVoucherID(Integer id) {
+    public void setVoucherID(Integer voucherID) {
         this.voucherID = voucherID;
     }
 
@@ -116,6 +125,7 @@ public class Voucher {
     public String toString() {
         return "Voucher{" +
                 "voucherID=" + voucherID +
+                ", code='" + code + '\'' +
                 ", name='" + name + '\'' +
                 ", type='" + type + '\'' +
                 ", value=" + value +

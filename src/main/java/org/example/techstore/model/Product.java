@@ -1,48 +1,58 @@
 package org.example.techstore.model;
 
 import javax.persistence.*;
-import java.util.Date;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import org.hibernate.annotations.Cache;
+import org.hibernate.annotations.CacheConcurrencyStrategy;
+
+import java.math.BigDecimal;
 
 @Entity
 @Table(name = "products")
+@Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 public class Product {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "productID")
+    @Column(name = "product_id")
     private Integer productID;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "categoryID", nullable = false)
-    private Category category;
+    @NotBlank(message = "Mã sản phẩm không được để trống")
+    @Column(name = "code", unique = true)
+    private String code;
 
-    @Column(name = "quantity", nullable = false)
-    private Integer quantity;
-
-    @Temporal(TemporalType.DATE)
-    @Column(name = "dateAdded", nullable = false)
-    private Date dateAdded;
-
-    @Column(name = "price", nullable = false)
-    private Integer price;
-
-    @Column(name = "sale", nullable = false)
-    private Integer sale;
-
-    @Column(name = "orderedNumbers", nullable = false)
-    private Integer orderedNumbers;
-
-    @Column(name = "name", length = 100, nullable = false)
+    @NotBlank(message = "Tên sản phẩm không được để trống")
+    @Column(name = "name")
     private String name;
 
-    @Column(name = "trademark", length = 50, nullable = false)
+    @Column(name = "description", columnDefinition = "TEXT")
+    private String description;
+
+    @NotNull(message = "Giá sản phẩm không được để trống")
+    @Min(value = 0, message = "Giá sản phẩm phải lớn hơn hoặc bằng 0")
+    @Column(name = "price")
+    private BigDecimal price;
+
+    @NotNull(message = "Số lượng sản phẩm không được để trống")
+    @Min(value = 0, message = "Số lượng sản phẩm phải lớn hơn hoặc bằng 0")
+    @Column(name = "quantity")
+    private Integer quantity;
+
+    @Column(name = "trademark")
     private String trademark;
 
-    @Column(name = "content", length = 1000, nullable = false)
-    private String content;
+    @Column(name = "image_url")
+    private String imageUrl;
+
+    @NotNull(message = "Danh mục sản phẩm không được để trống")
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "category_id", nullable = false)
+    @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
+    private Category category;
 
     // Getters and Setters
-
     public Integer getProductID() {
         return productID;
     }
@@ -51,52 +61,12 @@ public class Product {
         this.productID = productID;
     }
 
-    public Category getCategory() {
-        return category;
+    public String getCode() {
+        return code;
     }
 
-    public void setCategory(Category category) {
-        this.category = category;
-    }
-
-    public Integer getQuantity() {
-        return quantity;
-    }
-
-    public void setQuantity(Integer quantity) {
-        this.quantity = quantity;
-    }
-
-    public Date getDateAdded() {
-        return dateAdded;
-    }
-
-    public void setDateAdded(Date dateAdded) {
-        this.dateAdded = dateAdded;
-    }
-
-    public Integer getPrice() {
-        return price;
-    }
-
-    public void setPrice(Integer price) {
-        this.price = price;
-    }
-
-    public Integer getSale() {
-        return sale;
-    }
-
-    public void setSale(Integer sale) {
-        this.sale = sale;
-    }
-
-    public Integer getOrderedNumbers() {
-        return orderedNumbers;
-    }
-
-    public void setOrderedNumbers(Integer orderedNumbers) {
-        this.orderedNumbers = orderedNumbers;
+    public void setCode(String code) {
+        this.code = code;
     }
 
     public String getName() {
@@ -107,6 +77,30 @@ public class Product {
         this.name = name;
     }
 
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public BigDecimal getPrice() {
+        return price;
+    }
+
+    public void setPrice(BigDecimal price) {
+        this.price = price;
+    }
+
+    public Integer getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(Integer quantity) {
+        this.quantity = quantity;
+    }
+
     public String getTrademark() {
         return trademark;
     }
@@ -115,21 +109,19 @@ public class Product {
         this.trademark = trademark;
     }
 
-    public String getContent() {
-        return content;
+    public String getImageUrl() {
+        return imageUrl;
     }
 
-    public void setContent(String content) {
-        this.content = content;
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
     }
 
-    @Override
-    public String toString() {
-        return "Product{" +
-                "productID=" + productID +
-                ", name='" + name + '\'' +
-                ", price=" + price +
-                ", sale=" + sale +
-                '}';
+    public Category getCategory() {
+        return category;
+    }
+
+    public void setCategory(Category category) {
+        this.category = category;
     }
 }

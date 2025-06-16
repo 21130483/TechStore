@@ -1,7 +1,6 @@
 CREATE DATABASE IF NOT EXISTS `techstore` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci */;
 USE `techstore`;
 
-
 CREATE TABLE IF NOT EXISTS `users` (
                                        `email` varchar(50) NOT NULL,
     `phone_numbers` varchar(20) NOT NULL,

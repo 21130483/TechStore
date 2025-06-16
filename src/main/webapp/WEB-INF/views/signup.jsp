@@ -6,8 +6,8 @@
     <title>Signup Form</title>
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/styleUser.css">
-    <script src="${pageContext.request.contextPath}/js/signup.js" defer></script>
+    <link rel="stylesheet" href="/static/css/styleUser.css">
+    <script src="/static/js/signup.js" defer></script>
     <style>
         .notification {
             position: fixed;
@@ -110,7 +110,7 @@
         notification.textContent = message;
         notification.className = 'notification ' + (isSuccess ? 'success' : 'error');
         notification.style.display = 'block';
-        
+
         setTimeout(() => {
             notification.style.display = 'none';
         }, 5000);
@@ -138,7 +138,7 @@
         submitButton.disabled = true;
 
         const data = { username, email, password };
-        
+
         try {
             const response = await fetch("${pageContext.request.contextPath}/req/signup", {
                 method: "POST",
