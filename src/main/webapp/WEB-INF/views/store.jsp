@@ -296,7 +296,8 @@
                                         </div>
                                     </div>
                                     <div class="add-to-cart">
-                                        <button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> add to cart
+                                        <button class="add-to-cart-btn" data-product-id="${product.productID}">
+                                            <i class="fa fa-shopping-cart"></i> Thêm vào giỏ hàng
                                         </button>
                                     </div>
                                 </div>
@@ -378,6 +379,7 @@
     <script src="/assets/techstore/js/jquery.zoom.min.js"></script>
     <script src="/assets/techstore/js/main.js"></script>
     <script src="/assets/techstore/js/store.js"></script>
+    <script src="/assets/techstore/js/addcart.js"></script>
 
 </body>
 </html>

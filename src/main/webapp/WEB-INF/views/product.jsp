@@ -166,15 +166,9 @@
                         <%--                            </div>--%>
 
                         <div class="add-to-cart">
-                            <%--                                <div class="qty-label">--%>
-                            <%--                                    Qty--%>
-                            <%--                                    <div class="input-number">--%>
-                            <%--                                        <input type="number">--%>
-                            <%--                                        <span class="qty-up">+</span>--%>
-                            <%--                                        <span class="qty-down">-</span>--%>
-                            <%--                                    </div>--%>
-                            <%--                                </div>--%>
-                            <button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> add to cart</button>
+                            <button class="add-to-cart-btn" data-product-id="${product.productID}">
+                                <i class="fa fa-shopping-cart"></i> Thêm vào giỏ hàng
+                            </button>
                         </div>
 
                         <ul class="product-btns">
@@ -593,6 +587,7 @@
                 <script src="/assets/techstore/js/nouislider.min.js"></script>
                 <script src="/assets/techstore/js/jquery.zoom.min.js"></script>
                 <script src="/assets/techstore/js/main.js"></script>
+                <script src="/assets/techstore/js/addcart.js"></script>
 
 </body>
 </html>

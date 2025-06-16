@@ -103,9 +103,13 @@
                                 <!-- <a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true"> -->
                                 <i class="fa fa-shopping-cart"></i>
                                 <span>Giỏ Hàng</span>
-                                <c:if test="${not empty sessionScope.cartsize}">
-                                    <div class="qty">sessionScope.cartsize</div>
-                                </c:if>
+                                <div class="qty" id="cartnumber">
+                                    <c:if test="${not empty sessionScope.cartsize}">
+                                        sessionScope.cartsize
+                                    </c:if>
+
+                                </div>
+
 
                             </a>
                             <!-- <div class="cart-dropdown">
@@ -220,6 +224,7 @@
 <script src="/assets/techstore/js/nouislider.min.js"></script>
 <script src="/assets/techstore/js/jquery.zoom.min.js"></script>
 <script src="/assets/techstore/js/main.js"></script>
+<script src="/assets/techstore/js/addcart.js"></script>
 
 </body>
 </html>

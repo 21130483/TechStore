@@ -13,4 +13,6 @@ public interface CartRepository extends CrudRepository<Cart, CartId> {
 
     // Lấy tất cả các giỏ hàng chứa một sản phẩm theo productID
     List<Cart> findByProductProductID(Integer productID);
+
+
 }
