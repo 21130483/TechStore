@@ -19,20 +19,20 @@
     <link href="https://fonts.googleapis.com/css?family=Montserrat:400,500,700" rel="stylesheet">
 
     <!-- Bootstrap -->
-    <link type="text/css" rel="stylesheet" href="${pageContext.request.contextPath}/css/bootstrap.min.css"/>
+    <link type="text/css" rel="stylesheet" href="/assets/techstore/css/bootstrap.min.css"/>
 
     <!-- Slick -->
-    <link type="text/css" rel="stylesheet" href="${pageContext.request.contextPath}/css/slick.css"/>
-    <link type="text/css" rel="stylesheet" href="${pageContext.request.contextPath}/css/slick-theme.css"/>
+    <link type="text/css" rel="stylesheet" href="/assets/techstore/css/slick.css"/>
+    <link type="text/css" rel="stylesheet" href="/assets/techstore/css/slick-theme.css"/>
 
     <!-- nouislider -->
-    <link type="text/css" rel="stylesheet" href="${pageContext.request.contextPath}/css/nouislider.min.css"/>
+    <link type="text/css" rel="stylesheet" href="/assets/techstore/css/nouislider.min.css"/>
 
     <!-- Font Awesome Icon -->
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/assets/techstore/css/font-awesome.min.css">
 
     <!-- Custom stlylesheet -->
-    <link type="text/css" rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css"/>
+    <link type="text/css" rel="stylesheet" href="/assets/techstore/css/style.css"/>
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -45,7 +45,7 @@
 <body>
 <!-- HEADER -->
 <header>
-    <jsp:include page="common/header.jsp" />
+    <jsp:include page="common/header.jsp"/>
 
 <!-- SECTION -->
 <div class="section">
@@ -57,7 +57,7 @@
             <div class="col-md-4 col-xs-6">
                 <div class="shop">
                     <div class="shop-img">
-                        <img src="${pageContext.request.contextPath}/img/shop01.png" alt="">
+                        <img src="/assets/techstore/img/shop01.png" alt="">
                     </div>
                     <div class="shop-body">
                         <h3>Laptop<br>Collection</h3>
@@ -71,7 +71,7 @@
             <div class="col-md-4 col-xs-6">
                 <div class="shop">
                     <div class="shop-img">
-                        <img src="${pageContext.request.contextPath}/img/shop03.png" alt="">
+                        <img src="/assets/techstore/img/shop03.png" alt="">
                     </div>
                     <div class="shop-body">
                         <h3>Accessories<br>Collection</h3>
@@ -85,7 +85,7 @@
             <div class="col-md-4 col-xs-6">
                 <div class="shop">
                     <div class="shop-img">
-                        <img src="${pageContext.request.contextPath}/img/shop02.png" alt="">
+                        <img src="/assets/techstore/img/shop02.png" alt="">
                     </div>
                     <div class="shop-body">
                         <h3>Cameras<br>Collection</h3>
@@ -134,7 +134,7 @@
                                 <c:forEach var="product" items="${products}">
                                     <div class="product">
                                         <div class="product-img">
-                                            <img src="${pageContext.request.contextPath}/img/product/${product.productID}/0.webp" alt="">
+                                            <img src="/assets/techstore/img/product/${product.productID}/0.webp" alt="">
                                             <div class="product-label">
                                                 <span class="sale">-30%</span>
                                                 <span class="new">NEW</span>
@@ -171,7 +171,7 @@
                                 <!-- product -->
                                 <div class="product">
                                     <div class="product-img">
-                                        <img src="${pageContext.request.contextPath}/img/product01.png" alt="">
+                                        <img src="/assets/techstore/img/product01.png" alt="">
                                         <div class="product-label">
                                             <span class="sale">-30%</span>
                                             <span class="new">NEW</span>
@@ -209,7 +209,7 @@
                                 <!-- product -->
 <%--                                <div class="product">--%>
 <%--                                    <div class="product-img">--%>
-<%--                                        <img src="${pageContext.request.contextPath}/img/product01.png" alt="">--%>
+<%--                                        <img src="/assets/techstore/img/product01.png" alt="">--%>
 <%--                                        <div class="product-label">--%>
 <%--                                            <span class="sale">-30%</span>--%>
 <%--                                            <span class="new">NEW</span>--%>
@@ -241,7 +241,7 @@
 <%--                                <!-- product -->--%>
 <%--                                <div class="product">--%>
 <%--                                    <div class="product-img">--%>
-<%--                                        <img src="${pageContext.request.contextPath}/img/product02.png" alt="">--%>
+<%--                                        <img src="/assets/techstore/img/product02.png" alt="">--%>
 <%--                                        <div class="product-label">--%>
 <%--                                            <span class="new">NEW</span>--%>
 <%--                                        </div>--%>
@@ -272,7 +272,7 @@
 <%--                                <!-- product -->--%>
 <%--                                <div class="product">--%>
 <%--                                    <div class="product-img">--%>
-<%--                                        <img src="${pageContext.request.contextPath}/img/product03.png" alt="">--%>
+<%--                                        <img src="/assets/techstore/img/product03.png" alt="">--%>
 <%--                                        <div class="product-label">--%>
 <%--                                            <span class="sale">-30%</span>--%>
 <%--                                        </div>--%>
@@ -298,7 +298,7 @@
 <%--                                <!-- product -->--%>
 <%--                                <div class="product">--%>
 <%--                                    <div class="product-img">--%>
-<%--                                        <img src="${pageContext.request.contextPath}/img/product04.png" alt="">--%>
+<%--                                        <img src="/assets/techstore/img/product04.png" alt="">--%>
 <%--                                    </div>--%>
 <%--                                    <div class="product-body">--%>
 <%--                                        <p class="product-category">Category</p>--%>
@@ -326,7 +326,7 @@
 <%--                                <!-- product -->--%>
 <%--                                <div class="product">--%>
 <%--                                    <div class="product-img">--%>
-<%--                                        <img src="${pageContext.request.contextPath}/img/product05.png" alt="">--%>
+<%--                                        <img src="/assets/techstore/img/product05.png" alt="">--%>
 <%--                                    </div>--%>
 <%--                                    <div class="product-body">--%>
 <%--                                        <p class="product-category">Category</p>--%>
@@ -444,7 +444,7 @@
                                 <!-- product -->
                                 <div class="product">
                                     <div class="product-img">
-                                        <img src="${pageContext.request.contextPath}/img/product06.png" alt="">
+                                        <img src="/assets/techstore/img/product06.png" alt="">
                                         <div class="product-label">
                                             <span class="sale">-30%</span>
                                             <span class="new">NEW</span>
@@ -476,7 +476,7 @@
                                 <!-- product -->
                                 <div class="product">
                                     <div class="product-img">
-                                        <img src="${pageContext.request.contextPath}/img/product07.png" alt="">
+                                        <img src="/assets/techstore/img/product07.png" alt="">
                                         <div class="product-label">
                                             <span class="new">NEW</span>
                                         </div>
@@ -507,7 +507,7 @@
                                 <!-- product -->
                                 <div class="product">
                                     <div class="product-img">
-                                        <img src="${pageContext.request.contextPath}/img/product08.png" alt="">
+                                        <img src="/assets/techstore/img/product08.png" alt="">
                                         <div class="product-label">
                                             <span class="sale">-30%</span>
                                         </div>
@@ -533,7 +533,7 @@
                                 <!-- product -->
                                 <div class="product">
                                     <div class="product-img">
-                                        <img src="${pageContext.request.contextPath}/img/product09.png" alt="">
+                                        <img src="/assets/techstore/img/product09.png" alt="">
                                     </div>
                                     <div class="product-body">
                                         <p class="product-category">Category</p>
@@ -561,7 +561,7 @@
                                 <!-- product -->
                                 <div class="product">
                                     <div class="product-img">
-                                        <img src="${pageContext.request.contextPath}/img/product01.png" alt="">
+                                        <img src="/assets/techstore/img/product01.png" alt="">
                                     </div>
                                     <div class="product-body">
                                         <p class="product-category">Category</p>
@@ -932,12 +932,12 @@
         <jsp:include page="common/footer.jsp" />
 
 <!-- jQuery Plugins -->
-<script src="${pageContext.request.contextPath}/js/jquery.min.js"></script>
-<script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
-<script src="${pageContext.request.contextPath}/js/slick.min.js"></script>
-<script src="${pageContext.request.contextPath}/js/nouislider.min.js"></script>
-<script src="${pageContext.request.contextPath}/js/jquery.zoom.min.js"></script>
-<script src="${pageContext.request.contextPath}/js/main.js"></script>
+<script src="/assets/techstore/js/jquery.min.js"></script>
+<script src="/assets/techstore/js/bootstrap.min.js"></script>
+<script src="/assets/techstore/js/slick.min.js"></script>
+<script src="/assets/techstore/js/nouislider.min.js"></script>
+<script src="/assets/techstore/js/jquery.zoom.min.js"></script>
+<script src="/assets/techstore/js/main.js"></script>
 
 </body>
 </html>

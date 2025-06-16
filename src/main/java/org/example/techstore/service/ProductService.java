@@ -13,18 +13,18 @@ public class ProductService {
     @Autowired
     private ProductRepository productRepository;
 
-    public Optional<Product> getProductById(Integer productID) {
+    public Optional<Product> getProductByproductID(Integer productID) {
         return productRepository.findByproductID(productID);
     }
 
     public List<Product> getAllProducts() {
         return productRepository.findAll();
     }
-
-    public Optional<Product> getProductByproductID(Integer id) {
-        return Optional.empty();
-    }
-
     public void deleteProduct(Integer id) {
     }
+
+    public List<Product> getProductsByNameContaining(String search) {
+        return productRepository.findByNameContaining(search);
+    }
 }
+

@@ -31,14 +31,14 @@ public class ProductDetail {
 
             // Duyệt ảnh từ thư mục static
             PathMatchingResourcePatternResolver resolver = new PathMatchingResourcePatternResolver();
-            String pattern = "classpath:/static/img/product/" + id + "/*";
+            String pattern = "classpath:/assets/techstore/img/product/" + id + "/*";
 
             List<String> imagePaths = new ArrayList<>();
             try {
                 Resource[] resources = resolver.getResources(pattern);
                 imagePaths = Arrays.stream(resources)
                         .filter(Resource::isReadable)
-                        .map(resource -> "/img/product/" + id + "/" + Objects.requireNonNull(resource.getFilename()))
+                        .map(resource -> "/assets/techstore/img/product/" + id + "/" + Objects.requireNonNull(resource.getFilename()))
                         .sorted()
                         .collect(Collectors.toList());
             } catch (Exception e) {
