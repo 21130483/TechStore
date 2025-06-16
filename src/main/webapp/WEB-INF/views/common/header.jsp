@@ -44,20 +44,21 @@
 <body>
 <!-- HEADER -->
 <header>
+
     <!-- TOP HEADER -->
-    <div id="top-header">
-        <div class="container">
-            <ul class="header-links pull-left">
-                <li><a href="#"><i class="fa fa-phone"></i> +021-95-51-84</a></li>
-                <li><a href="#"><i class="fa fa-envelope-o"></i> email@email.com</a></li>
-                <li><a href="#"><i class="fa fa-map-marker"></i> 1734 Stonecoal Road</a></li>
-            </ul>
-            <ul class="header-links pull-right">
-                <li><a href="#"><i class="fa fa-dollar"></i> USD</a></li>
-                <li><a href="${pageContext.request.contextPath}/req/login"><i class="fa fa-user-o"></i> My Account</a></li>
-            </ul>
-        </div>
-    </div>
+<%--    <div id="top-header">--%>
+<%--        <div class="container">--%>
+<%--            <ul class="header-links pull-left">--%>
+<%--                <li><a href="#"><i class="fa fa-phone"></i> +021-95-51-84</a></li>--%>
+<%--                <li><a href="#"><i class="fa fa-envelope-o"></i> email@email.com</a></li>--%>
+<%--                <li><a href="#"><i class="fa fa-map-marker"></i> 1734 Stonecoal Road</a></li>--%>
+<%--            </ul>--%>
+<%--            <ul class="header-links pull-right">--%>
+<%--                <li><a href="#"><i class="fa fa-dollar"></i> USD</a></li>--%>
+<%--                <li><a href="${pageContext.request.contextPath}/req/login"><i class="fa fa-user-o"></i> My Account</a></li>--%>
+<%--            </ul>--%>
+<%--        </div>--%>
+<%--    </div>--%>
     <!-- /TOP HEADER -->
 
     <!-- MAIN HEADER -->
@@ -98,11 +99,14 @@
 
                         <!-- Cart -->
                         <div class="dropdown">
-                            <a href="cart" aria-expanded="true">
+                            <a href="/cart" aria-expanded="true">
                                 <!-- <a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true"> -->
                                 <i class="fa fa-shopping-cart"></i>
                                 <span>Giỏ Hàng</span>
-                                <div class="qty">3</div>
+                                <c:if test="${not empty sessionScope.cartsize}">
+                                    <div class="qty">sessionScope.cartsize</div>
+                                </c:if>
+
                             </a>
                             <!-- <div class="cart-dropdown">
                                 <div class="cart-list">
@@ -144,7 +148,17 @@
                         <div>
                             <a href="profile">
                                 <i class="fa fa-user-o"></i>
-                                <span>Nguyễn Hữu Phước</span>
+                                <span>
+                                    <c:choose>
+                                        <c:when test="${not empty sessionScope.user}">
+                                            sessionScope.user.name
+                                        </c:when>
+                                        <c:otherwise>
+                                            Đăng nhập
+                                        </c:otherwise>
+                                    </c:choose>
+
+                                </span>
                                 <!-- <div class="qty">2</div> -->
                             </a>
                         </div>
@@ -181,12 +195,12 @@
             <!-- NAV -->
             <ul class="main-nav nav navbar-nav">
                 <li class="active"><a href="#">Home</a></li>
-                <li><a href="/store">Hot Deals</a></li>
-                <li><a href="/store">Categories</a></li>
-                <li><a href="/store">Laptops</a></li>
-                <li><a href="/store">Smartphones</a></li>
-                <li><a href="/store">Cameras</a></li>
-                <li><a href="/store">Accessories</a></li>
+                <li><a href="/store">Điện thoại</a></li>
+                <li><a href="/store">Laptop</a></li>
+                <li><a href="/store">PC</a></li>
+                <li><a href="/store">Tai nghe</a></li>
+                <li><a href="/store">Máy tính bảng</a></li>
+                <li><a href="/store">Tivi</a></li>
             </ul>
             <!-- /NAV -->
         </div>

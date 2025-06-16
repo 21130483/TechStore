@@ -1,8 +1,11 @@
 package org.example.techstore.repository;
 
 import org.example.techstore.model.Product;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.repository.query.Param;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -19,4 +22,15 @@ public interface ProductRepository extends CrudRepository<Product, Integer> {
 
     // Tìm sản phẩm theo trademark
     List<Product> findByTrademark(String trademark);
+
+    @Query("SELECT p FROM Product p WHERE p.dateAdded >= :fromDate")
+    List<Product> findProductsAddedInLast30Days(@Param("fromDate") Date fromDate);
+
+    @Query(value = "SELECT * FROM products ORDER BY ordered_numbers DESC LIMIT 10", nativeQuery = true)
+    List<Product> findTop10Ordered();
+
+    @Query(value = "SELECT * FROM products WHERE categoryid = :categoryId ORDER BY RAND() LIMIT 6", nativeQuery = true)
+    List<Product> findRandomByCategoryId(@Param("categoryId") int categoryId);
+
+
 }

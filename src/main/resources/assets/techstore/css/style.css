@@ -728,6 +728,7 @@ textarea.input {
   position: relative;
   overflow: hidden;
   margin: 15px 0px;
+  height: 280px;
 }
 
 .shop:before {
@@ -768,6 +769,7 @@ textarea.input {
   width: 100%;
   -webkit-transition: 0.2s all;
   transition: 0.2s all;
+
 }
 
 .shop:hover .shop-img>img {

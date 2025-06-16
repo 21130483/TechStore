@@ -17,16 +17,20 @@ public class UserService {
     @Autowired
     private PasswordEncoder passwordEncoder;
 
-    public boolean checkLogin(String username, String password) {
+    public User checkLogin(String username, String password) {
         Optional<User> userOpt = userRepository.findByUsername(username);
         if (userOpt.isPresent()) {
             User user = userOpt.get();
-            return passwordEncoder.matches(password, user.getPassword());
+            System.out.println(passwordEncoder.encode(user.getPassword()));
+            System.out.println(user.getPassword());
+            return passwordEncoder.matches(password, user.getPassword())?user:null;
         }
-        return false;
+        return null;
     }
 
     public List<User> getAllUsers() {
         return userRepository.findAll();
     }
+
+
 }

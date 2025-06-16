@@ -79,12 +79,20 @@
                             <c:forEach var="category" items="${categories}">
                                 <div class="input-radio">
                                     <input type="radio" name="category" id="category-${category.categoryID}">
-                                    <label for="category-1">
+                                    <label for="category-${category.categoryID}">
                                         <span></span>
                                         ${category.name}
 <%--                                        <small>(120)</small>--%>
                                     </label>
                                 </div>
+<%--                                <div class="input-checkbox">--%>
+<%--                                    <input type="checkbox" id="category-${category.categoryID}">--%>
+<%--                                    <label for="category-${category.categoryID}">--%>
+<%--                                        <span></span>--%>
+<%--                                            ${category.name}--%>
+<%--&lt;%&ndash;                                        <small>(740)</small>&ndash;%&gt;--%>
+<%--                                    </label>--%>
+<%--                                </div>--%>
                             </c:forEach>
 
 <%--                            <div class="input-checkbox">--%>
