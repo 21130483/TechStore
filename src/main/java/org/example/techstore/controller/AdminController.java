@@ -124,7 +124,7 @@ public class AdminController {
 
     @GetMapping("/products/edit/{id}")
     public String showEditProductForm(@PathVariable Integer id, Model model) {
-        model.addAttribute("product", productService.getProductById(id));
+        model.addAttribute("product", productService.getProductByproductID(id));
         return "editproduct";
     }
 

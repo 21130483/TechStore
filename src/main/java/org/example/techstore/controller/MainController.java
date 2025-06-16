@@ -26,15 +26,10 @@ public class MainController {
         return "checkout"; // Không cần ghi đường dẫn đầy đủ
     }
 
-    @RequestMapping("/store")
-    public String store() {
-        return "store"; // Không cần ghi đường dẫn đầy đủ
+    @RequestMapping("/header")
+    public String header() {
+        return "header"; // Không cần ghi đường dẫn đầy đủ
     }
-
-//    @RequestMapping("/product")
-//    public String product() {
-//        return "product"; // Không cần ghi đường dẫn đầy đủ
-//    }
 
     @RequestMapping("/profile")
     public String profile() {

@@ -18,20 +18,20 @@
     <link href="https://fonts.googleapis.com/css?family=Montserrat:400,500,700" rel="stylesheet">
 
     <!-- Bootstrap -->
-    <link type="text/css" rel="stylesheet" href="${pageContext.request.contextPath}/css/bootstrap.min.css"/>
+    <link type="text/css" rel="stylesheet" href="/assets/techstore/css/bootstrap.min.css"/>
 
     <!-- Slick -->
-    <link type="text/css" rel="stylesheet" href="${pageContext.request.contextPath}/css/slick.css"/>
-    <link type="text/css" rel="stylesheet" href="${pageContext.request.contextPath}/css/slick-theme.css"/>
+    <link type="text/css" rel="stylesheet" href="/assets/techstore/css/slick.css"/>
+    <link type="text/css" rel="stylesheet" href="/assets/techstore/css/slick-theme.css"/>
 
     <!-- nouislider -->
-    <link type="text/css" rel="stylesheet" href="${pageContext.request.contextPath}/css/nouislider.min.css"/>
+    <link type="text/css" rel="stylesheet" href="/assets/techstore/css/nouislider.min.css"/>
 
     <!-- Font Awesome Icon -->
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/assets/techstore/css/font-awesome.min.css">
 
     <!-- Custom stlylesheet -->
-    <link type="text/css" rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css"/>
+    <link type="text/css" rel="stylesheet" href="/assets/techstore/css/style.css"/>
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -141,12 +141,12 @@
 <!-- /FOOTER -->
 
 <!-- jQuery Plugins -->
-<script src="${pageContext.request.contextPath}/js/jquery.min.js"></script>
-<script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
-<script src="${pageContext.request.contextPath}/js/slick.min.js"></script>
-<script src="${pageContext.request.contextPath}/js/nouislider.min.js"></script>
-<script src="${pageContext.request.contextPath}/js/jquery.zoom.min.js"></script>
-<script src="${pageContext.request.contextPath}/js/main.js"></script>
+<script src="/assets/techstore/js/jquery.min.js"></script>
+<script src="/assets/techstore/js/bootstrap.min.js"></script>
+<script src="/assets/techstore/js/slick.min.js"></script>
+<script src="/assets/techstore/js/nouislider.min.js"></script>
+<script src="/assets/techstore/js/jquery.zoom.min.js"></script>
+<script src="/assets/techstore/js/main.js"></script>
 
 </body>
 </html>
