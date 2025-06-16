@@ -80,7 +80,7 @@
                 <!-- SEARCH BAR -->
                 <div class="col-md-6">
                     <div class="header-search">
-                        <form action="/search" method="post">
+                        <form action="/search" method="get">
                             <!-- <select class="input-select">
                                 <option value="0">All Categories</option>
                                 <option value="1">Category 01</option>
@@ -194,13 +194,16 @@
         <div id="responsive-nav">
             <!-- NAV -->
             <ul class="main-nav nav navbar-nav">
-                <li class="active"><a href="#">Home</a></li>
-                <li><a href="/store">Điện thoại</a></li>
-                <li><a href="/store">Laptop</a></li>
-                <li><a href="/store">PC</a></li>
-                <li><a href="/store">Tai nghe</a></li>
-                <li><a href="/store">Máy tính bảng</a></li>
-                <li><a href="/store">Tivi</a></li>
+                <li><a href="/">Home</a></li>
+<%--                <li><a href="/store">Điện thoại</a></li>--%>
+<%--                <li><a href="/store">Laptop</a></li>--%>
+<%--                <li><a href="/store">PC</a></li>--%>
+<%--                <li><a href="/store">Tai nghe</a></li>--%>
+<%--                <li><a href="/store">Máy tính bảng</a></li>--%>
+<%--                <li><a href="/store">Tivi</a></li>--%>
+                <c:forEach var="category" items="${categories}">
+                    <li><a href="/search?category=${category.categoryID}">${category.name}</a></li>
+                </c:forEach>
             </ul>
             <!-- /NAV -->
         </div>

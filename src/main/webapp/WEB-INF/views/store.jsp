@@ -76,25 +76,26 @@
                     <div class="aside">
                         <h3 class="aside-title">Categories</h3>
                         <div class="checkbox-filter">
-                            <c:forEach var="category" items="${categories}">
-                                <div class="input-radio">
-                                    <input type="radio" name="category" id="category-${category.categoryID}">
-                                    <label for="category-${category.categoryID}">
-                                        <span></span>
-                                        ${category.name}
-<%--                                        <small>(120)</small>--%>
-                                    </label>
-                                </div>
-<%--                                <div class="input-checkbox">--%>
-<%--                                    <input type="checkbox" id="category-${category.categoryID}">--%>
-<%--                                    <label for="category-${category.categoryID}">--%>
-<%--                                        <span></span>--%>
-<%--                                            ${category.name}--%>
-<%--&lt;%&ndash;                                        <small>(740)</small>&ndash;%&gt;--%>
-<%--                                    </label>--%>
-<%--                                </div>--%>
-                            </c:forEach>
+                            <form action="/search" method="get" id="categoryForm">
+                                <c:forEach var="category" items="${categories}">
+                                    <div class="input-radio">
+                                        <input
+                                                type="radio"
+                                                name="category"
+                                                id="category-${category.categoryID}"
+                                                value="${category.categoryID}"
+                                                <c:if test="${categorySelected != null && category.categoryID == categorySelected.categoryID}">checked</c:if>
+                                                onchange="document.getElementById('categoryForm').submit();"
+                                        >
+                                        <label for="category-${category.categoryID}">
+                                            <span></span>
+                                                ${category.name}
+                                        </label>
+                                    </div>
+                                </c:forEach>
 
+                                <input type="hidden" name="search" value="${search}" />
+                            </form>
 <%--                            <div class="input-checkbox">--%>
 <%--                                <input type="checkbox" id="category-6">--%>
 <%--                                <label for="category-6">--%>
@@ -376,6 +377,7 @@
     <script src="/assets/techstore/js/nouislider.min.js"></script>
     <script src="/assets/techstore/js/jquery.zoom.min.js"></script>
     <script src="/assets/techstore/js/main.js"></script>
+    <script src="/assets/techstore/js/store.js"></script>
 
 </body>
 </html>
