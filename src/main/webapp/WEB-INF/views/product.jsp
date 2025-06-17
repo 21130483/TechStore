@@ -46,27 +46,27 @@
 <header>
     <jsp:include page="common/header.jsp"/>
 
-    <!-- BREADCRUMB -->
-    <div id="breadcrumb" class="section">
-        <!-- container -->
-        <div class="container">
-            <!-- row -->
-            <div class="row">
-                <div class="col-md-12">
-                    <ul class="breadcrumb-tree">
-                        <li><a href="#">Home</a></li>
-                        <li><a href="#">All Categories</a></li>
-                        <li><a href="#">Accessories</a></li>
-                        <li><a href="#">Headphones</a></li>
-                        <li class="active">Product name goes here</li>
-                    </ul>
-                </div>
-            </div>
-            <!-- /row -->
-        </div>
-        <!-- /container -->
-    </div>
-    <!-- /BREADCRUMB -->
+<%--    <!-- BREADCRUMB -->--%>
+<%--    <div id="breadcrumb" class="section">--%>
+<%--        <!-- container -->--%>
+<%--        <div class="container">--%>
+<%--            <!-- row -->--%>
+<%--            <div class="row">--%>
+<%--                <div class="col-md-12">--%>
+<%--                    <ul class="breadcrumb-tree">--%>
+<%--                        <li><a href="#">Home</a></li>--%>
+<%--                        <li><a href="#">All Categories</a></li>--%>
+<%--                        <li><a href="#">Accessories</a></li>--%>
+<%--                        <li><a href="#">Headphones</a></li>--%>
+<%--                        <li class="active">Product name goes here</li>--%>
+<%--                    </ul>--%>
+<%--                </div>--%>
+<%--            </div>--%>
+<%--            <!-- /row -->--%>
+<%--        </div>--%>
+<%--        <!-- /container -->--%>
+<%--    </div>--%>
+<%--    <!-- /BREADCRUMB -->--%>
 
     <!-- SECTION -->
     <div class="section">
@@ -143,10 +143,10 @@
                             <a class="review-link" href="#">10 Review(s) | Add your review</a>
                         </div>
                         <div>
-                            <h3 class="product-price">$980.00
-                                <del class="product-old-price">$990.00</del>
+                            <h3 class="product-price"><fmt:formatNumber value="${product.price}" type="number" groupingUsed="true"/> Đồng
+<%--                                <del class="product-old-price">$990.00</del>--%>
                             </h3>
-                            <span class="product-available">In Stock</span>
+<%--                            <span class="product-available">In Stock</span>--%>
                         </div>
                         <p>${product.content}</p>
 
@@ -165,6 +165,7 @@
                         <%--                                </label>--%>
                         <%--                            </div>--%>
 
+
                         <div class="add-to-cart">
                             <button class="add-to-cart-btn" data-product-id="${product.productID}">
                                 <i class="fa fa-shopping-cart"></i> Thêm vào giỏ hàng
@@ -172,7 +173,12 @@
                         </div>
 
                         <ul class="product-btns">
-                            <li><a href="#"><i class="fa fa-heart-o"></i> add to wishlist</a></li>
+
+                            <li>
+                                <a class="add-to-wishlist" data-product-id="${product.productID}">
+                                   <i class="fa fa-heart-o"></i> add to wishlist
+                                </a>
+                            </li>
                             <%--                                <li><a href="#"><i class="fa fa-exchange"></i> add to compare</a></li>--%>
                         </ul>
 
@@ -427,148 +433,83 @@
                                     <h3 class="title">Related Products</h3>
                                 </div>
                             </div>
-
-                            <!-- product -->
-                            <div class="col-md-3 col-xs-6">
-                                <div class="product">
-                                    <div class="product-img">
-                                        <img src="/assets/techstore/img/product01.png" alt="">
-                                        <div class="product-label">
-                                            <span class="sale">-30%</span>
+                            <c:forEach var="related1" items="${related1s}">
+                                <!-- product -->
+                                <div class="col-md-3 col-xs-6">
+                                    <div class="product">
+                                        <div class="product-img">
+                                            <img src="/assets/techstore/img/product/${related1.productID}/0.webp" alt="">
+<%--                                            <div class="product-label">--%>
+<%--                                                <span class="new">NEW</span>--%>
+<%--                                            </div>--%>
                                         </div>
-                                    </div>
-                                    <div class="product-body">
-                                        <p class="product-category">Category</p>
-                                        <h3 class="product-name"><a href="#">product name goes here</a></h3>
-                                        <h4 class="product-price">$980.00
-                                            <del class="product-old-price">$990.00</del>
-                                        </h4>
-                                        <div class="product-rating">
+                                        <div class="product-body">
+                                            <p class="product-category">${related1.category.name}</p>
+                                            <h3 class="product-name"><a href="/product?id=${related1.productID}">${related1.name}</a></h3>
+                                            <h4 class="product-price">
+                                                <fmt:formatNumber value="${related1.price}" type="number" groupingUsed="true"/> Đồng
+                                            </h4>
+                                            <div class="product-rating">
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                            </div>
+                                            <div class="product-btns">
+                                                <button class="add-to-wishlist" data-product-id="${related1.productID}"><i class="fa fa-heart-o"></i><span class="tooltipp">add to wishlist</span></button>
+                                                <button class="add-to-compare"><i class="fa fa-exchange"></i><span class="tooltipp">add to compare</span></button>
+                                                <button class="quick-view"><i class="fa fa-eye"></i><span class="tooltipp">quick view</span></button>
+                                            </div>
                                         </div>
-                                        <div class="product-btns">
-                                            <button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span
-                                                    class="tooltipp">add to wishlist</span></button>
-                                            <button class="add-to-compare"><i class="fa fa-exchange"></i><span
-                                                    class="tooltipp">add to compare</span></button>
-                                            <button class="quick-view"><i class="fa fa-eye"></i><span class="tooltipp">quick view</span>
-                                            </button>
+                                        <div class="add-to-cart">
+                                            <button class="add-to-cart-btn" data-product-id="${related1.productID}><i class="fa fa-shopping-cart"></i> add to cart</button>
                                         </div>
-                                    </div>
-                                    <div class="add-to-cart">
-                                        <button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> add to cart
-                                        </button>
                                     </div>
                                 </div>
-                            </div>
-                            <!-- /product -->
-
-                            <!-- product -->
-                            <div class="col-md-3 col-xs-6">
-                                <div class="product">
-                                    <div class="product-img">
-                                        <img src="/assets/techstore/img/product02.png" alt="">
-                                        <div class="product-label">
-                                            <span class="new">NEW</span>
-                                        </div>
-                                    </div>
-                                    <div class="product-body">
-                                        <p class="product-category">Category</p>
-                                        <h3 class="product-name"><a href="#">product name goes here</a></h3>
-                                        <h4 class="product-price">$980.00
-                                            <del class="product-old-price">$990.00</del>
-                                        </h4>
-                                        <div class="product-rating">
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                        </div>
-                                        <div class="product-btns">
-                                            <button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span
-                                                    class="tooltipp">add to wishlist</span></button>
-                                            <button class="add-to-compare"><i class="fa fa-exchange"></i><span
-                                                    class="tooltipp">add to compare</span></button>
-                                            <button class="quick-view"><i class="fa fa-eye"></i><span class="tooltipp">quick view</span>
-                                            </button>
-                                        </div>
-                                    </div>
-                                    <div class="add-to-cart">
-                                        <button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> add to cart
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- /product -->
+                                <!-- /product -->
+                            </c:forEach>
 
                             <div class="clearfix visible-sm visible-xs"></div>
 
-                            <!-- product -->
-                            <div class="col-md-3 col-xs-6">
-                                <div class="product">
-                                    <div class="product-img">
-                                        <img src="/assets/techstore/img/product03.png" alt="">
-                                    </div>
-                                    <div class="product-body">
-                                        <p class="product-category">Category</p>
-                                        <h3 class="product-name"><a href="#">product name goes here</a></h3>
-                                        <h4 class="product-price">$980.00
-                                            <del class="product-old-price">$990.00</del>
-                                        </h4>
-                                        <div class="product-rating">
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star-o"></i>
+                            <c:forEach var="related2" items="${related2s}">
+                                <!-- product -->
+                                <div class="col-md-3 col-xs-6">
+                                    <div class="product">
+                                        <div class="product-img">
+                                            <img src="/assets/techstore/img/product/${related2.productID}/0.webp" alt="">
+                                                <%--                                            <div class="product-label">--%>
+                                                <%--                                                <span class="new">NEW</span>--%>
+                                                <%--                                            </div>--%>
                                         </div>
-                                        <div class="product-btns">
-                                            <button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span
-                                                    class="tooltipp">add to wishlist</span></button>
-                                            <button class="add-to-compare"><i class="fa fa-exchange"></i><span
-                                                    class="tooltipp">add to compare</span></button>
-                                            <button class="quick-view"><i class="fa fa-eye"></i><span class="tooltipp">quick view</span>
-                                            </button>
+                                        <div class="product-body">
+                                            <p class="product-category">${related2.category.name}</p>
+                                            <h3 class="product-name"><a href="/product?id=${related2.productID}">${related2.name}</a></h3>
+                                            <h4 class="product-price">
+                                                <fmt:formatNumber value="${related2.price}" type="number" groupingUsed="true"/> Đồng
+                                            </h4>
+                                            <div class="product-rating">
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                            </div>
+                                            <div class="product-btns">
+                                                <button class="add-to-wishlist" data-product-id="${related2.productID}"><i class="fa fa-heart-o"></i><span class="tooltipp">add to wishlist</span></button>
+                                                <button class="add-to-compare"><i class="fa fa-exchange"></i><span class="tooltipp">add to compare</span></button>
+                                                <button class="quick-view"><i class="fa fa-eye"></i><span class="tooltipp">quick view</span></button>
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="add-to-cart">
-                                        <button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> add to cart
-                                        </button>
+                                        <div class="add-to-cart">
+                                            <button class="add-to-cart-btn" data-product-id="${related2.productID}><i class="fa fa-shopping-cart"></i> add to cart</button>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <!-- /product -->
+                                <!-- /product -->
+                            </c:forEach>
 
-                            <!-- product -->
-                            <div class="col-md-3 col-xs-6">
-                                <div class="product">
-                                    <div class="product-img">
-                                        <img src="/assets/techstore/img/product04.png" alt="">
-                                    </div>
-                                    <div class="product-body">
-                                        <p class="product-category">Category</p>
-                                        <h3 class="product-name"><a href="#">product name goes here</a></h3>
-                                        <h4 class="product-price"><fmt:formatNumber value="${product.price}" type="number" groupingUsed="true"/> Đồng
-<%--                                            <del class="product-old-price">$990.00</del>--%>
-                                        </h4>
-                                        <div class="product-rating">
-                                        </div>
-                                        <div class="product-btns">
-                                            <button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span
-                                                    class="tooltipp">add to wishlist</span></button>
-                                            <button class="add-to-compare"><i class="fa fa-exchange"></i><span
-                                                    class="tooltipp">add to compare</span></button>
-                                            <button class="quick-view"><i class="fa fa-eye"></i><span class="tooltipp">quick view</span>
-                                            </button>
-                                        </div>
-                                    </div>
-                                    <div class="add-to-cart">
-                                        <button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> Thêm vào giỏ hàng
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- /product -->
+
 
                         </div>
                         <!-- /row -->

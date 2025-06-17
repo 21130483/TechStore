@@ -173,7 +173,7 @@
                         </div>
                         <div class="payment-method">
                             <div class="input-radio">
-                                <input type="radio" name="payment" id="payment-1">
+                                <input type="radio" name="payment" id="payment-1" required="required">
                                 <label for="payment-1">
                                     <span></span>
                                     Chuyển khoản
@@ -183,7 +183,7 @@
                                 </div>
                             </div>
                             <div class="input-radio">
-                                <input type="radio" name="payment" id="payment-2">
+                                <input type="radio" name="payment" id="payment-2" required="required">
                                 <label for="payment-2">
                                     <span></span>
                                     Thanh toán khi nhận hàng
@@ -194,7 +194,7 @@
                             </div>
                         </div>
                         <div class="input-checkbox">
-                            <input type="checkbox" id="terms">
+                            <input type="checkbox" id="terms" required>
                             <label for="terms">
                                 <span></span>
                                 Tôi đã đọc và chấp nhận <a href="#">điều khoản và điều kiện</a>

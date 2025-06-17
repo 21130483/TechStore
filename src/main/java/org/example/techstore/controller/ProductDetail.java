@@ -44,8 +44,16 @@ public class ProductDetail {
             } catch (Exception e) {
                 e.printStackTrace();
             }
+            List<Product> relateds = productService.findRandomByCategoryId(productOpt.get().getCategory().getCategoryID());
+            if(relateds.size() > 4) {
+                relateds= relateds.subList(0, 4);
+            }
+            List<Product> relateds1 = relateds.subList(0, relateds.size()/2);
+            List<Product> relateds2 = relateds.subList(relateds.size()/2, relateds.size());
 
             model.addAttribute("images", imagePaths);
+            model.addAttribute("related1s", relateds1);
+            model.addAttribute("related2s", relateds2);
             return "product"; // Tên file JSP
         } else {
             model.addAttribute("error", "Không tìm thấy sản phẩm");

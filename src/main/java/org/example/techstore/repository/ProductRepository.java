@@ -5,6 +5,8 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
 
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
@@ -31,6 +33,8 @@ public interface ProductRepository extends CrudRepository<Product, Integer> {
 
     @Query(value = "SELECT * FROM products WHERE categoryid = :categoryId ORDER BY RAND() LIMIT 6", nativeQuery = true)
     List<Product> findRandomByCategoryId(@Param("categoryId") int categoryId);
+
+
 
 
 }
