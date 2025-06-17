@@ -143,7 +143,7 @@
                                         <div class="product-body">
                                             <p class="product-category">${product.category.name}</p>
                                             <h3 class="product-name"><a href="/product?id=${product.productID}">${product.name}</a></h3>
-                                            <h4 class="product-price">${product.price}
+                                            <h4 class="product-price"><fmt:formatNumber value="${product.price}" type="number" groupingUsed="true"/> Đồng
 <%--                                                <del class="product-old-price">${product.price}</del>--%>
                                             </h4>
                                             <div class="product-rating">
@@ -309,7 +309,7 @@
                                         <div class="product-body">
                                             <p class="product-category">${product.category.name}</p>
                                             <h3 class="product-name"><a href="/product?id=${product.productID}">${product.name}</a></h3>
-                                            <h4 class="product-price">${product.price}
+                                            <h4 class="product-price"><fmt:formatNumber value="${product.price}" type="number" groupingUsed="true"/> Đồng
 <%--                                                <del class="product-old-price">${product.price}</del>--%>
                                             </h4>
                                             <div class="product-rating">
@@ -373,7 +373,7 @@
                                 </div>
                                 <div class="product-body">
                                     <h3 class="product-name"><a href="/product?id=${product.productID}">${product.name}</a></h3>
-                                    <h4 class="product-price">${product.price} </h4>
+                                    <h4 class="product-price"><fmt:formatNumber value="${product.price}" type="number" groupingUsed="true"/> Đồng</h4>
                                 </div>
                             </div>
                             <!-- /product widget -->
@@ -388,7 +388,7 @@
                                 </div>
                                 <div class="product-body">
                                     <h3 class="product-name"><a href="/product?id=${product.productID}">${product.name}</a></h3>
-                                    <h4 class="product-price">${product.price} </h4>
+                                    <h4 class="product-price"><fmt:formatNumber value="${product.price}" type="number" groupingUsed="true"/> Đồng</h4>
                                 </div>
                             </div>
                             <!-- /product widget -->
@@ -415,7 +415,7 @@
                                 </div>
                                 <div class="product-body">
                                     <h3 class="product-name"><a href="/product?id=${product.productID}">${product.name}</a></h3>
-                                    <h4 class="product-price">${product.price} </h4>
+                                    <h4 class="product-price"><fmt:formatNumber value="${product.price}" type="number" groupingUsed="true"/> Đồng</h4>
                                 </div>
                             </div>
                             <!-- /product widget -->
@@ -430,7 +430,7 @@
                                 </div>
                                 <div class="product-body">
                                     <h3 class="product-name"><a href="/product?id=${product.productID}">${product.name}</a></h3>
-                                    <h4 class="product-price">${product.price} </h4>
+                                    <h4 class="product-price"><fmt:formatNumber value="${product.price}" type="number" groupingUsed="true"/> Đồng</h4>
                                 </div>
                             </div>
                             <!-- /product widget -->
@@ -459,7 +459,7 @@
                                 </div>
                                 <div class="product-body">
                                     <h3 class="product-name"><a href="/product?id=${product.productID}">${product.name}</a></h3>
-                                    <h4 class="product-price">${product.price} </h4>
+                                    <h4 class="product-price"><fmt:formatNumber value="${product.price}" type="number" groupingUsed="true"/> Đồng</h4>
                                 </div>
                             </div>
                             <!-- /product widget -->
@@ -474,7 +474,7 @@
                                 </div>
                                 <div class="product-body">
                                     <h3 class="product-name"><a href="/product?id=${product.productID}">${product.name}</a></h3>
-                                    <h4 class="product-price">${product.price} </h4>
+                                    <h4 class="product-price"><fmt:formatNumber value="${product.price}" type="number" groupingUsed="true"/> Đồng</h4>
                                 </div>
                             </div>
                             <!-- /product widget -->

@@ -277,7 +277,7 @@
                                         <h3 class="product-name"><a
                                                 href="/product?id=${product.productID}">${product.name}</a></h3>
                                         <h4 class="product-price">${product.price}
-                                            <del class="product-old-price">${product.price}</del>
+                                            <del class="product-old-price"><fmt:formatNumber value="${product.price}" type="number" groupingUsed="true"/> Đồng</del>
                                         </h4>
                                         <div class="product-rating">
                                             <i class="fa fa-star"></i>
