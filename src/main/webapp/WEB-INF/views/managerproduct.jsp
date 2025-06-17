@@ -35,7 +35,6 @@
     <link rel="stylesheet" href="<c:url value='/assets/css/plugins.min.css'/>" />
     <link rel="stylesheet" href="<c:url value='/assets/css/kaiadmin.min.css'/>" />
     <link rel="stylesheet" href="<c:url value='/assets/css/demo.css'/>" />
-    <link rel="stylesheet" href="<c:url value='/css/managerproduct.css'/>" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
 </head>
 
@@ -61,36 +60,54 @@
                             </div>
                         </div>
                         <div class="card-body">
+                            <c:if test="${not empty success}">
+                                <div class="alert alert-success">
+                                    <button type="button" class="close" data-dismiss="alert">&times;</button>
+                                    <i class="fa fa-check"></i> ${success}
+                                </div>
+                            </c:if>
+                            <c:if test="${not empty error}">
+                                <div class="alert alert-danger">
+                                    <button type="button" class="close" data-dismiss="alert">&times;</button>
+                                    <i class="fa fa-exclamation-circle"></i> ${error}
+                                </div>
+                            </c:if>
                             <div class="table-responsive">
                                 <table id="basic-datatables" class="display table table-striped table-hover">
                                     <thead>
                                         <tr>
+                                            <th>ID</th>
                                             <th>Ảnh</th>
-                                            <th>Mã</th>
                                             <th>Tên</th>
-                                            <th>Loại</th>
-                                            <th>Số lượng</th>
+                                            <th>Danh mục</th>
                                             <th>Giá</th>
+                                            <th>Giảm giá</th>
+                                            <th>Số lượng</th>
+                                            <th>Đã bán</th>
                                             <th>Thao tác</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <c:forEach items="${products}" var="product">
                                             <tr>
+                                                <td>${product.productID}</td>
                                                 <td>
-                                                    <img src="<c:url value='${product.imageUrl}'/>" alt="${product.name}" style="width: 50px; height: 50px;"/>
+                                                    <c:if test="${not empty product.imageUrl}">
+                                                        <img src="<c:url value='${product.imageUrl}'/>" alt="${product.name}" style="width: 50px; height: 50px; object-fit: cover;"/>
+                                                    </c:if>
                                                 </td>
-                                                <td>${product.code}</td>
                                                 <td>${product.name}</td>
-                                                <td>${product.category}</td>
+                                                <td>${product.category.name}</td>
+                                                <td><fmt:formatNumber value="${product.price}" type="currency" currencySymbol="₫"/></td>
+                                                <td><fmt:formatNumber value="${product.sale}" type="currency" currencySymbol="₫"/></td>
                                                 <td>${product.quantity}</td>
-                                                <td><fmt:formatNumber value="${product.price}" type="currency" currencySymbol="$"/></td>
+                                                <td>${product.orderedNumbers}</td>
                                                 <td>
                                                     <div class="form-button-action">
-                                                        <a href="<c:url value='/admin/products/edit/${product.id}'/>" class="btn btn-link btn-primary btn-lg">
+                                                        <a href="<c:url value='/admin/products/edit/${product.productID}'/>" class="btn btn-link btn-primary btn-lg">
                                                             <i class="fa fa-edit"></i>
                                                         </a>
-                                                        <a href="#" onclick="confirmDelete(${product.id})" class="btn btn-link btn-danger">
+                                                        <a href="#" onclick="confirmDelete(${product.productID})" class="btn btn-link btn-danger">
                                                             <i class="fa fa-times"></i>
                                                         </a>
                                                     </div>
@@ -122,7 +139,11 @@
 
     <script>
         $(document).ready(function() {
-            $('#basic-datatables').DataTable();
+            $('#basic-datatables').DataTable({
+                "language": {
+                    "url": "//cdn.datatables.net/plug-ins/1.10.24/i18n/Vietnamese.json"
+                }
+            });
         });
 
         function confirmDelete(productId) {

@@ -34,22 +34,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http
             .csrf().disable()
             .authorizeRequests()
-                // Static resources
-                .antMatchers(
-                    "/assets/**",
-//                    "/static/**",
-                    "/css/**", 
-                    "/js/**", 
-                    "/img/**",
-                    "/images/**", 
-                    "/fonts/**", 
-                    "/webfonts/**"
-                ).permitAll()
-                // Public pages
-                .antMatchers("/", "/index", "/store", "/product/**", "/cart", "/checkout").permitAll()
-                .antMatchers("/req/login", "/req/signup", "/req/verify", "/verify").permitAll()
-                .antMatchers("/admin/**").permitAll()
-                .anyRequest().permitAll()
+                // Allow all requests
+                .antMatchers("/**").permitAll()
             .and()
             .formLogin()
                 .loginPage("/req/login")
@@ -62,10 +48,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
             .and()
             .logout()
                 .logoutSuccessUrl("/")
-                .permitAll()
-            .and()
-            .anonymous()
-                .principal("guest")
-                .authorities("ROLE_ANONYMOUS");
+                .permitAll();
     }
 } 
