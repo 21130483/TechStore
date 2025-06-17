@@ -1,4 +1,4 @@
-document.querySelectorAll('.add-to-wishlist').forEach(button => {
+document.querySelectorAll('.add-to-cart-btn').forEach(button => {
     button.addEventListener('click', function (e) {
         e.preventDefault(); // Ngăn form hoặc button load lại
 
