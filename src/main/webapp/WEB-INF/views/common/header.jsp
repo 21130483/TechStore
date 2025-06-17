@@ -103,13 +103,18 @@
                                 <!-- <a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true"> -->
                                 <i class="fa fa-shopping-cart"></i>
                                 <span>Giỏ Hàng</span>
+
                                 <div class="qty" id="cartnumber">
-                                    <c:if test="${not empty sessionScope.cartsize}">
-                                        sessionScope.cartsize
-                                    </c:if>
+                                    <c:choose>
+                                        <c:when test="${not empty sessionScope.cartsize}">
+                                            ${sessionScope.cartsize}
+                                        </c:when>
+                                        <c:otherwise>
+                                            0
+                                        </c:otherwise>
 
+                                </c:choose>
                                 </div>
-
 
                             </a>
                             <!-- <div class="cart-dropdown">
@@ -155,7 +160,7 @@
                                 <span>
                                     <c:choose>
                                         <c:when test="${not empty sessionScope.user}">
-                                            sessionScope.user.name
+                                            ${sessionScope.user.fullName}
                                         </c:when>
                                         <c:otherwise>
                                             Đăng nhập

@@ -4,7 +4,7 @@ document.querySelectorAll('.add-to-cart-btn').forEach(button => {
 
         const productId = this.getAttribute('data-product-id');
 
-        fetch('/addcart', {
+        fetch('/addcartajax', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded'
@@ -21,8 +21,6 @@ document.querySelectorAll('.add-to-cart-btn').forEach(button => {
                 window.location.href = data.redirect;
             }
         });
-
-
     });
 });
 

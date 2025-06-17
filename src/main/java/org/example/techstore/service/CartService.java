@@ -82,6 +82,19 @@ public class CartService {
         return true;
     }
 
+    public boolean removeFromCart(String email, Integer productID) {
+        CartId cartId = new CartId(email, productID);
+        if (cartRepository.existsById(cartId)) {
+            cartRepository.deleteById(cartId);
+            return true;
+        }
+        return false;
+    }
+
+    public void removeFromCartsByCart(Cart cart) {
+        cartRepository.delete(cart);
+    }
+
 
 
 }

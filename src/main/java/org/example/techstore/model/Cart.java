@@ -67,6 +67,10 @@ public class Cart {
         this.selected = selected;
     }
 
+    public int getTotal() {
+        return quantity * product.getPrice();
+    }
+
     @Override
     public String toString() {
         return "Cart{" +

@@ -45,6 +45,7 @@
 <!-- HEADER -->
 <header>
     <jsp:include page="common/header.jsp" />
+    <form action="checkout" method="POST">
 
         <!-- BREADCRUMB -->
         <div id="breadcrumb" class="section">
@@ -73,127 +74,101 @@
                 <!-- row -->
                 <div class="row">
 
-                    <div class="col-md-7">
+                    <div class="col-md-8">
+                        <div class="section-title">
+                            <h3 class="title">Giỏ hàng</h3>
+                        </div>
+                        <div class="cart-list">
+                            <c:forEach var="cart" items="${carts}">
+
+                                <div class="product-widget">
+                                    <div class="product-img">
+                                        <img src="/assets/techstore/img/product/${cart.product.productID}/0.webp" alt="">
+                                    </div>
+                                    <div class="product-body">
+                                        <h3 class="product-name"><a
+                                                href="/product?id=${cart.product.productID}">${cart.product.name}</a></h3>
+                                        <div class="quantity">
+<%--                                            <button onclick="window.location.href='/addcart?productId=${cart.product.productID}'"><i class="fa-solid fa-plus"></i></button>--%>
+                                            <span class="qty">Số lượng<br>${cart.quantity}</span>
+<%--                                            <button onclick="window.location.href='/minuscart?productId=${cart.product.productID}'"><i class="fa-solid fa-minus"></i></button>--%>
+                                        </div>
+
+                                        <h4 class="product-price">Giá<br><fmt:formatNumber value="${cart.product.price}" type="number" groupingUsed="true"/> Đồng</h4>
+
+                                        <div>
+<%--                                            <button class="delete" onclick="window.location.href='/removeCart?productId=${cart.product.productID}'"><img src="/assets/techstore/img/cart/bin.png"></button>--%>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </c:forEach>
+                        </div>
                         <!-- Billing Details -->
                         <div class="billing-details">
                             <div class="section-title">
-                                <h3 class="title">Billing address</h3>
+                                <h3 class="title">Địa chỉ nhận hàng</h3>
                             </div>
                             <div class="form-group">
-                                <input class="input" type="text" name="first-name" placeholder="First Name">
+                                <label>Thành phố:</label>
+                                <select name="city" id="city" class="input" required="required">
+                                    <option value="" selected>Chọn tỉnh thành</option>
+                                </select>
                             </div>
                             <div class="form-group">
-                                <input class="input" type="text" name="last-name" placeholder="Last Name">
+                                <label>Quận:</label>
+                                <select name="district" id="district" class="input" required="required">
+                                    <option value="" selected>Chọn quận huyện</option>
+                                </select>
                             </div>
                             <div class="form-group">
-                                <input class="input" type="email" name="email" placeholder="Email">
+                                <label>Phường:</label>
+                                <select name="ward" id="ward" class="input" required="required">
+                                    <option value="" selected>Chọn phường xã</option>
+                                </select>
                             </div>
                             <div class="form-group">
-                                <input class="input" type="text" name="address" placeholder="Address">
-                            </div>
-                            <div class="form-group">
-                                <input class="input" type="text" name="city" placeholder="City">
-                            </div>
-                            <div class="form-group">
-                                <input class="input" type="text" name="country" placeholder="Country">
-                            </div>
-                            <div class="form-group">
-                                <input class="input" type="text" name="zip-code" placeholder="ZIP Code">
-                            </div>
-                            <div class="form-group">
-                                <input class="input" type="tel" name="tel" placeholder="Telephone">
-                            </div>
-                            <div class="form-group">
-                                <div class="input-checkbox">
-                                    <input type="checkbox" id="create-account">
-                                    <label for="create-account">
-                                        <span></span>
-                                        Create Account?
-                                    </label>
-                                    <div class="caption">
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt.</p>
-                                        <input class="input" type="password" name="password" placeholder="Enter Your Password">
-                                    </div>
-                                </div>
+                                <label>Địa chỉ chi tiết:</label>
+                                <input class="input" type="tel" name="addressdetail">
                             </div>
                         </div>
-                        <!-- /Billing Details -->
-
-                        <!-- Shiping Details -->
-                        <div class="shiping-details">
-                            <div class="section-title">
-                                <h3 class="title">Shiping address</h3>
-                            </div>
-                            <div class="input-checkbox">
-                                <input type="checkbox" id="shiping-address">
-                                <label for="shiping-address">
-                                    <span></span>
-                                    Ship to a diffrent address?
-                                </label>
-                                <div class="caption">
-                                    <div class="form-group">
-                                        <input class="input" type="text" name="first-name" placeholder="First Name">
-                                    </div>
-                                    <div class="form-group">
-                                        <input class="input" type="text" name="last-name" placeholder="Last Name">
-                                    </div>
-                                    <div class="form-group">
-                                        <input class="input" type="email" name="email" placeholder="Email">
-                                    </div>
-                                    <div class="form-group">
-                                        <input class="input" type="text" name="address" placeholder="Address">
-                                    </div>
-                                    <div class="form-group">
-                                        <input class="input" type="text" name="city" placeholder="City">
-                                    </div>
-                                    <div class="form-group">
-                                        <input class="input" type="text" name="country" placeholder="Country">
-                                    </div>
-                                    <div class="form-group">
-                                        <input class="input" type="text" name="zip-code" placeholder="ZIP Code">
-                                    </div>
-                                    <div class="form-group">
-                                        <input class="input" type="tel" name="tel" placeholder="Telephone">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- /Shiping Details -->
-
-                        <!-- Order notes -->
-                        <div class="order-notes">
-                            <textarea class="input" placeholder="Order Notes"></textarea>
-                        </div>
-                        <!-- /Order notes -->
                     </div>
 
                     <!-- Order Details -->
-                    <div class="col-md-5 order-details">
+                    <div class="col-md-4 order-details">
                         <div class="section-title text-center">
                             <h3 class="title">Your Order</h3>
                         </div>
                         <div class="order-summary">
                             <div class="order-col">
-                                <div><strong>PRODUCT</strong></div>
-                                <div><strong>TOTAL</strong></div>
+                                <div><strong>Sản phẩm</strong></div>
+                                <div><strong>Tổng</strong></div>
                             </div>
                             <div class="order-products">
-                                <div class="order-col">
-                                    <div>1x Product Name Goes Here</div>
-                                    <div>$980.00</div>
-                                </div>
-                                <div class="order-col">
-                                    <div>2x Product Name Goes Here</div>
-                                    <div>$980.00</div>
+                                <c:forEach var="cart" items="${carts}">
+                                    <div class="order-col">
+                                        <div>${cart.quantity}x ${cart.product.name}</div>
+                                        <div>
+                                            <fmt:formatNumber value="${cart.product.price * cart.quantity}" type="number" groupingUsed="true"/> Đồng
+                                        </div>
+                                    </div>
+                                </c:forEach>
+                            </div>
+                            <div class="order-col">
+                                <div><strong>Phí ship</strong></div>
+                                <div>
+                                    <strong>
+                                        <fmt:formatNumber value="${25000}" type="number" groupingUsed="true"/> Đồng
+                                    </strong>
                                 </div>
                             </div>
                             <div class="order-col">
-                                <div>Shiping</div>
-                                <div><strong>FREE</strong></div>
-                            </div>
-                            <div class="order-col">
-                                <div><strong>TOTAL</strong></div>
-                                <div><strong class="order-total">$2940.00</strong></div>
+                                <div><strong>Tổng cộng</strong></div>
+                                <div>
+                                    <strong class="order-total">
+                                        <fmt:formatNumber value="${total +25000}" type="number" groupingUsed="true"/> Đồng
+                                    </strong>
+                                </div>
                             </div>
                         </div>
                         <div class="payment-method">
@@ -201,30 +176,20 @@
                                 <input type="radio" name="payment" id="payment-1">
                                 <label for="payment-1">
                                     <span></span>
-                                    Direct Bank Transfer
+                                    Chuyển khoản
                                 </label>
                                 <div class="caption">
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                                    <p>Thanh toán qua ngân hàng.</p>
                                 </div>
                             </div>
                             <div class="input-radio">
                                 <input type="radio" name="payment" id="payment-2">
                                 <label for="payment-2">
                                     <span></span>
-                                    Cheque Payment
+                                    Thanh toán khi nhận hàng
                                 </label>
                                 <div class="caption">
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                                </div>
-                            </div>
-                            <div class="input-radio">
-                                <input type="radio" name="payment" id="payment-3">
-                                <label for="payment-3">
-                                    <span></span>
-                                    Paypal System
-                                </label>
-                                <div class="caption">
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                                    <p>Khi sản phẩm đến tay bạn. Vui lòng thanh toán trước khi nhận hàng.</p>
                                 </div>
                             </div>
                         </div>
@@ -232,10 +197,10 @@
                             <input type="checkbox" id="terms">
                             <label for="terms">
                                 <span></span>
-                                I've read and accept the <a href="#">terms & conditions</a>
+                                Tôi đã đọc và chấp nhận <a href="#">điều khoản và điều kiện</a>
                             </label>
                         </div>
-                        <a href="#" class="primary-btn order-submit">Place order</a>
+                        <button class="primary-btn order-submit" type="submit">Đặt hàng</button>
                     </div>
                     <!-- /Order Details -->
                 </div>
@@ -245,7 +210,7 @@
         </div>
         <!-- /SECTION -->
 
-
+    </form>
     <jsp:include page="common/footer.jsp" />
 
     <!-- jQuery Plugins -->
@@ -255,6 +220,61 @@
         <script src="/assets/techstore/js/nouislider.min.js"></script>
         <script src="/assets/techstore/js/jquery.zoom.min.js"></script>
         <script src="/assets/techstore/js/main.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js"></script>
+        <script>
+            var citis = document.getElementById("city");
+            var districts = document.getElementById("district");
+            var wards = document.getElementById("ward");
+            var Parameter = {
+                url: "https://raw.githubusercontent.com/kenzouno1/DiaGioiHanhChinhVN/master/data.json",
+                method: "GET",
+                responseType: "application/json",
+            };
+            var promise = axios(Parameter);
+            promise.then(function (result) {
+                renderCity(result.data);
+            });
+
+            function renderCity(data) {
+                for (const x of data) {
+                    var opt = document.createElement('option');
+                    opt.value = x.Name;
+                    opt.text = x.Name;
+                    opt.setAttribute('data-id', x.Id);
+                    citis.options.add(opt);
+                }
+                citis.onchange = function () {
+                    district.length = 1;
+                    ward.length = 1;
+                    if(this.options[this.selectedIndex].dataset.id != ""){
+                        const result = data.filter(n => n.Id === this.options[this.selectedIndex].dataset.id);
+
+                        for (const k of result[0].Districts) {
+                            var opt = document.createElement('option');
+                            opt.value = k.Name;
+                            opt.text = k.Name;
+                            opt.setAttribute('data-id', k.Id);
+                            district.options.add(opt);
+                        }
+                    }
+                };
+                district.onchange = function () {
+                    ward.length = 1;
+                    const dataCity = data.filter((n) => n.Id === citis.options[citis.selectedIndex].dataset.id);
+                    if (this.options[this.selectedIndex].dataset.id != "") {
+                        const dataWards = dataCity[0].Districts.filter(n => n.Id === this.options[this.selectedIndex].dataset.id)[0].Wards;
+
+                        for (const w of dataWards) {
+                            var opt = document.createElement('option');
+                            opt.value = w.Name;
+                            opt.text = w.Name;
+                            opt.setAttribute('data-id', w.Id);
+                            wards.options.add(opt);
+                        }
+                    }
+                };
+            }
+        </script>
 
 </body>
 </html>

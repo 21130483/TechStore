@@ -78,49 +78,34 @@
 
                 <div class="col-md-8">
                     <div class="">
+                        <div class="section-title">
+                            <h3 class="title">Giỏ hàng</h3>
+                        </div>
                         <div class="cart-list">
+                            <c:forEach var="cart" items="${carts}">
 
-                            <div class="product-widget">
-                                <div class="product-img">
-                                    <img src="${pageContext.request.contextPath}/img/product02.png" alt="">
-                                </div>
-                                <div class="product-body">
-                                    <h3 class="product-name"><a href="#">product name goes here</a></h3>
-                                    <div class="quantity">
-                                        <button><i class="fa-solid fa-plus"></i></button>
-                                        <span class="qty">Số lượng<br>3</span>
-                                        <button><i class="fa-solid fa-minus"></i></button>
+                                <div class="product-widget">
+                                    <div class="product-img">
+                                        <img src="/assets/techstore/img/product/${cart.product.productID}/0.webp" alt="">
+                                    </div>
+                                    <div class="product-body">
+                                        <h3 class="product-name"><a
+                                                href="/product?id=${cart.product.productID}">${cart.product.name}</a></h3>
+                                        <div class="quantity">
+                                            <button onclick="window.location.href='/addcart?productId=${cart.product.productID}'"><i class="fa-solid fa-plus"></i></button>
+                                            <span class="qty">Số lượng<br>${cart.quantity}</span>
+                                            <button onclick="window.location.href='/minuscart?productId=${cart.product.productID}'"><i class="fa-solid fa-minus"></i></button>
+                                        </div>
+
+                                        <h4 class="product-price">Giá<br><fmt:formatNumber value="${cart.product.price}" type="number" groupingUsed="true"/> Đồng</h4>
+
+                                        <div>
+                                            <button class="delete" onclick="window.location.href='/removeCart?productId=${cart.product.productID}'"><img src="/assets/techstore/img/cart/bin.png"></button>
+                                        </div>
                                     </div>
 
-                                    <h4 class="product-price">Giá<br>980.000 Đồng</h4>
-
-                                    <div>
-                                        <button class="delete"><img src="${pageContext.request.contextPath}/img/cart/delete.png"></button>
-                                    </div>
                                 </div>
-
-                            </div>
-
-                            <div class="product-widget">
-                                <div class="product-img">
-                                    <img src="${pageContext.request.contextPath}/img/product02.png" alt="">
-                                </div>
-                                <div class="product-body">
-                                    <h3 class="product-name"><a href="#">product name goes here</a></h3>
-                                    <div class="quantity">
-                                        <button><i class="fa-solid fa-plus"></i></button>
-                                        <span class="qty">Số lượng<br>3</span>
-                                        <button><i class="fa-solid fa-minus"></i></button>
-                                    </div>
-
-                                    <h4 class="product-price">Giá<br>980.000 Đồng</h4>
-
-                                    <div>
-                                        <button class="delete"><img src="${pageContext.request.contextPath}/img/cart/delete.png"></button>
-                                    </div>
-                                </div>
-
-                            </div>
+                            </c:forEach>
                         </div>
 
                     </div>
@@ -130,75 +115,81 @@
                 <!-- Order Details -->
                 <div class="col-md-4 order-details">
                     <div class="section-title text-center">
-                        <h3 class="title">Your Order</h3>
+                        <h3 class="title">Hóa đơn của bạn</h3>
                     </div>
                     <div class="order-summary">
                         <div class="order-col">
-                            <div><strong>PRODUCT</strong></div>
-                            <div><strong>TOTAL</strong></div>
+                            <div><strong>Sản phẩm</strong></div>
+                            <div><strong>Tổng</strong></div>
                         </div>
                         <div class="order-products">
-                            <div class="order-col">
-                                <div>1x Product Name Goes Here</div>
-                                <div>$980.00</div>
-                            </div>
-                            <div class="order-col">
-                                <div>2x Product Name Goes Here</div>
-                                <div>$980.00</div>
+                            <c:forEach var="cart" items="${carts}">
+                                <div class="order-col">
+                                    <div>${cart.quantity}x ${cart.product.name}</div>
+                                    <div>
+                                        <fmt:formatNumber value="${cart.product.price * cart.quantity}" type="number" groupingUsed="true"/> Đồng
+                                    </div>
+                                </div>
+                            </c:forEach>
+                        </div>
+                        <div class="order-col">
+                            <div><strong>Phí ship</strong></div>
+                            <div>
+                                <strong>
+                                    <fmt:formatNumber value="${25000}" type="number" groupingUsed="true"/> Đồng
+                                </strong>
                             </div>
                         </div>
                         <div class="order-col">
-                            <div>Shiping</div>
-                            <div><strong>FREE</strong></div>
-                        </div>
-                        <div class="order-col">
-                            <div><strong>TOTAL</strong></div>
-                            <div><strong class="order-total">$2940.00</strong></div>
-                        </div>
-                    </div>
-                    <div class="payment-method">
-                        <div class="input-radio">
-                            <input type="radio" name="payment" id="payment-1">
-                            <label for="payment-1">
-                                <span></span>
-                                Direct Bank Transfer
-                            </label>
-                            <div class="caption">
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
-                                    incididunt ut labore et dolore magna aliqua.</p>
-                            </div>
-                        </div>
-                        <div class="input-radio">
-                            <input type="radio" name="payment" id="payment-2">
-                            <label for="payment-2">
-                                <span></span>
-                                Cheque Payment
-                            </label>
-                            <div class="caption">
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
-                                    incididunt ut labore et dolore magna aliqua.</p>
-                            </div>
-                        </div>
-                        <div class="input-radio">
-                            <input type="radio" name="payment" id="payment-3">
-                            <label for="payment-3">
-                                <span></span>
-                                Paypal System
-                            </label>
-                            <div class="caption">
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
-                                    incididunt ut labore et dolore magna aliqua.</p>
+                            <div><strong>Tổng cộng</strong></div>
+                            <div>
+                                <strong class="order-total">
+                                    <fmt:formatNumber value="${total +25000}" type="number" groupingUsed="true"/> Đồng
+                                </strong>
                             </div>
                         </div>
                     </div>
-                    <div class="input-checkbox">
-                        <input type="checkbox" id="terms">
-                        <label for="terms">
-                            <span></span>
-                            I've read and accept the <a href="#">terms & conditions</a>
-                        </label>
-                    </div>
-                    <a href="/checkout" class="primary-btn order-submit">Check out</a>
+<%--                    <div class="payment-method">--%>
+<%--                        <div class="input-radio">--%>
+<%--                            <input type="radio" name="payment" id="payment-1">--%>
+<%--                            <label for="payment-1">--%>
+<%--                                <span></span>--%>
+<%--                                Chuyển khoản--%>
+<%--                            </label>--%>
+<%--                            <div class="caption">--%>
+<%--                                <p>Thanh toán qua ngân hàng.</p>--%>
+<%--                            </div>--%>
+<%--                        </div>--%>
+<%--                        <div class="input-radio">--%>
+<%--                            <input type="radio" name="payment" id="payment-2">--%>
+<%--                            <label for="payment-2">--%>
+<%--                                <span></span>--%>
+<%--                                Thanh toán khi nhận hàng--%>
+<%--                            </label>--%>
+<%--                            <div class="caption">--%>
+<%--                                <p>Khi sản phẩm đến tay bạn. Vui lòng thanh toán trước khi nhận hàng.</p>--%>
+<%--                            </div>--%>
+<%--                        </div>--%>
+<%--                        <div class="input-radio">--%>
+<%--                            <input type="radio" name="payment" id="payment-3">--%>
+<%--                            <label for="payment-3">--%>
+<%--                                <span></span>--%>
+<%--                                Paypal System--%>
+<%--                            </label>--%>
+<%--                            <div class="caption">--%>
+<%--                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor--%>
+<%--                                    incididunt ut labore et dolore magna aliqua.</p>--%>
+<%--                            </div>--%>
+<%--                        </div>--%>
+<%--                    </div>--%>
+<%--                    <div class="input-checkbox">--%>
+<%--                        <input type="checkbox" id="terms">--%>
+<%--                        <label for="terms">--%>
+<%--                            <span></span>--%>
+<%--                            Tôi đã đọc và chấp nhận <a href="#">điều khoản và điều kiện</a>--%>
+<%--                        </label>--%>
+<%--                    </div>--%>
+                    <a href="/checkout" class="primary-btn order-submit">Thanh toán</a>
                 </div>
                 <!-- /Order Details -->
             </div>
@@ -217,6 +208,7 @@
         <script src="/assets/techstore/js/nouislider.min.js"></script>
         <script src="/assets/techstore/js/jquery.zoom.min.js"></script>
         <script src="/assets/techstore/js/main.js"></script>
+
 
 </body>
 </html>

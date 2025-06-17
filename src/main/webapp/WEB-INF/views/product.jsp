@@ -548,8 +548,8 @@
                                     <div class="product-body">
                                         <p class="product-category">Category</p>
                                         <h3 class="product-name"><a href="#">product name goes here</a></h3>
-                                        <h4 class="product-price">$980.00
-                                            <del class="product-old-price">$990.00</del>
+                                        <h4 class="product-price"><fmt:formatNumber value="${product.price}" type="number" groupingUsed="true"/> Đồng
+<%--                                            <del class="product-old-price">$990.00</del>--%>
                                         </h4>
                                         <div class="product-rating">
                                         </div>
@@ -563,7 +563,7 @@
                                         </div>
                                     </div>
                                     <div class="add-to-cart">
-                                        <button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> add to cart
+                                        <button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> Thêm vào giỏ hàng
                                         </button>
                                     </div>
                                 </div>

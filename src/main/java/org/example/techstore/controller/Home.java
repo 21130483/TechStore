@@ -1,18 +1,27 @@
 package org.example.techstore.controller;
 
 import org.example.techstore.model.Product;
+import org.example.techstore.model.User;
+import org.example.techstore.service.CartService;
 import org.example.techstore.service.ProductService;
+import org.example.techstore.service.UserService;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 @Controller
 public class Home {
+    CartService cartService;
+    UserService userService;
     ProductService productService;
 
-    public Home(ProductService productService) {
+    public Home(CartService cartService,UserService userService,ProductService productService) {
+        this.cartService = cartService;
+        this.userService = userService;
         this.productService = productService;
     }
 
@@ -21,7 +30,7 @@ public class Home {
         return "redirect:/index";
     }
     @RequestMapping("/index")
-    public String home(Model model) {
+    public String home(HttpSession session, Model model) {
 //        List<Product> productList = productService.getAllProducts();
         List<Product> newproducts = productService.getRecentProducts();
         List<Product> topsellproducts = productService.getTop10MostOrderedProducts();
@@ -44,6 +53,12 @@ public class Home {
         model.addAttribute("laptops2", laptops2);
         model.addAttribute("tabs1", tabs1);
         model.addAttribute("tabs2", tabs2);
+
+        User user = userService.findUserByEmail("admin@gmail.com");
+        int cartsize = cartService.getCartsByUser(user).size();
+        System.out.println("cartsize "+cartsize);
+        session.setAttribute("user", user);
+        session.setAttribute("cartsize", cartsize);
         return "index";
     }
 }
