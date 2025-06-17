@@ -3,6 +3,7 @@ package org.example.techstore.model;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 @Entity
 @Table(name = "users")
@@ -15,10 +16,10 @@ public class User implements Serializable {
     @Column(name = "username", length = 50, unique = true)
     private String username;
 
-    @Column(name = "phoneNumbers", length = 20, nullable = false)
+    @Column(name = "phone_numbers", length = 20, nullable = false)
     private String phoneNumbers;
 
-    @Column(name = "fullName", length = 50, nullable = false)
+    @Column(name = "full_name", length = 50, nullable = false)
     private String fullName;
 
     @Column(name = "password", length = 255, nullable = false)
@@ -26,6 +27,7 @@ public class User implements Serializable {
 
     @Temporal(TemporalType.DATE)
     @Column(name = "dob")
+    @JsonFormat(pattern = "yyyy-MM-dd")
     private Date dob;
 
     @Column(name = "gender", length = 20, nullable = false)
@@ -35,7 +37,7 @@ public class User implements Serializable {
     private String role;
 
     @Column(name = "access", length = 20, nullable = false)
-    private String access;
+    private String access = "ACTIVE";
 
     @Column(name = "verified")
     private Boolean verified = false;
@@ -122,11 +124,11 @@ public class User implements Serializable {
     }
 
     public Boolean isVerified() {
-        return verified;
+        return verified != null ? verified : false;
     }
 
     public void setVerified(Boolean verified) {
-        this.verified = verified;
+        this.verified = verified != null ? verified : false;
     }
 
     public String getVerificationToken() {

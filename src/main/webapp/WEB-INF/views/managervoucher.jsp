@@ -6,7 +6,7 @@
 
 <head>
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <title>TechStore Admin - Quản lý voucher</title>
+    <title>TechStore Admin - Quản lý Voucher</title>
     <meta content="width=device-width, initial-scale=1.0, shrink-to-fit=no" name="viewport" />
     <link rel="icon" href="<c:url value='/assets/img/favicon.ico'/>" type="image/x-icon" />
 
@@ -52,18 +52,36 @@
                     <div class="card">
                         <div class="card-header">
                             <div class="d-flex align-items-center">
-                                <h4 class="card-title">Quản lý voucher</h4>
+                                <h4 class="card-title">Quản lý Voucher</h4>
                                 <a href="<c:url value='/admin/vouchers/add'/>" class="btn btn-primary btn-round ml-auto">
-                                    <i class="fa fa-plus"></i>
-                                    Thêm voucher
+                                    <i class="fa fa-plus"></i> Thêm voucher
                                 </a>
                             </div>
                         </div>
                         <div class="card-body">
+                            <c:if test="${not empty success}">
+                                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                                    <i class="fas fa-check-circle mr-2"></i>${success}
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                            </c:if>
+
+                            <c:if test="${not empty error}">
+                                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                    <i class="fas fa-exclamation-circle mr-2"></i>${error}
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                            </c:if>
+
                             <div class="table-responsive">
-                                <table id="basic-datatables" class="display table table-striped table-hover">
+                                <table class="table table-bordered table-hover">
                                     <thead>
                                         <tr>
+                                            <th>ID</th>
                                             <th>Mã</th>
                                             <th>Tên</th>
                                             <th>Loại</th>
@@ -78,37 +96,51 @@
                                     <tbody>
                                         <c:forEach items="${vouchers}" var="voucher">
                                             <tr>
+                                                <td>${voucher.voucherID}</td>
                                                 <td>${voucher.code}</td>
                                                 <td>${voucher.name}</td>
-                                                <td>${voucher.type}</td>
                                                 <td>
                                                     <c:choose>
-                                                        <c:when test="${voucher.type == 'PERCENTAGE'}">
-                                                            ${voucher.value}%
+                                                        <c:when test="${voucher.type == 'PERCENTAGE'}">Phần trăm</c:when>
+                                                        <c:when test="${voucher.type == 'FIXED_AMOUNT'}">Số tiền cố định</c:when>
+                                                    </c:choose>
+                                                </td>
+                                                <td>
+                                                    <c:choose>
+                                                        <c:when test="${voucher.type == 'PERCENTAGE'}">${voucher.value}%</c:when>
+                                                        <c:when test="${voucher.type == 'FIXED_AMOUNT'}">
+                                                            <fmt:formatNumber value="${voucher.value}" type="currency" currencySymbol="₫"/>
                                                         </c:when>
-                                                        <c:otherwise>
-                                                            <fmt:formatNumber value="${voucher.value}" type="currency" currencySymbol="$"/>
-                                                        </c:otherwise>
                                                     </c:choose>
                                                 </td>
                                                 <td>${voucher.quantity}</td>
-                                                <td><fmt:formatDate value="${voucher.startDate}" pattern="dd/MM/yyyy HH:mm"/></td>
-                                                <td><fmt:formatDate value="${voucher.endDate}" pattern="dd/MM/yyyy HH:mm"/></td>
+                                                <td><fmt:formatDate value="${voucher.startDate}" pattern="dd/MM/yyyy"/></td>
+                                                <td><fmt:formatDate value="${voucher.endDate}" pattern="dd/MM/yyyy"/></td>
                                                 <td>
-                                                    <span class="badge badge-${voucher.active ? 'success' : 'danger'}">
-                                                        ${voucher.active ? 'Active' : 'Inactive'}
-                                                    </span>
+                                                    <c:choose>
+                                                        <c:when test="${voucher.active}">
+                                                            <span class="badge badge-success">Đang hoạt động</span>
+                                                        </c:when>
+                                                        <c:otherwise>
+                                                            <span class="badge badge-danger">Không hoạt động</span>
+                                                        </c:otherwise>
+                                                    </c:choose>
                                                 </td>
                                                 <td>
-                                                    <div class="form-button-action">
-                                                        <a href="<c:url value='/admin/vouchers/edit/${voucher.id}'/>" class="btn btn-link btn-primary btn-lg">
-                                                            <i class="fa fa-edit"></i>
+                                                    <div class="btn-group">
+                                                        <a href="<c:url value='/admin/vouchers/edit/${voucher.voucherID}'/>" 
+                                                           class="btn btn-sm btn-info" title="Sửa">
+                                                            <i class="fas fa-edit"></i>
                                                         </a>
-                                                        <a href="#" onclick="toggleStatus(${voucher.id})" class="btn btn-link btn-warning btn-lg">
-                                                            <i class="fa fa-toggle-on"></i>
+                                                        <a href="<c:url value='/admin/vouchers/toggle/${voucher.voucherID}'/>" 
+                                                           class="btn btn-sm btn-warning" title="Đổi trạng thái">
+                                                            <i class="fas fa-toggle-on"></i>
                                                         </a>
-                                                        <a href="#" onclick="confirmDelete(${voucher.id})" class="btn btn-link btn-danger">
-                                                            <i class="fa fa-times"></i>
+                                                        <a href="<c:url value='/admin/vouchers/delete/${voucher.voucherID}'/>" 
+                                                           class="btn btn-sm btn-danger" 
+                                                           onclick="return confirm('Bạn có chắc chắn muốn xóa voucher này?')" 
+                                                           title="Xóa">
+                                                            <i class="fas fa-trash"></i>
                                                         </a>
                                                     </div>
                                                 </td>
@@ -132,58 +164,44 @@
     <script src="<c:url value='/assets/js/core/popper.min.js'/>"></script>
     <script src="<c:url value='/assets/js/core/bootstrap.min.js'/>"></script>
     <script src="<c:url value='/assets/js/plugin/jquery-scrollbar/jquery.scrollbar.min.js'/>"></script>
-    <script src="<c:url value='/assets/js/plugin/datatables/datatables.min.js'/>"></script>
     <script src="<c:url value='/assets/js/plugin/bootstrap-notify/bootstrap-notify.min.js'/>"></script>
     <script src="<c:url value='/assets/js/plugin/sweetalert/sweetalert.min.js'/>"></script>
     <script src="<c:url value='/assets/js/kaiadmin.min.js'/>"></script>
 
     <script>
         $(document).ready(function() {
-            $('#basic-datatables').DataTable();
+            // Show success message
+            var successMessage = '${success}';
+            if (successMessage) {
+                $.notify({
+                    icon: 'fas fa-check-circle',
+                    message: successMessage
+                }, {
+                    type: 'success',
+                    placement: {
+                        from: 'top',
+                        align: 'right'
+                    },
+                    delay: 3000
+                });
+            }
+
+            // Show error message
+            var errorMessage = '${error}';
+            if (errorMessage) {
+                $.notify({
+                    icon: 'fas fa-exclamation-circle',
+                    message: errorMessage
+                }, {
+                    type: 'danger',
+                    placement: {
+                        from: 'top',
+                        align: 'right'
+                    },
+                    delay: 5000
+                });
+            }
         });
-
-        function toggleStatus(voucherId) {
-            swal({
-                title: 'Bạn có chắc chắn muốn thay đổi trạng thái?',
-                type: 'warning',
-                buttons:{
-                    confirm: {
-                        text : 'Đồng ý',
-                        className : 'btn btn-success'
-                    },
-                    cancel: {
-                        visible: true,
-                        className: 'btn btn-danger'
-                    }
-                }
-            }).then((Toggle) => {
-                if (Toggle) {
-                    window.location.href = "<c:url value='/admin/vouchers/toggle/'/>" + voucherId;
-                }
-            });
-        }
-
-        function confirmDelete(voucherId) {
-            swal({
-                title: 'Bạn có chắc chắn muốn xóa?',
-                text: "Bạn sẽ không thể khôi phục lại dữ liệu này!",
-                type: 'warning',
-                buttons:{
-                    confirm: {
-                        text : 'Xóa',
-                        className : 'btn btn-success'
-                    },
-                    cancel: {
-                        visible: true,
-                        className: 'btn btn-danger'
-                    }
-                }
-            }).then((Delete) => {
-                if (Delete) {
-                    window.location.href = "<c:url value='/admin/vouchers/delete/'/>" + voucherId;
-                }
-            });
-        }
     </script>
 </body>
 

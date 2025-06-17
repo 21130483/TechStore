@@ -45,9 +45,24 @@ VALUES
     (25, 5, 999, '2023-02-17', 24000, 1000, 20, 'Tai nghe gaming Rapoo VH160 có mic', 'Rapoo', 'Là chiếc tai nghe lý tưởng dành cho các tín đồ eSports, Rapoo VH160 sở hữu cúp tai mềm cách âm tốt, đồng thời thể hiện chất âm xuất sắc nhờ công nghệ âm thanh vòm 7.1 sống động. Bạn sẽ dễ dàng kết nối sản phẩm với laptop, PC và khơi dậy cảm hứng gaming qua đèn LED RGB độc đáo.'),
     (26, 6, 999, '2023-02-17', 24000, 1000, 20, 'Loa Bluetooth Edifier ES20', 'Edifier', 'Sở hữu thiết kế nhỏ gọn nhưng không kém phần thời trang, loa không dây EDIFIER ES20 là một sản phẩm cực kì ấn tượng cả về ngoại quan lẫn chất âm, sẵn sàng đáp ứng mọi nhu cầu của người dùng từ thưởng thức âm nhạc trong không gian cá nhân, cho đến khuấy động không khí trong các buổi tiệc ngoài trời.'),
     (27, 6, 999, '2023-02-17', 24000, 1000, 20, 'Loa Bluetooth SOUNARC P3', 'SOUNARC', 'Loa kháng nước SOUNARC P3 đáp ứng tốt nhu cầu âm nhạc cho người dùng trong các buổi dã ngoại, tiệc tùng ngoài trời hay các hoạt động thể thao. Với khả năng chống nước IPX4, thiết bị này hoạt động ổn định ngay cả trong những điều kiện thời tiết ẩm ướt. Ngoài ra, công nghệ Bluetooth 5.1 tiên tiến đảm bảo kết nối nhanh chóng, ổn định với khoảng cách truyền tải lên đến 10 mét. Đồng thời, thiết kế gọn nhẹ cùng tay cầm tích hợp giúp loa SOUNARC P3 trở thành sự lựa chọn hoàn hảo cho những ai yêu thích sự tiện lợi và di động.'),
-    (28, 6, 999, '2023-02-17', 24000, 1000, 20, 'Loa Bluetooth ICore M32', 'ICore', 'Loa Bluetooth iCore M32 là chiếc loa Bluetooth cỡ nhỏ với thiết kế dễ thương, cực kỳ nhỏ gọn để bạn dễ dàng mang theo. Khả năng phát nhạc mạnh mẽ và đặc biệt là hiệu ứng đèn LED cực “cháy” của loa Bluetooth iCore M32 sẽ cho bạn những bữa tiệc vui vẻ.'),
+    (28, 6, 999, '2023-02-17', 24000, 1000, 20, 'Loa Bluetooth ICore M32', 'ICore', 'Loa Bluetooth iCore M32 là chiếc loa Bluetooth cỡ nhỏ với thiết kế dễ thương, cực kỳ nhỏ gọn để bạn dễ dàng mang theo. Khả năng phát nhạc mạnh mẽ và đặc biệt là hiệu ứng đèn LED cực "cháy" của loa Bluetooth iCore M32 sẽ cho bạn những bữa tiệc vui vẻ.'),
     (29, 7, 999, '2023-02-17', 24000, 1000, 20, 'Casper Android TV 32 inch HD 32HG5200', 'Casper', 'Casper Google Tivi HD 32 inch 32HG5200 sở hữu kích thước nhỏ gọn, đưa bạn đắm chìm vào không gian giải trí chất lượng với mức giá vô cùng phải chăng. Công nghệ HDR10, Super Brightness kết hợp với hệ thống loa 20W và công nghệ Dolby Digital mang tới trải nghiệm nghe nhìn hoàn hảo ngay tại chính ngôi nhà của bạn.'),
     (30, 7, 999, '2023-02-17', 24000, 1000, 20, 'Samsung Smart TV Crystal UHD 43 inch 4K UA43DU7000', 'Samsung', 'Samsung Smart TV Crystal UHD 43 inch 4K UA43DU7000 là dòng tivi hiện đại, tạo ra trải nghiệm giải trí sống động với chất lượng hình ảnh vượt trội. Bên cạnh đó, thiết bị này tích hợp công nghệ Q-Symphony, mang đến hiệu ứng âm thanh vòm sống động khi xem phim, nghe nhạc hoặc chơi game. Với hệ điều hành Samsung Tizen, tivi cung cấp kho ứng dụng phong phú, cho phép người dùng tận hưởng những chương trình yêu thích suốt cả ngày.'),
     (31, 7, 999, '2023-02-17', 24000, 1000, 20, 'LG Smart TV 43 inch 4K 43UQ7050PSA', 'LG', 'LG Smart Tivi 4K 43 inch 43UQ7050PSA là sự lựa chọn tuyệt vời cho những ai tìm kiếm một chiếc tivi chất lượng cao với nhiều tính năng thông minh và hiện đại. Sở hữu màn hình 4K Ultra HD cùng công nghệ 4K Upscaling và HDR10 Pro, thiết bị này mang đến trải nghiệm giải trí sống động và chân thực. Bên cạnh hình ảnh, chất lượng âm thanh của thiết bị cũng được tăng cường nhờ AI Sound (Virtual 5.1 Up-mix). Ngoài ra, LG Smart Tivi 4K 43 inch 43UQ7050PSA tích hợp hệ điều hành webOS 24 với kho ứng dụng phong phú, mang lại phút giây giải trí tuyệt vời nhất cho gia đình bạn.');
---	(2, 4, 999, '2023-02-17', 24000, 1000, 20, 'PC PV/ Free DOS)', 'Phong Vũ', 'CPU I MEG PROSPECT 700R'),
---	(2, 4, 999, '2023-02-17', 24000, 1000, 20, 'PC PV/ Free DOS)', 'Phong Vũ', 'CPU I MEG PROSPECT 700R');
+
+-- Insert sample vouchers
+INSERT INTO vouchers (code, name, type, value, quantity, start_date, end_date, active) VALUES
+('WELCOME10', 'Chào mừng 10%', 'PERCENTAGE', 10.0, 100, '2024-01-01 00:00:00', '2024-12-31 23:59:59', true),
+('SUMMER20', 'Hè rực rỡ 20%', 'PERCENTAGE', 20.0, 50, '2024-06-01 00:00:00', '2024-08-31 23:59:59', true),
+('FLASH50K', 'Flash sale 50K', 'FIXED_AMOUNT', 50000.0, 200, '2024-01-01 00:00:00', '2024-12-31 23:59:59', true),
+('NEWYEAR30', 'Năm mới 30%', 'PERCENTAGE', 30.0, 30, '2024-12-20 00:00:00', '2025-01-05 23:59:59', true),
+('SPECIAL100K', 'Đặc biệt 100K', 'FIXED_AMOUNT', 100000.0, 100, '2024-01-01 00:00:00', '2024-12-31 23:59:59', true);
+
+-- Insert sample purchases
+INSERT INTO purchases (email, productID, quantity, price, order_date, status, address) VALUES
+('phuoc@gmail.com', 1, 2, 40000, '2024-03-15', 0, '123 Đường ABC, Quận 1, TP.HCM'),
+('luu@gmail.com', 2, 1, 24000, '2024-03-15', 1, '456 Đường XYZ, Quận 2, TP.HCM'),
+('phuoc@gmail.com', 3, 3, 72000, '2024-03-14', 2, '789 Đường DEF, Quận 3, TP.HCM'),
+('luu@gmail.com', 4, 1, 24000, '2024-03-14', 3, '321 Đường GHI, Quận 4, TP.HCM'),
+('phuoc@gmail.com', 5, 2, 48000, '2024-03-13', 4, '654 Đường JKL, Quận 5, TP.HCM');
+

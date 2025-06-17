@@ -41,6 +41,9 @@ public class Product {
     @Column(name = "content", length = 1000, nullable = false)
     private String content;
 
+    @Column(name = "imageUrl", length = 255)
+    private String imageUrl;
+
     // Getters and Setters
 
     public Integer getProductID() {
@@ -121,6 +124,14 @@ public class Product {
 
     public void setContent(String content) {
         this.content = content;
+    }
+
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
     }
 
     @Override

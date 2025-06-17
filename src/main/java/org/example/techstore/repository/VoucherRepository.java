@@ -5,6 +5,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 import java.util.List;
 import java.util.Date;
+import java.util.Optional;
 
 @Repository
 public interface VoucherRepository extends JpaRepository<Voucher, Integer> {
@@ -16,8 +17,10 @@ public interface VoucherRepository extends JpaRepository<Voucher, Integer> {
     List<Voucher> findByEndDateAfter(Date date);
 
     // Tìm Voucher theo mã
-    List<Voucher> findByCode(String code);
+    Optional<Voucher> findByCode(String code);
 
     // Tìm Voucher đang active
     List<Voucher> findByActiveTrue();
+
+    boolean existsByCode(String code);
 }

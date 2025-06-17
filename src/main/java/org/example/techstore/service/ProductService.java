@@ -23,12 +23,19 @@ public class ProductService {
     public List<Product> getAllProducts() {
         return productRepository.findAll();
     }
+
     public void deleteProduct(Integer id) {
+        productRepository.deleteById(id);
+    }
+
+    public Product saveProduct(Product product) {
+        return productRepository.save(product);
     }
 
     public List<Product> getProductsByNameContaining(String search) {
         return productRepository.findByNameContaining(search);
     }
+
     public List<Product> getRecentProducts() {
         LocalDate today = LocalDate.now();
         LocalDate fromDate = today.minusDays(30);
