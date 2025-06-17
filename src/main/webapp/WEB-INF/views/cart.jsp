@@ -50,25 +50,25 @@
 <header>
     <jsp:include page="common/header.jsp" />
 
-        <!-- BREADCRUMB -->
-        <div id="breadcrumb" class="section">
-            <!-- container -->
-            <div class="container">
-                <!-- row -->
-                <div class="row">
-                    <div class="col-md-12">
-                        <h3 class="breadcrumb-header">Cart</h3>
-                        <ul class="breadcrumb-tree">
-                            <li><a href="#">Home</a></li>
-                            <li class="active">Cart</li>
-                        </ul>
-                    </div>
-                </div>
-                <!-- /row -->
-            </div>
-            <!-- /container -->
-        </div>
-        <!-- /BREADCRUMB -->
+<%--        <!-- BREADCRUMB -->--%>
+<%--        <div id="breadcrumb" class="section">--%>
+<%--            <!-- container -->--%>
+<%--            <div class="container">--%>
+<%--                <!-- row -->--%>
+<%--                <div class="row">--%>
+<%--                    <div class="col-md-12">--%>
+<%--                        <h3 class="breadcrumb-header">Gior</h3>--%>
+<%--                        <ul class="breadcrumb-tree">--%>
+<%--                            <li><a href="#">Home</a></li>--%>
+<%--                            <li class="active">Cart</li>--%>
+<%--                        </ul>--%>
+<%--                    </div>--%>
+<%--                </div>--%>
+<%--                <!-- /row -->--%>
+<%--            </div>--%>
+<%--            <!-- /container -->--%>
+<%--        </div>--%>
+<%--        <!-- /BREADCRUMB -->--%>
     <!-- SECTION -->
     <div class="section">
         <!-- container -->
