@@ -1,8 +1,12 @@
 package org.example.techstore.service;
 
+import org.example.techstore.model.Product;
 import org.example.techstore.model.Purchase;
 import org.example.techstore.model.PurchaseId;
+import org.example.techstore.model.User;
+import org.example.techstore.repository.ProductRepository;
 import org.example.techstore.repository.PurchaseRepository;
+import org.example.techstore.repository.UserRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +15,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class PurchaseService {
@@ -18,6 +23,12 @@ public class PurchaseService {
 
     @Autowired
     private PurchaseRepository purchaseRepository;
+
+    @Autowired
+    private UserRepository userRepository;
+
+    @Autowired
+    private ProductRepository productRepository;
 
     @Transactional(readOnly = true)
     public List<Purchase> getAllPurchases() {
@@ -74,4 +85,36 @@ public class PurchaseService {
         purchase.setStatus(0); // PENDING status
         purchaseRepository.save(purchase);
     }
+
+    public boolean addPurchaseCheckout(String email, Integer productId, Integer quantity, Integer price,
+                                       Date orderDate, String address) {
+        Optional<User> userOpt = userRepository.findById(email);
+        Optional<Product> productOpt = productRepository.findById(productId);
+
+        if (userOpt.isEmpty() || productOpt.isEmpty()) {
+            return false; // User hoặc Product không tồn tại
+        }
+
+        User user = userOpt.get();
+        Product product = productOpt.get();
+
+        PurchaseId purchaseId = new PurchaseId(email, productId);
+        Purchase purchase = new Purchase();
+
+        purchase.setId(purchaseId);
+        purchase.setUser(user);
+        purchase.setProduct(product);
+        purchase.setQuantity(quantity);
+        purchase.setPrice(price);
+        purchase.setOrderDate(orderDate);
+        purchase.setStatus(0); // ví dụ: 0 = chưa xử lý
+        purchase.setAddress(address);
+
+        purchaseRepository.save(purchase);
+        return true;
+
+    }
+
+
+
 }

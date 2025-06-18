@@ -54,11 +54,11 @@ public class Home {
         model.addAttribute("tabs1", tabs1);
         model.addAttribute("tabs2", tabs2);
 
-//        User user = userService.findUserByEmail("admin@gmail.com");
-//        int cartsize = cartService.getCartsByUser(user).size();
-//        System.out.println("cartsize "+cartsize);
-//        session.setAttribute("user", user);
-//        session.setAttribute("cartsize", cartsize);
+        User user = userService.findUserByEmail("admin@gmail.com");
+        int cartsize = cartService.getCartsByUser(user).size();
+        System.out.println("cartsize "+cartsize);
+        session.setAttribute("user", user);
+        session.setAttribute("cartsize", cartsize);
         return "index";
     }
 }

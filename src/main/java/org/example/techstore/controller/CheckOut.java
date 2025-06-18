@@ -51,7 +51,7 @@ public class CheckOut {
         }
         String address = addressdetail+", "+ ward+", "+district +", "+city;
         for (Cart cart : cartService.getCartsByUser(user)) {
-            purchaseService.addPurchase(user.getEmail(), cart.getProduct().getProductID(), cart.getQuantity(), cart.getTotal(), new Date(), address);
+            purchaseService.addPurchaseCheckout(user.getEmail(), cart.getProduct().getProductID(), cart.getQuantity(), cart.getTotal(), new Date(), address);
             cartService.removeFromCartsByCart(cart);
         }
         return "redirect:/";
