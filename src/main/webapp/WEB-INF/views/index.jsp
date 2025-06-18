@@ -4,6 +4,7 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 
 <!DOCTYPE HTML>
 <html lang="en">
@@ -60,8 +61,8 @@
                         <img src="/assets/techstore/img/shop01.png" alt="">
                     </div>
                     <div class="shop-body">
-                        <h3>Laptop</h3>
-                        <a href="/search?category=1" class="cta-btn">Mua ngay <i class="fa fa-arrow-circle-right"></i></a>
+                        <h3><spring:message code='nav.laptops'/></h3>
+                        <a href="/search?category=1" class="cta-btn"><spring:message code='home.shopNow'/> <i class="fa fa-arrow-circle-right"></i></a>
                     </div>
                 </div>
             </div>
@@ -74,8 +75,8 @@
                         <img src="/assets/techstore/img/product07.png" alt="">
                     </div>
                     <div class="shop-body">
-                        <h3>Điện thoại</h3>
-                        <a href="/search?category=2" class="cta-btn">Mua ngay <i class="fa fa-arrow-circle-right"></i></a>
+                        <h3><spring:message code='nav.phones'/></h3>
+                        <a href="/search?category=2" class="cta-btn"><spring:message code='home.shopNow'/> <i class="fa fa-arrow-circle-right"></i></a>
                     </div>
                 </div>
             </div>
@@ -88,8 +89,8 @@
                         <img src="/assets/techstore/img/shop03.png" alt="">
                     </div>
                     <div class="shop-body">
-                        <h3>Tai nghe</h3>
-                        <a href="/search?category=5" class="cta-btn">Mua ngay <i class="fa fa-arrow-circle-right"></i></a>
+                        <h3><spring:message code='nav.headphones'/></h3>
+                        <a href="/search?category=5" class="cta-btn"><spring:message code='home.shopNow'/> <i class="fa fa-arrow-circle-right"></i></a>
                     </div>
                 </div>
             </div>
@@ -111,15 +112,7 @@
             <!-- section title -->
             <div class="col-md-12">
                 <div class="section-title">
-                    <h3 class="title">Sản phẩm mới nhất</h3>
-<%--                    <div class="section-nav">--%>
-<%--                        <ul class="section-tab-nav tab-nav">--%>
-<%--                            <li class="active"><a data-toggle="tab" href="#tab1">Laptops</a></li>--%>
-<%--                            <li><a data-toggle="tab" href="#tab1">Smartphones</a></li>--%>
-<%--                            <li><a data-toggle="tab" href="#tab1">Cameras</a></li>--%>
-<%--                            <li><a data-toggle="tab" href="#tab1">Accessories</a></li>--%>
-<%--                        </ul>--%>
-<%--                    </div>--%>
+                    <h3 class="title"><spring:message code='home.newProducts'/></h3>
                 </div>
             </div>
             <!-- /section title -->
@@ -135,17 +128,11 @@
                                     <div class="product">
                                         <div class="product-img">
                                             <img src="/assets/techstore/img/product/${product.productID}/0.webp" alt="">
-<%--                                            <div class="product-label">--%>
-<%--                                                <span class="sale">-30%</span>--%>
-<%--                                                <span class="new">NEW</span>--%>
-<%--                                            </div>--%>
                                         </div>
                                         <div class="product-body">
-                                            <p class="product-category">${product.category.name}</p>
+                                            <p class="product-category"><spring:message code='category.${product.category.categoryID}' text='${product.category.name}'/></p>
                                             <h3 class="product-name"><a href="/product?id=${product.productID}">${product.name}</a></h3>
-                                            <h4 class="product-price"><fmt:formatNumber value="${product.price}" type="number" groupingUsed="true"/> Đồng
-<%--                                                <del class="product-old-price">${product.price}</del>--%>
-                                            </h4>
+                                            <h4 class="product-price"><fmt:formatNumber value="${product.price}" type="number" groupingUsed="true"/> Đồng</h4>
                                             <div class="product-rating">
                                                 <i class="fa fa-star"></i>
                                                 <i class="fa fa-star"></i>
@@ -154,17 +141,23 @@
                                                 <i class="fa fa-star"></i>
                                             </div>
                                             <div class="product-btns">
-                                                <button class="add-to-wishlist" data-product-id="${product.productID}"><i class="fa fa-heart-o"></i><span
-                                                        class="tooltipp">add to wishlist</span></button>
-                                                <button class="add-to-compare"><i class="fa fa-exchange"></i><span
-                                                        class="tooltipp">add to compare</span></button>
-                                                <button class="quick-view"><i class="fa fa-eye"></i><span class="tooltipp">quick view</span>
+                                                <button class="add-to-wishlist" data-product-id="${product.productID}">
+                                                    <i class="fa fa-heart-o"></i>
+                                                    <span class="tooltipp"><spring:message code='product.addToWishlist'/></span>
+                                                </button>
+                                                <button class="add-to-compare">
+                                                    <i class="fa fa-exchange"></i>
+                                                    <span class="tooltipp"><spring:message code='product.addToCompare'/></span>
+                                                </button>
+                                                <button class="quick-view">
+                                                    <i class="fa fa-eye"></i>
+                                                    <span class="tooltipp"><spring:message code='product.quickView'/></span>
                                                 </button>
                                             </div>
                                         </div>
                                         <div class="add-to-cart">
                                             <button class="add-to-cart-btn" data-product-id="${product.productID}">
-                                                <i class="fa fa-shopping-cart"></i> Thêm vào giỏ hàng
+                                                <i class="fa fa-shopping-cart"></i> <spring:message code='product.addToCart'/>
                                             </button>
                                         </div>
                                     </div>
@@ -176,7 +169,7 @@
                     </div>
                 </div>
             </div>
-            <!-- Products tab & slick -->
+            <!-- /Products tab & slick -->
         </div>
         <!-- /row -->
     </div>
@@ -192,35 +185,8 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="hot-deal">
-<%--                    <ul class="hot-deal-countdown">--%>
-<%--                        <li>--%>
-<%--                            <div>--%>
-<%--                                <h3>02</h3>--%>
-<%--                                <span>Days</span>--%>
-<%--                            </div>--%>
-<%--                        </li>--%>
-<%--                        <li>--%>
-<%--                            <div>--%>
-<%--                                <h3>10</h3>--%>
-<%--                                <span>Hours</span>--%>
-<%--                            </div>--%>
-<%--                        </li>--%>
-<%--                        <li>--%>
-<%--                            <div>--%>
-<%--                                <h3>34</h3>--%>
-<%--                                <span>Mins</span>--%>
-<%--                            </div>--%>
-<%--                        </li>--%>
-<%--                        <li>--%>
-<%--                            <div>--%>
-<%--                                <h3>60</h3>--%>
-<%--                                <span>Secs</span>--%>
-<%--                            </div>--%>
-<%--                        </li>--%>
-<%--                    </ul>--%>
-                    <h2 class="text-uppercase">Giảm giá sốc tuần này</h2>
-                    <p>Những sản phẩm giảm tận 50% </p>
-<%--                    <a class="primary-btn cta-btn" href="#">Shop now</a>--%>
+                    <h2 class="text-uppercase"><spring:message code='home.hotDeal'/></h2>
+                    <p><spring:message code='home.hotDealDesc'/></p>
                 </div>
             </div>
         </div>
@@ -240,15 +206,7 @@
             <!-- section title -->
             <div class="col-md-12">
                 <div class="section-title">
-                    <h3 class="title">Săn đón nhiều nhất</h3>
-<%--                    <div class="section-nav">--%>
-<%--                        <ul class="section-tab-nav tab-nav">--%>
-<%--                            <li class="active"><a data-toggle="tab" href="#tab2">Laptops</a></li>--%>
-<%--                            <li><a data-toggle="tab" href="#tab2">Smartphones</a></li>--%>
-<%--                            <li><a data-toggle="tab" href="#tab2">Cameras</a></li>--%>
-<%--                            <li><a data-toggle="tab" href="#tab2">Accessories</a></li>--%>
-<%--                        </ul>--%>
-<%--                    </div>--%>
+                    <h3 class="title"><spring:message code='home.topSelling'/></h3>
                 </div>
             </div>
             <!-- /section title -->
@@ -266,11 +224,9 @@
                                             <img src="/assets/techstore/img/product/${product.productID}/0.webp" alt="">
                                         </div>
                                         <div class="product-body">
-                                            <p class="product-category">${product.category.name}</p>
+                                            <p class="product-category"><spring:message code='category.${product.category.categoryID}' text='${product.category.name}'/></p>
                                             <h3 class="product-name"><a href="/product?id=${product.productID}">${product.name}</a></h3>
-                                            <h4 class="product-price"><fmt:formatNumber value="${product.price}" type="number" groupingUsed="true"/> Đồng
-<%--                                                <del class="product-old-price">${product.price}</del>--%>
-                                            </h4>
+                                            <h4 class="product-price"><fmt:formatNumber value="${product.price}" type="number" groupingUsed="true"/> <spring:message code='product.currency'/></h4>
                                             <div class="product-rating">
                                                 <i class="fa fa-star"></i>
                                                 <i class="fa fa-star"></i>
@@ -279,21 +235,28 @@
                                                 <i class="fa fa-star"></i>
                                             </div>
                                             <div class="product-btns">
-                                                <button class="add-to-wishlist" data-product-id="${product.productID}"><i class="fa fa-heart-o"></i><span
-                                                        class="tooltipp">add to wishlist</span></button>
-                                                <button class="add-to-compare"><i class="fa fa-exchange"></i><span
-                                                        class="tooltipp">add to compare</span></button>
-                                                <button class="quick-view"><i class="fa fa-eye"></i><span class="tooltipp">quick view</span>
+                                                <button class="add-to-wishlist" data-product-id="${product.productID}">
+                                                    <i class="fa fa-heart-o"></i>
+                                                    <span class="tooltipp"><spring:message code='product.addToWishlist'/></span>
+                                                </button>
+                                                <button class="add-to-compare">
+                                                    <i class="fa fa-exchange"></i>
+                                                    <span class="tooltipp"><spring:message code='product.addToCompare'/></span>
+                                                </button>
+                                                <button class="quick-view">
+                                                    <i class="fa fa-eye"></i>
+                                                    <span class="tooltipp"><spring:message code='product.quickView'/></span>
                                                 </button>
                                             </div>
                                         </div>
                                         <div class="add-to-cart">
                                             <button class="add-to-cart-btn" data-product-id="${product.productID}">
-                                                <i class="fa fa-shopping-cart"></i> Thêm vào giỏ hàng
+                                                <i class="fa fa-shopping-cart"></i> <spring:message code='product.addToCart'/>
                                             </button>
                                         </div>
                                     </div>
                                 </c:forEach>
+                            </div>
                             <div id="slick-nav-2" class="products-slick-nav"></div>
                         </div>
                         <!-- /tab -->
