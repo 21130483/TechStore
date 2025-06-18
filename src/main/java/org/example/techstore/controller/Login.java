@@ -19,10 +19,10 @@ public class Login {
     private final CartService cartService;
 
     @Autowired
-    public Login(UserService userService, PasswordEncoder passwordEncoder) {
+    public Login(UserService userService, PasswordEncoder passwordEncoder,CartService cartService) {
         this.userService = userService;
         this.passwordEncoder = passwordEncoder;
-        this.cartService = new CartService();
+        this.cartService = cartService;
     }
 
     @GetMapping("/req/login")
@@ -42,11 +42,12 @@ public class Login {
                 session.setAttribute("cartsize", cartsize);
                 return "redirect:/";
             } else {
-                return "redirect:/req/login?error=true";
+                return "redirect:/req/login?error=true"; // Sai tài khoản hoặc mật khẩu
             }
+
         } catch (Exception e) {
-            e.printStackTrace(); // log ra console
-            return "redirect:/req/login?error"; // xử lý khi lỗi hệ thống
+            e.printStackTrace(); // Ghi log
+            return "redirect:/req/login?error=server"; // Lỗi hệ thống
         }
 
     }
