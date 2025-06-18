@@ -95,6 +95,7 @@
                                                     <c:if test="${not empty product.imageUrl}">
                                                         <img src="<c:url value='${product.imageUrl}'/>" alt="${product.name}" style="width: 50px; height: 50px; object-fit: cover;"/>
                                                     </c:if>
+                                                    <img src="/assets/techstore/img/product/${product.productID}/0.webp" alt="" style="width: 50px; height: 50px; object-fit: cover;"/>
                                                 </td>
                                                 <td>${product.name}</td>
                                                 <td>${product.category.name}</td>

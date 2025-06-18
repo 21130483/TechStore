@@ -6,6 +6,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 public class MainController {
+    @GetMapping("/profile")
+    public String profile(){
+        return "profile";
+    }
 
     @GetMapping("/req/signup")
     public String signup(){

@@ -34,19 +34,15 @@ public class Login {
     public String checklogin(@RequestParam String username, @RequestParam String password, HttpSession session) {
         User user = userService.checkLogin(username, password);
 
-        if ( user==null) {
-            System.out.println("success");
+        if (user==null) {
             session.setAttribute("user", user);
-            System.out.println(user.toString());
             int cartsize = cartService.getCartsByUser(user).size();
-            System.out.println("cartsize "+cartsize);
-            if(cartsize>0) {
-                session.setAttribute("cartsize", cartsize);
-            }
+            session.setAttribute("cartsize", cartsize);
+
             return "redirect:/";
         } else {
             System.out.println("failed");
-            return "redirect:/req/login?error";
+            return "redirect:/";
         }
 
     }

@@ -469,7 +469,7 @@
         }
 
         function linkToAdmin() {
-            window.location.href = 'admin.html';
+            window.location.href = 'admin';
         }
 
 
