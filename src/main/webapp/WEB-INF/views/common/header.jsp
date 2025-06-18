@@ -47,19 +47,34 @@
 <header>
 
     <!-- TOP HEADER -->
-<%--    <div id="top-header">--%>
-<%--        <div class="container">--%>
-<%--            <ul class="header-links pull-left">--%>
-<%--                <li><a href="#"><i class="fa fa-phone"></i> +021-95-51-84</a></li>--%>
-<%--                <li><a href="#"><i class="fa fa-envelope-o"></i> email@email.com</a></li>
-<%--                <li><a href="#"><i class="fa fa-map-marker"></i> 1734 Stonecoal Road</a></li>
-<%--            </ul>--%>
-<%--            <ul class="header-links pull-right">--%>
-<%--                <li><a href="#"><i class="fa fa-dollar"></i> USD</a></li>--%>
-<%--                <li><a href="${pageContext.request.contextPath}/req/login"><i class="fa fa-user-o"></i> My Account</a></li>--%>
-<%--            </ul>--%>
-<%--        </div>--%>
-<%--    </div>--%>
+    <div id="top-header">
+        <div class="container">
+            <ul class="header-links pull-left">
+                <li><a href="#"><i class="fa fa-phone"></i> +021-95-51-84</a></li>
+                <li><a href="#"><i class="fa fa-envelope-o"></i> email@email.com</a></li>
+                <li><a href="#"><i class="fa fa-map-marker"></i> 1734 Stonecoal Road</a></li>
+            </ul>
+            <ul class="header-links pull-right">
+                <!-- Language -->
+                <div class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" style="color: white">
+                        <i class="fa fa-globe"></i>
+                        <span>
+                             <c:choose>
+                                 <c:when test="${pageContext.response.locale == 'vi'}">Tiếng Việt</c:when>
+                                 <c:otherwise>English</c:otherwise>
+                             </c:choose>
+                        </span>
+                    </a>
+                    <div class="dropdown-menu" style="padding: 10px;">
+                        <a href="?lang=vi" class="dropdown-item">Tiếng Việt</a>
+                        <a href="?lang=en" class="dropdown-item" style="margin-left: 10px">English</a>
+                    </div>
+                </div>
+                <!-- /Language -->
+            </ul>
+        </div>
+    </div>
     <!-- /TOP HEADER -->
 
     <!-- MAIN HEADER -->
@@ -92,23 +107,7 @@
                 <!-- ACCOUNT -->
                 <div class="col-md-3 clearfix">
                     <div class="header-ctn">
-                        <!-- Language -->
-                        <div class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                <i class="fa fa-globe"></i>
-                                <span>
-                                    <c:choose>
-                                        <c:when test="${pageContext.response.locale == 'vi'}">VI</c:when>
-                                        <c:otherwise>EN</c:otherwise>
-                                    </c:choose>
-                                </span>
-                            </a>
-                            <div class="dropdown-menu">
-                                <a href="?lang=vi" class="dropdown-item">Tiếng Việt</a>
-                                <a href="?lang=en" class="dropdown-item">English</a>
-                            </div>
-                        </div>
-                        <!-- /Language -->
+
 
                         <!-- Cart -->
                         <div class="dropdown">

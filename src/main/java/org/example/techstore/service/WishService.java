@@ -10,6 +10,7 @@ import org.example.techstore.repository.WishRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -51,5 +52,12 @@ public class WishService {
 
         wishRepository.save(wish);
         return true;
+    }
+    public void removeWish(String email, Integer productId) {
+        WishId id = new WishId(email, productId);
+        wishRepository.deleteById(id);
+    }
+    public List<Wish> getWishesByUser(User user) {
+        return  wishRepository.findByUser(user);
     }
 }

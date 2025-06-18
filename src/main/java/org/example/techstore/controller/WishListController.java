@@ -37,6 +37,7 @@ public class WishListController {
         if(!wishService.addWish(user.getEmail(), productId)){
             response.put("success", false);
             response.put("message", "Đã tồn tại");
+            wishService.removeWish(user.getEmail(), productId);
             return response;
         }
 

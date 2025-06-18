@@ -54,6 +54,7 @@ public class CheckOut {
             purchaseService.addPurchaseCheckout(user.getEmail(), cart.getProduct().getProductID(), cart.getQuantity(), cart.getTotal(), new Date(), address);
             cartService.removeFromCartsByCart(cart);
         }
+        session.setAttribute("cartsize", 0);
         return "redirect:/";
     }
 
