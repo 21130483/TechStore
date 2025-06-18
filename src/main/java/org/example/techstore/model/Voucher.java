@@ -44,7 +44,7 @@ public class Voucher {
         return voucherID;
     }
 
-    public void setVoucherID(Integer id) {
+    public void setVoucherID(Integer voucherID) {
         this.voucherID = voucherID;
     }
 
