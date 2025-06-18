@@ -30,19 +30,23 @@ public class Login {
         return "login";
     }
 
-    @PostMapping("/req/login")
+//    @PostMapping("/req/login")
+    @PostMapping("/checklogin")
     public String checklogin(@RequestParam String username, @RequestParam String password, HttpSession session) {
-        User user = userService.checkLogin(username, password);
+        try {
+            User user = userService.checkLogin(username, password);
 
-        if (user==null) {
-            session.setAttribute("user", user);
-            int cartsize = cartService.getCartsByUser(user).size();
-            session.setAttribute("cartsize", cartsize);
-
-            return "redirect:/";
-        } else {
-            System.out.println("failed");
-            return "redirect:/";
+            if (user != null) {
+                session.setAttribute("user", user);
+                int cartsize = cartService.getCartsByUser(user).size();
+                session.setAttribute("cartsize", cartsize);
+                return "redirect:/";
+            } else {
+                return "redirect:/req/login?error=true";
+            }
+        } catch (Exception e) {
+            e.printStackTrace(); // log ra console
+            return "redirect:/req/login?error"; // xử lý khi lỗi hệ thống
         }
 
     }

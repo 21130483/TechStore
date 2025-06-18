@@ -31,36 +31,36 @@
 </head>
 <body>
 <section>
-    <form action="${pageContext.request.contextPath}/req/login" method="post">
-        <h1>Login</h1>
-        <c:if test="${param.error != null}">
-            <div class="error-message">
-                Invalid username or password.
+        <form action="/checklogin" method="post">
+            <h1>Login</h1>
+            <c:if test="${param.error != null}">
+                <div class="error-message">
+                    Invalid username or password.
+                </div>
+            </c:if>
+            <c:if test="${param.expired != null}">
+                <div class="error-message">
+                    Your session has expired. Please log in again.
+                </div>
+            </c:if>
+            <div class="inputbox">
+                <ion-icon name="person-outline"></ion-icon>
+                <input name="username" id="username" type="text" required>
+                <label for="username">Username</label>
             </div>
-        </c:if>
-        <c:if test="${param.expired != null}">
-            <div class="error-message">
-                Your session has expired. Please log in again.
+            <div class="inputbox">
+                <ion-icon name="lock-closed-outline"></ion-icon>
+                <input name="password" type="password" id="password" required>
+                <label for="password">Password</label>
             </div>
-        </c:if>
-        <div class="inputbox">
-            <ion-icon name="person-outline"></ion-icon>
-            <input name="username" id="username" type="text" required>
-            <label for="username">Username</label>
-        </div>
-        <div class="inputbox">
-            <ion-icon name="lock-closed-outline"></ion-icon>
-            <input name="password" type="password" id="password" required>
-            <label for="password">Password</label>
-        </div>
-        <div class="forgot-password">
-            <a href="${pageContext.request.contextPath}/req/forgot-password">Forgot Password?</a>
-        </div>
-        <button type="submit">Log in</button>
-        <div class="register">
-            <p>Don't have an account? <a href="${pageContext.request.contextPath}/req/signup">Register!!</a></p>
-        </div>
-    </form>
+            <div class="forgot-password">
+                <a href="${pageContext.request.contextPath}/req/forgot-password">Forgot Password?</a>
+            </div>
+            <button type="submit">Log in</button>
+            <div class="register">
+                <p>Don't have an account? <a href="${pageContext.request.contextPath}/req/signup">Register!!</a></p>
+            </div>
+        </form>
 </section>
 </body>
 </html>
