@@ -22,6 +22,10 @@ public class PasswordResetService {
     @Autowired
     private PasswordEncoder passwordEncoder;
 
+    public boolean checkEmailExists(String email) {
+        return userRepository.findByEmail(email) != null;
+    }
+
     public boolean requestPasswordReset(String email) {
         User user = userRepository.findByEmail(email);
         if (user != null) {
