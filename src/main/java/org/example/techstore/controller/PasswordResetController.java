@@ -7,6 +7,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
+import java.util.Map;
+
 @Controller
 @RequestMapping("/req")
 public class PasswordResetController {
@@ -50,5 +53,13 @@ public class PasswordResetController {
         } else {
             return ResponseEntity.badRequest().body("Invalid or expired token.");
         }
+    }
+//check email exists
+    @PostMapping("/check-email-for-reset")
+    @ResponseBody
+    public Map<String, Boolean> checkEmailForReset(@RequestParam String email) {
+        Map<String, Boolean> response = new HashMap<>();
+        response.put("exists", passwordResetService.checkEmailExists(email));
+        return response;
     }
 }

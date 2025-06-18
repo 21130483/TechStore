@@ -14,6 +14,8 @@ import org.example.techstore.repository.UserRepository;
 
 import javax.mail.MessagingException;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 @RestController
 public class RegistrationController {
@@ -30,6 +32,24 @@ public class RegistrationController {
 
     @Autowired
     private JwtTokenUtil jwtTokenUtil;
+
+    //check username exists
+    @PostMapping("/check-username-exists")
+    @ResponseBody
+    public Map<String, Boolean> checkUsernameExists(@RequestParam String username) {
+        Map<String, Boolean> response = new HashMap<>();
+        response.put("exists", userRepository.findByUsername(username).isPresent());
+        return response;
+    }
+
+    //check email exists
+    @PostMapping("/check-email-exists")
+    @ResponseBody
+    public Map<String, Boolean> checkEmailExists(@RequestParam String email) {
+        Map<String, Boolean> response = new HashMap<>();
+        response.put("exists", userRepository.findByEmail(email) != null);
+        return response;
+    }
 
     @PostMapping(value = "/req/signup", consumes = "application/json")
     public ResponseEntity<String> createUser(@RequestBody User user) {
