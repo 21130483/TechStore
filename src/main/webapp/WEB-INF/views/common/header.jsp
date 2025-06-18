@@ -3,6 +3,7 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -50,8 +51,8 @@
 <%--        <div class="container">--%>
 <%--            <ul class="header-links pull-left">--%>
 <%--                <li><a href="#"><i class="fa fa-phone"></i> +021-95-51-84</a></li>--%>
-<%--                <li><a href="#"><i class="fa fa-envelope-o"></i> email@email.com</a></li>--%>
-<%--                <li><a href="#"><i class="fa fa-map-marker"></i> 1734 Stonecoal Road</a></li>--%>
+<%--                <li><a href="#"><i class="fa fa-envelope-o"></i> email@email.com</a></li>
+<%--                <li><a href="#"><i class="fa fa-map-marker"></i> 1734 Stonecoal Road</a></li>
 <%--            </ul>--%>
 <%--            <ul class="header-links pull-right">--%>
 <%--                <li><a href="#"><i class="fa fa-dollar"></i> USD</a></li>--%>
@@ -81,13 +82,8 @@
                 <div class="col-md-6">
                     <div class="header-search">
                         <form action="/search" method="get">
-                            <!-- <select class="input-select">
-                                <option value="0">All Categories</option>
-                                <option value="1">Category 01</option>
-                                <option value="1">Category 02</option>
-                            </select> -->
-                            <input name="search" class="input" placeholder="Search here">
-                            <button class="search-btn">Search</button>
+                            <input name="search" class="input" placeholder="<spring:message code='header.search'/>">
+                            <button class="search-btn"><spring:message code='header.search'/></button>
                         </form>
                     </div>
                 </div>
@@ -96,14 +92,29 @@
                 <!-- ACCOUNT -->
                 <div class="col-md-3 clearfix">
                     <div class="header-ctn">
+                        <!-- Language -->
+                        <div class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                <i class="fa fa-globe"></i>
+                                <span>
+                                    <c:choose>
+                                        <c:when test="${pageContext.response.locale == 'vi'}">VI</c:when>
+                                        <c:otherwise>EN</c:otherwise>
+                                    </c:choose>
+                                </span>
+                            </a>
+                            <div class="dropdown-menu">
+                                <a href="?lang=vi" class="dropdown-item">Tiếng Việt</a>
+                                <a href="?lang=en" class="dropdown-item">English</a>
+                            </div>
+                        </div>
+                        <!-- /Language -->
 
                         <!-- Cart -->
                         <div class="dropdown">
                             <a href="/cart" aria-expanded="true">
-                                <!-- <a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true"> -->
                                 <i class="fa fa-shopping-cart"></i>
-                                <span>Giỏ Hàng</span>
-
+                                <span><spring:message code='header.cart'/></span>
                                 <div class="qty" id="cartnumber">
                                     <c:choose>
                                         <c:when test="${not empty sessionScope.cartsize}">
@@ -112,48 +123,13 @@
                                         <c:otherwise>
                                             0
                                         </c:otherwise>
-
-                                </c:choose>
+                                    </c:choose>
                                 </div>
-
                             </a>
-                            <!-- <div class="cart-dropdown">
-                                <div class="cart-list">
-                                    <div class="product-widget">
-                                        <div class="product-img">
-                                            <img src="./img/product01.png" alt="">
-                                        </div>
-                                        <div class="product-body">
-                                            <h3 class="product-name"><a href="#">product name goes here</a></h3>
-                                            <h4 class="product-price"><span class="qty">1x</span>$980.00</h4>
-                                        </div>
-                                        <button class="delete"><i class="fa fa-close"></i></button>
-                                    </div>
-
-                                    <div class="product-widget">
-                                        <div class="product-img">
-                                            <img src="./img/product02.png" alt="">
-                                        </div>
-                                        <div class="product-body">
-                                            <h3 class="product-name"><a href="#">product name goes here</a></h3>
-                                            <h4 class="product-price"><span class="qty">3x</span>$980.00</h4>
-                                        </div>
-                                        <button class="delete"><i class="fa fa-close"></i></button>
-                                    </div>
-                                </div>
-                                <div class="cart-summary">
-                                    <small>3 Item(s) selected</small>
-                                    <h5>SUBTOTAL: $2940.00</h5>
-                                </div>
-                                <div class="cart-btns">
-                                    <a href="#">View Cart</a>
-                                    <a href="#">Checkout  <i class="fa fa-arrow-circle-right"></i></a>
-                                </div>
-                            </div> -->
                         </div>
                         <!-- /Cart -->
 
-                        <!-- Wishlist -->
+                        <!-- Profile -->
                         <div>
                             <a href="profile">
                                 <i class="fa fa-user-o"></i>
@@ -163,17 +139,13 @@
                                             ${sessionScope.user.fullName}
                                         </c:when>
                                         <c:otherwise>
-                                            Đăng nhập
+                                            <spring:message code='header.login'/>
                                         </c:otherwise>
                                     </c:choose>
-
                                 </span>
-                                <!-- <div class="qty">2</div> -->
                             </a>
                         </div>
-                        <!-- /Wishlist -->
-
-
+                        <!-- /Profile -->
 
                         <!-- Menu Toogle -->
                         <div class="menu-toggle">
@@ -203,7 +175,7 @@
         <div id="responsive-nav">
             <!-- NAV -->
             <ul class="main-nav nav navbar-nav">
-                <li><a href="/">Home</a></li>
+                <li><a href="/"><spring:message code='nav.home'/></a></li>
 <%--                <li><a href="/store">Điện thoại</a></li>--%>
 <%--                <li><a href="/store">Laptop</a></li>--%>
 <%--                <li><a href="/store">PC</a></li>--%>
@@ -211,7 +183,7 @@
 <%--                <li><a href="/store">Máy tính bảng</a></li>--%>
 <%--                <li><a href="/store">Tivi</a></li>--%>
                 <c:forEach var="category" items="${categories}">
-                    <li><a href="/search?category=${category.categoryID}">${category.name}</a></li>
+                    <li><a href="/search?category=${category.categoryID}"><spring:message code='category.${category.categoryID}' text='${category.name}'/></a></li>
                 </c:forEach>
             </ul>
             <!-- /NAV -->
