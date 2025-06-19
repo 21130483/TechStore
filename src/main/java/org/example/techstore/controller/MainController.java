@@ -8,8 +8,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class MainController {
 
 
-//    @GetMapping("/req/signup")
-//    public String signup(){
-//        return "signup";
-//    }
+    @GetMapping("/req/signup")
+    public String signup(){
+        return "signup";
+    }
 }

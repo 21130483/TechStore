@@ -92,7 +92,7 @@ public class RegistrationController {
             user.setVerified(false);
             user.setRole("USER");  // Set default role
             user.setAccess("ACTIVE");  // Set default access status
-            
+
             // Set default values for required fields if they are null
             if (user.getDob() == null) {
                 user.setDob(new Date()); // Set current date as default DOB
@@ -116,8 +116,8 @@ public class RegistrationController {
                 logger.info("Registration successful and verification email sent to: {}", user.getEmail());
                 return ResponseEntity.ok("Registration successful! Please check your email to verify your account.");
             } catch (MessagingException e) {
-                logger.error("Registration successful but failed to send verification email to: {}", 
-                    user.getEmail(), e.getMessage(), e);
+                logger.error("Registration successful but failed to send verification email to: {}",
+                        user.getEmail(), e.getMessage(), e);
                 return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
                         .body("Registration successful but error sending verification email");
             }
